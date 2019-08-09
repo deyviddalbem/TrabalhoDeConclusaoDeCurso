@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src=" https://unpkg.com/feather-icons "> </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <title>Página Inicial-SoliServ</title>
+</head>
+<style>
+    .contrast,
+    .contrast nav,
+    .contrast div,
+    .contrast li,
+    .contrast ol,
+    .contrast header,
+    .contrast footer,
+    .contrast section,
+    .contrast main,
+    .contrast aside,
+    .contrast a,
+    .contrast article {
+        background: black !important;
+        color: white !important;
+    }
+
+    .contrast h1,
+    .contrast h2,
+    .contrast h3,
+    .contrast h4,
+    .contrast h5,
+    .contrast h6,
+    .contrast p,
+    .contrast label,
+    .contrast strong,
+    .contrast em,
+    .contrast cite,
+    .contrast q,
+    .contrast i,
+    .contrast b,
+    .contrast u,
+    .contrast thead,
+    .contrast td,
+    .contrast tr,
+    .contrast tbody,
+    .contrast span {
+        color: white !important;
+    }
+
+    .contrast a {
+        color: yellow !important;
+    }
+
+    .contrast button,
+    .contrast a,
+    .contrast input[type=button],
+    .contrast input[type=reset],
+    .contrast input[type=submit] {
+        background: black !important;
+        color: yellow !important;
+        border: none !important;
+    }
+
+    .contrast img.on-contrast-force-gray {
+        filter: grayscale(100%) contrast(120%);
+    }
+
+    .contrast img.on-contrast-force-white {
+        filter: brightness(0) invert(1);
+    }
+
+    .contrast input[type=text],
+    .contrast input[type=password],
+    .contrast input[type=url],
+    .contrast input[type=search],
+    .contrast input[type=email],
+    .contrast input[type=tel],
+    .contrast input[type=date],
+    .contrast input[type=month],
+    .contrast input[type=week],
+    .contrast input[type=datetime],
+    .contrast input[type=datetime-local],
+    .contrast textarea,
+    .contrast input[type=number] {
+        background: black !important;
+        border: 1px solid white !important;
+        color: white !important;
+    }
+</style>
+
+<body class="acessibilidade">
+    <!--Cabecalho da página-->
+    <div style="background: #2369b3; width: 100%;">
+        <header class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark " style="background: #2369b3;">
+                <div style="text-align: center;">
+                    <a title="Página Inicial" class="navbar-brand" href="{% url 'index' %}">
+                        <h1>SoliServ</h1>
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div style="width: 70%;"></div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!--DropDown dados usuário-->
+                    <div class=" text-right" style=" padding-bottom: 0; bottom: 0; text-align: right; width: 100%;">
+                        {% if user.is_authenticated %}
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Bem Vindo {{ user.first_name }}!
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Meus dados</a>
+                                    <a class="dropdown-item" href="{% url 'password_change' %}">Alterar Senha</a>
+                                    <div class="dropdown-divider"></div>
+                                    {% if user.is_authenticated %}
+                                    <a class="dropdown-item" data-feather="log-out" href="{% url 'logout' %}">Logout</a>
+                                    {% else %}
+                                    <a class="dropdown-item" data-feather="log-in" href="{% url 'login' %}">Login</a>
+                                    {% endif %}
+                                </div>
+                                {% else %}
+                                <ul class="navbar-nav"  style="padding: 0; margin: 0;flex-wrap: wrap;">
+                                    <li class="nav-item active text-white"style="width:100%;">
+                                        <a class="nav-link " href="{% url 'cadastrar' %}"
+                                            title="Efetuar Cadastro"> Realizar Cadastro<span
+                                                class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item active  text-white" style="width:100%;">
+                                        <a class="nav-link  w-100" href="{% url 'login' %}" title="Efetuar o Login">Acessar
+                                            Conta<span class="sr-only">(current)</span></a>
+                                    </li>
+                                </ul>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+            <!--container do navbar da página-->
+            <div class="container">
+                <nav class="border-top navbar navbar-expand-lg navbar-dark ">
+                    <!--navbar da página-->
+                    <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active text-white">
+                                <a class="nav-link" title="Voltar ao Início" href="{% url 'index' %}">Home <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item text-white">
+                                <a class="nav-link" title="Meus Endereços" href="{% url 'listaEnderecos' %}">Meus
+                                    Enderecos</a>
+                            </li>
+                            <li class="nav-item text-white">
+                                <a class="nav-link" title="Meus Telefones" href="{% url 'listaTelefones' %}">Meus
+                                    Telefones</a>
+                            </li>
+                            <li class="nav-item text-white">
+                                <a class="nav-link" title="Meus Chamados" href="#">Meus Chamados</a>
+                            </li>
+                            <!--acessibilidade-->
+                            <li class=" border-top border-bottom nav-item text-white active border-left"
+                                title="Aumentar Tamanho da Fonte">
+                                <a class="nav-link ml-2" onClick="fonte('a');" href="#">A+</a>
+                            </li>
+                            <li class=" border-top border-bottom nav-item active text-white"
+                                title="Diminuir Tamanho da Fonte">
+                                <a class="nav-link" onClick="fonte('d');" href="#">A-</a>
+                            </li>
+                            <!---<li class=" border-top border-bottom nav-item active text-white"
+                                title="Restaurar o Tamanho da Fonte">
+                                <a class="nav-link" onClick="fonte('r');" href="#">100%</a>
+                            </li>-->
+                            <li class="border-top border-bottom nav-item  text-white active border-right"
+                                title="Auto Contraste">
+                                <a class="nav-link" href="#altocontraste" id="altocontraste" accesskey="3"
+                                    onclick="window.toggleContrast()" onkeydown="window.toggleContrast()">Auto
+                                    Contraste</a>
+                            </li>
+                            <li class="border-top border-bottom nav-item  text-white active border-right"
+                                title="Ajuda">
+                                <a class="nav-link font-weight-bold" href="#" id="">?</a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li class="border-top ml-5  border-bottom nav-item  text-white active border-left border-right text-right"
+                                title="Filiado a Secretaria Municipal de Obras">
+                                <a class="nav-link" href="#" id=""> Filiação: Secretaria de Obras</a>
+                            </li>
+                            {% else %}
+                            {% endif %}
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+    </div>
+    <!--Conteúdo da página-->
+    <main class="centro container">
+        <div class="container">
+            <div class="border mt-3">
+                {% block centro%}
+                {% if user.is_authenticated %}
+                logado
+                {% else %}
+                deslogado
+                {% endif %}
+                
+            {% endblock %}
+        </div>
+    </main>
+    <!--
+ <footer>
+        <div style="position: fixed; bottom: 0; width: 100%; background: #2369b3;" class="text-light">
+            <div class="container">
+                <p class="text-center mt-3">
+                    Sistema de Solicitações de Serviços 2019-2020
+                </p>
+            </div>
+        </div>
+    </footer>
+
+   -->
+</body>
+<!--funcao auto contraste-->
+<script>
+    (function () {
+        var Contrast = {
+            storage: 'contrastState',
+            cssClass: 'contrast',
+            currentState: null,
+            check: checkContrast,
+            getState: getContrastState,
+            setState: setContrastState,
+            toogle: toogleContrast,
+            updateView: updateViewContrast
+        };
+
+        window.toggleContrast = function () { Contrast.toogle(); };
+
+        Contrast.check();
+
+        function checkContrast() {
+            this.updateView();
+        }
+
+        function getContrastState() {
+            return localStorage.getItem(this.storage) === 'true';
+        }
+
+        function setContrastState(state) {
+            localStorage.setItem(this.storage, '' + state);
+            this.currentState = state;
+            this.updateView();
+        }
+
+        function updateViewContrast() {
+            var body = document.body;
+
+            if (this.currentState === null)
+                this.currentState = this.getState();
+
+            if (this.currentState)
+                body.classList.add(this.cssClass);
+            else
+                body.classList.remove(this.cssClass);
+        }
+
+        function toogleContrast() {
+            this.setState(!this.currentState);
+        }
+    })();
+</script>
+
+<!--funcao acessibilidade-->
+<script>
+    function fonte(e) {
+        var elemento = $(".acessibilidade");
+        var fonte = elemento.css('font-size');
+        cont = 0;
+
+        if (e == 'a') {
+            elemento.css("fontSize", parseInt(fonte) + 1);
+            console.log('aumentou');
+
+        } else if (e == 'd') {
+            elemento.css("fontSize", parseInt(fonte) - 1);
+            console.log('diminuiu');
+        } else if (e == 'r') {
+            elemento.css("fontSize", parseInt(fonte) == 1 + 'em');
+            console.log('restaurou');
+        }
+    }
+</script>
+
+</html>

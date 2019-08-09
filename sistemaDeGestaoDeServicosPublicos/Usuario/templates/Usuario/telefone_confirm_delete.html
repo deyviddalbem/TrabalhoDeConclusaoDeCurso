@@ -1,0 +1,14 @@
+{% extends "sistemaDeGestaoDeServicosPublicos/index.html" %}
+{% block centro %}
+<div class="container text-center mt-5">
+    <form method="post">{% csrf_token %}
+        <div class="mt-3 container text-center">
+            <p style="color: #2369b3; font-size: 30px;">Excluir Meu Telefone</p>
+        </div>
+        <h6 class="alert alert-danger">Tem certeza que deseja remover "{{ object }}"?</h6>
+        <input type="submit" title="Excluir Telefone" class="btn btn-primary mt-3 mb-3" value="Confirmar">
+    </form>
+
+</div>
+
+{% endblock%}

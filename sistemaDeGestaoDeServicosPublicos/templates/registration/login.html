@@ -1,0 +1,36 @@
+{% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block centro %}
+
+<div style="width: 30%;" class=" mt-3 container text-center">
+    <div class="text-light" style="background: #2369b3;">
+        <h3>LOGIN</h3>
+    </div>
+
+    <form class="border border-dark" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+        <div class="mt-2" style="color: #2369b3;">
+            E-Mail
+        </div>
+
+        <div class="mt-1 form-group">
+            {{ form.username.errors }}
+            {{  form.username }}
+        </div>
+
+        <div class="mt-2" style="color: #2369b3;">
+            senha:
+        </div>
+        <div class="ml-4 mt-1 form-group">
+            {{ form.password.errors }}
+            {{ form.password }}
+            <img id="olho" style="cursor: pointer;" alt="um olho da cor azul, usado para tornar a senha visível"
+                title="Mostrar Senha"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" />
+        </div>
+       
+        <div class="submit-row">
+            <label>&nbsp;</label><input class=" mb-2 mt-3 btn btn-primary" type="submit" value="Acesso">
+        </div>
+    </form>
+</div>
+
+{% endblock %}
