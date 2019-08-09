@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Usuario.apps.UsuarioConfig',
     'Chamados.apps.ChamadosConfig',
     'Orgao.apps.OrgaoConfig',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'sistemaDeGestaoDeServicosPublicos.urls'
@@ -65,13 +67,21 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                 'social_django.context_processors.backends',  
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'sistemaDeGestaoDeServicosPublicos.wsgi.application'
-
 
 
 # Database
@@ -123,7 +133,7 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'sistemaDeGestaoDeServicosPublicos/static/'),
-   
+
 
 ]
 STATIC_URL = '/static/'
