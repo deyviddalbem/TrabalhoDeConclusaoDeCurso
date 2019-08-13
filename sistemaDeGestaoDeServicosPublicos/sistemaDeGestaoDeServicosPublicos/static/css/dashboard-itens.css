@@ -4,6 +4,7 @@
     grid-template-columns: repeat(4, 25%) ;
     grid-gap: 10px;
     padding-right: 1em;
+    
 }
 
 .smallbox {
@@ -44,12 +45,14 @@
         grid-template-columns: repeat(2, 50%) ;
         grid-gap: 10px;
         padding-right: 1em;
+        
     }
     
 }
 
 
 .section-2{
+    
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -97,10 +100,12 @@
 
 .table-holder tr:nth-child(odd):hover {
     background-color: #5e35b19d;
+    color: white;
 }
 
 .table-holder tr:nth-child(even):hover {
     background-color: #ff6f269d;
+    color: white;
 }
 
 

@@ -55,8 +55,8 @@
                 <a href="/" title="Meus Dados"><i class="material-icons"> account_circle</i>Meus Dados</a>
                 <a href="{% url 'password_change' %}" title="Alterar Minha Senha"><i
                         class="material-icons">edit</i>Alterar Senha</a>
-                <a href="/" title="Meus Endereços"><i class="material-icons">person_pin_circle</i>Meus Endereços</a>
-                <a href="/" title="Meus Telefones"><i class="material-icons">phone</i>Meus Telefones</a>
+                <a href="{% url 'listaEnderecos' %}" title="Meus Endereços"><i class="material-icons">person_pin_circle</i>Meus Endereços</a>
+                <a href="{% url 'listaTelefones' %}" title="Meus Telefones"><i class="material-icons">phone</i>Meus Telefones</a>
                 <a href="{% url 'logout' %}" title="Log-out"><i class="material-icons">exit_to_app</i>Sair</a>
                 <p class="naoMostrarMouse">Meus Chamados</p>
                 <a href="/" title="Chamados Em Aberto"><i class="material-icons">list</i>Abertos</a>
@@ -71,7 +71,7 @@
         <div class="content d-flex flex-column" id="content">
             <h2>Dashboard</h2>
 
-            <div style="width: 100%">
+            <div >
                 {% block centro%} {% endblock %}
             </div>
 

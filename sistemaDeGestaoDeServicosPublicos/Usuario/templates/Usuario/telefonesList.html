@@ -1,49 +1,53 @@
 <title>Meus Telefones</title>
-{% extends "sistemaDeGestaoDeServicosPublicos/index.html" %}
+{% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
 
 {% block centro %}
 {% if user.is_authenticated %}
 {% if telefones_list %}
-<div class="mt-3 container text-center">
-    <p style="color: #2369b3; font-size: 30px;">Meus Telefones</p>
+<div class="mt-3 container ">
+    <p style="color: #4613ac; font-size: 30px;">Meus Telefones</p>
 </div>
-<div class="table-responsive-md border">
-    <table class="table table-striped">
-        <thead class="text-light thead-dark">
+<div class="section-2">
+    <div class="mt-3 mb-3 table-holder rounded shadow-sm">
+        
+        <table>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">NÚMERO DE TELEFONE</th>
-                <th scope="col">TIPO TELEFONE</th>
-                <th scope="col">AÇÃO</th>
-
+                <th>ID</th>
+                <th>Numero do Telefone</th>
+                <th>Tipo Telefone</th>
+                <th>Ação</th>
             </tr>
-        </thead>
-        <tbody>
             {% for telefone in telefones_list %}
             <tr>
-                <th scope="row">{{telefone.id}}</th>
+                <td>{{telefone.id}}</td>
                 <td>{{telefone.numero}}</td>
                 <td>{{telefone.idTipoTelefone.descricao}}</td>
                 <td>
-                    <a class="btn btn-danger" href="{% url 'telefone_deletar' telefone.id %}"title="Excluir Telefone"> Deletar</a>
-                    <a class="btn btn-danger" href="{% url 'telefone_atualizar' telefone.id %}"title="Atualizar Telefone">Atualizar</a>
+                    <a class="btn btn-danger" href="{% url 'telefone_deletar' telefone.id %}" title="Excluir Telefone">
+                        Deletar</a>
+                    <a class="btn btn-danger" href="{% url 'telefone_atualizar' telefone.id %}"
+                        title="Atualizar Telefone">Atualizar</a>
                 </td>
             </tr>
-        </tbody>
-        {% endfor %}
-    </table>
-</div>
-{% else %}
-<div class="text-center">
-    <div class="alert alert-danger mt-5">
-        Não há Telefones Cadastrados para {{ user.first_name }}!
+            {% endfor %}
+        </table>
+        <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'cadastroTelefone' %}" title="Cadastrar Telefone">Cadastrar
+            Novo Telefone</a>  
     </div>
-    <!---<a class="btn btn-primary mb-3" href="{% url 'cadastroTelefone' %}" role="button">Adicionar Telefone</a>
-    -->
-</div>
+    {% else %}
+    <div class="text-center">
+        <div class="alert alert-danger mt-5">
+            {{ user.first_name }}, Você Não Possui Telefones Cadastrados!
+        </div>
+        <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'cadastroTelefone' %}" title="Cadastrar Telefone">Cadastrar
+            Novo Telefone</a>
+    </div>
 
-{% endif %}
-<a class="btn btn-primary ml-2 mb-3 mt-3" href="{% url 'cadastroTelefone' %}" title="Cadastrar Telefone">Cadastrar Novo Telefone</a>
-{% endif %}
-<!---<a class="btn btn-primary mb-3 mt-3" href="#">Cadastrar Novo Telefone</a>-->
-{% endblock %}
+    {% endif %}
+   
+    {% endif %}
+    <!---<a class="btn btn-primary mb-3 mt-3" href="#">Cadastrar Novo Telefone</a>-->
+   
+    {% endblock %}
+
+    
