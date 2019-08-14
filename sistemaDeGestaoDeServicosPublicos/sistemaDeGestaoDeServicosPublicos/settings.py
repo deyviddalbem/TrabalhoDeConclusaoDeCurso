@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Chamados.apps.ChamadosConfig',
     'Orgao.apps.OrgaoConfig',
     'social_django',
+    'bootstrapform' ,
 ]
 
 MIDDLEWARE = [

@@ -1,4 +1,8 @@
+<title>
+    LOGIN-SoliServ
+</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %} {% block centro %}
+{% load bootstrap%}
 
 <style>
     @media(max-width: 320px) {
@@ -13,36 +17,31 @@
         }
     }
 </style>
-<div style="" class="mt-3 text-center form-login">
+<div  class="mt-3 text-center form-login">
     <div class="text-light" style=" background: #4613ac; ">
         <h1 style="font-size: 1.8em;">LOGIN</h1>
     </div>
 
-    <form class="border border-dark" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-        <div class="mt-2">
-            E-Mail
+    <form class="border-bottom border-left border-right mt-0 border-dark" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+        
+        <div class="mt-1 form-group container" title="Insira seu usuário">
+            {{ form.username.errors }} {{ form.username | bootstrap}}
         </div>
 
-        <div class="mt-1 form-group">
-            {{ form.username.errors }} {{ form.username }}
-        </div>
-
-        <div class="mt-2">
-            senha:
-        </div>
-        <div class=" mt-1 form-group">
-            {{ form.password.errors }} {{ form.password }}
+        
+        <div class=" mt-1 form-group container" title="Insira sua senha">
+            {{ form.password.errors }} {{ form.password | bootstrap}}
 
         </div>
-        <div class=" border" style="width: 90%">
-            <a class="" href="#" style="text-align:right; text-decoration: underline">
+        <div  style="width: 90%">
+            <a class="" href="#" title="Recuperar a senha" style="text-align:right; text-decoration: underline">
                 <p>Esqueci minha senha!</p>
             </a>
 
         </div>
 
         <div class=" submit-row container ">
-            <input class="mb-2 mt-3 btn btn-sm btn-block" style="background-color: #4613ac; color: white;" type="submit" value="Acesso">
+            <input class="mb-2 mt-3 btn btn-sm btn-block" style="background-color: #4613ac; color: white;" title="Efetuar o login" type="submit" value="Acesso">
             <a href="#" title="Entre com sua conta do Facebook" class="mb-2 zocial  facebook">Facebook</a>
             <a href="#" title="Entre Com sua conta do Google" class="mb-2 zocial  google">Google</a>
         </div>

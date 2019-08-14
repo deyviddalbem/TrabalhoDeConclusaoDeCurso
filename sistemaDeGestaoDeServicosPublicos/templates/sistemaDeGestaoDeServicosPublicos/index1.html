@@ -65,7 +65,7 @@
             </nav>
             {% else %}
             <a href="{% url 'login' %}" title="Log-in"><i class="material-icons mt-3">exit_to_app</i>Entrar</a>
-            <a href="/" title="Efetuar Cadastro"><i class="material-icons"> add_circle</i>Efetuar Cadastro</a> {% endif %}
+            <a href="{% url 'cadastrar' %}" title="Efetuar Cadastro"><i class="material-icons"> add_circle</i>Efetuar Cadastro</a> {% endif %}
             <p class="credit m-0">2019 - Dashboard by Arthur Vinícus</p>
         </div>
         <div class="content d-flex flex-column" id="content">
