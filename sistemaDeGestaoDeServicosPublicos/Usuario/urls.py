@@ -15,5 +15,6 @@ urlpatterns = [
     path('meusTelefones/excluir/<int:pk>', views.DeletarTelefone.as_view(),name='telefone_deletar'),
     path('cadastroTelefone/', views.CadastroTelefone, name='cadastroTelefone'),
     path('cadastroEndereco/', views.CadastroEndereco, name='cadastroEndereco'),
+    path('meusDados/', views.mostrarMeusDados, name='meusDados'),
     
 ]

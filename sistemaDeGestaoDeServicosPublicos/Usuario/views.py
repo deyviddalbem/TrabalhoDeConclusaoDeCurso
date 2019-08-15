@@ -63,6 +63,14 @@ def TelefonesList(request):
     else:
         return render(request, 'Usuario/telefonesList.html', context)
 
+def mostrarMeusDados(request):
+    dadosUserList = User.objects.filter(id=request.user.id)
+    context = {'dadosUserList': dadosUserList}
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
+        return render(request, 'Usuario/meusDados.html', context)
+
 def atualizarMeusTelefones(request, idTelefone=None):
     
     tipos = TipoTelefone.objects.all()
