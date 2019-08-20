@@ -22,6 +22,7 @@ class CriarCadastro(CreateView):
     model = User
     form_class = PessoaUserForm
     template_name = "Usuario/cadastroUsuario.html"
+
     success_url = reverse_lazy('login')
 
 
@@ -35,24 +36,21 @@ def enderecosList(request):
 
 
 def CadastroTelefone(request, idTelefone=None):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    tipos = TipoTelefone.objects.all()
+    if idTelefone:
+        meuTelefone = get_object_or_404(Telefone, id=idTelefone)
     else:
-        tipos = TipoTelefone.objects.all()
-        if idTelefone:
-            meuTelefone = get_object_or_404(Telefone, id=idTelefone)
-        else:
-            meuTelefone = None
+        meuTelefone = None
 
-        if request.method == 'POST':
-            formEdit = CadastroTelefoneForm(request.POST, instance=meuTelefone)
-            if formEdit.is_valid():
-                formEdit.save()
-                return redirect('listaTelefones')
-        else:
-            formEdit = meuTelefone
-            context = {'formEdit': formEdit, 'tipos': tipos}
-        return render(request, 'Usuario/cadastroTelefone.html', context)
+    if request.method == 'POST':
+        formEdit = CadastroTelefoneForm(request.POST, instance=meuTelefone)
+        if formEdit.is_valid():
+            formEdit.save()
+            return redirect('listaTelefones')
+    else:
+        formEdit = meuTelefone
+        context = {'formEdit': formEdit, 'tipos': tipos}
+    return render(request, 'Usuario/cadastroTelefone.html', context)
 
 
 def TelefonesList(request):
@@ -63,6 +61,7 @@ def TelefonesList(request):
     else:
         return render(request, 'Usuario/telefonesList.html', context)
 
+
 def mostrarMeusDados(request):
     dadosUserList = User.objects.filter(id=request.user.id)
     context = {'dadosUserList': dadosUserList}
@@ -71,8 +70,9 @@ def mostrarMeusDados(request):
     else:
         return render(request, 'Usuario/meusDados.html', context)
 
+
 def atualizarMeusTelefones(request, idTelefone=None):
-    
+
     tipos = TipoTelefone.objects.all()
     if idTelefone:
         meuTelefone = get_object_or_404(Telefone, id=idTelefone)
@@ -89,11 +89,11 @@ def atualizarMeusTelefones(request, idTelefone=None):
         context = {'formEdit': formEdit, 'tipos': tipos}
     return render(request, 'Usuario/atualizarTelefones.html', context)
 
+
 class DeletarTelefone(DeleteView):
     model = Telefone
     template_name = "Usuario/telefone_confirm_delete.html"
     success_url = reverse_lazy('listaTelefones')
-
 
 
 def CadastroEndereco(request, idTelefone=None):

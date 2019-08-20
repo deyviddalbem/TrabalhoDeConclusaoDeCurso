@@ -24,6 +24,12 @@
 </head>
 
 <body class="acessibilidade" onresize="verificaSide()">
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
     <!-- Essa sessão só aparece nos layouts mobile -->
     <header>
         <nav class="navbar d-flex justify-content-between align-items-center shadow-sm">
@@ -52,6 +58,7 @@
                 Contraste</a> {% endif %} {% if user.is_authenticated %}
             <nav>
                 <p class="border-bottom text-center naoMostrarMouse">Bem Vindo {{ user.first_name }}!</p>
+                <a href="{% url 'index' %}" title="Página Inicial"><i class="material-icons mt-3">home</i>Início</a>
                 <a href="{% url 'meusDados' %}" title="Meus Dados"><i class="material-icons"> account_circle</i>Meus Dados</a>
                 <a href="{% url 'password_change' %}" title="Alterar Minha Senha"><i
                         class="material-icons">edit</i>Alterar Senha</a>
@@ -64,7 +71,8 @@
                 <a href="/" title="Chamados Concluídos"><i class="material-icons">list</i>Concluídos</a>
             </nav>
             {% else %}
-            <a href="{% url 'login' %}" title="Log-in"><i class="material-icons mt-3">exit_to_app</i>Entrar</a>
+            <a href="{% url 'index' %}" title="Página Inicial"><i class="material-icons mt-3">home</i>Início</a>
+            <a href="{% url 'login' %}" title="Log-in"><i class="material-icons ">exit_to_app</i>Entrar</a>
             <a href="{% url 'cadastrar' %}" title="Efetuar Cadastro"><i class="material-icons"> add_circle</i>Efetuar Cadastro</a> {% endif %}
             <p class="credit m-0">2019 - Dashboard by Arthur Vinícus</p>
         </div>
@@ -160,6 +168,10 @@
                 this.classList.toggle('icon');
             })
         }
+    </script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
 
