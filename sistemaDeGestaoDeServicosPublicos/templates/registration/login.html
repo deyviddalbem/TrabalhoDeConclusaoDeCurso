@@ -23,7 +23,6 @@
     </div>
 
     <form class="border-bottom border-left border-right mt-0 border-dark" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-        
         <div class="mt-1 form-group container" title="Insira seu usuário">
             {{ form.username.errors }} {{ form.username | bootstrap}}
         </div>

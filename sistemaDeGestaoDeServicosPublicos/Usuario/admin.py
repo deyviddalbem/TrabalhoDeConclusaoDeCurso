@@ -2,10 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from .models import TipoTelefone
 from .models import Telefone
-from .models import Estado
-from .models import Municipio
-from .models import Bairro
-from .models import Rua
+from .models import Logradouro
+from .models import Endereco
 
 
 
@@ -24,26 +22,15 @@ class TipoTelefoneAdmin(admin.ModelAdmin):
     list_display = ('descricao', )
     list_filter = ['id', 'descricao']
 
-class EstadoAdmin(admin.ModelAdmin):
-    list_display = ('nomeEstado', )
-    list_filter = ['id', 'nomeEstado']
+class LogradouroAdmin(admin.ModelAdmin):
+    list_display = ('logradouro', 'bairro' )
+    list_filter = ['id', 'logradouro', 'bairro']
 
-class MunicipioAdmin(admin.ModelAdmin):
-    list_display = ('nomeMunicipio','idEstado' )
-    list_filter = ['id','nomeMunicipio', 'idEstado']
-
-class BairroAdmin(admin.ModelAdmin):
-    list_display = ('nomeBairro',)
-    list_filter = ['id','nomeBairro','idMunicipio']
-
-class RuaAdmin(admin.ModelAdmin):
-    list_display = ('cepRua', 'nomeRua', 'idBairro',)
-    list_filter = ['id','cepRua','nomeRua', 'idBairro']
-
+class EnderecoAdmin(admin.ModelAdmin):
+    list_display = ('cep', 'idLogradouro', 'enderecoNumero', 'complemento', 'observacao', 'municipio', 'estado', 'idPessoa' )
+    list_filter = ['id','cep', 'idLogradouro', 'enderecoNumero', 'complemento', 'observacao', 'municipio', 'estado', 'idPessoa']
 
 admin.site.register(Telefone,TelefoneAdmin)
-admin.site.register(Estado,EstadoAdmin)
 admin.site.register(TipoTelefone,TipoTelefoneAdmin)
-admin.site.register(Municipio,MunicipioAdmin)
-admin.site.register(Bairro,BairroAdmin)
-admin.site.register(Rua,RuaAdmin)
+admin.site.register(Logradouro,LogradouroAdmin)
+admin.site.register(Endereco,EnderecoAdmin)

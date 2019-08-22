@@ -12,6 +12,7 @@ class TipoTelefone(models.Model):
         verbose_name = "TipoTelefone"
         verbose_name_plural = "TipoTelefones"
 
+
 class Telefone(models.Model):
     numero = models.CharField('NÚMERO', max_length=11)
     idTipoTelefone = models.ForeignKey(
@@ -22,55 +23,34 @@ class Telefone(models.Model):
     def __str__(self):
         return self.idPessoa.first_name + " - " + self.numero
 
-
     class Meta:
         verbose_name = "Telefone"
         verbose_name_plural = "Telefones"
 
-class Estado(models.Model):
-    nomeEstado = models.CharField('NOME ESTADO', max_length=20)
 
-    def __str__(self):
-        return self.nomeEstado
-
-    class Meta:
-        verbose_name = "Estado"
-        verbose_name_plural = "Estados"
-
-class Municipio(models.Model):
-    nomeMunicipio = models.CharField('NOME MUNICIPIO', max_length=20)
-    idEstado = models.ForeignKey(
-        Estado, on_delete=models.CASCADE, verbose_name="NOME ESTADO")
-
-    def __str__(self):
-        return self.nomeMunicipio
-    
-    class Meta:
-        verbose_name = "Municipio"
-        verbose_name_plural = "Municipios"
-
-class Bairro(models.Model):
-    nomeBairro = models.CharField('NOME BAIRRO', max_length=20)
-    idMunicipio = models.ForeignKey(
-        Municipio, on_delete=models.CASCADE, verbose_name="NOME MUNICIPIO")
-
-    def __str__(self):
-        return self.nomeBairro
-
+class Logradouro(models.Model):
+    logradouro = models.CharField('LOGRADOURO', max_length=45)
+    bairro = models.CharField('BAIRRO', max_length=45)
 
     class Meta:
-        verbose_name = "Bairro"
-        verbose_name_plural = "Bairros"
+        verbose_name = "Logradouro"
+        verbose_name_plural = "Logradouros"
 
-class Rua(models.Model):
-    cepRua = models.CharField('CEP RUA', max_length=20)
-    nomeRua = models.CharField('NOME RUA', max_length=20)
-    idBairro = models.ForeignKey(Bairro, on_delete=models.CASCADE, verbose_name="NOME BAIRRO")
-
+class Endereco(models.Model):
+    cep = models.IntegerField('CEP')
+    enderecoNumero = models.CharField('NÚMERO', max_length=11)
+    complemento = models.CharField('COMPLEMENTO', max_length=45)
+    observacao = models.CharField('OBSERVAÇÃO', max_length=45)
+    municipio = models.CharField('MUNICIPIO', max_length=45)
+    estado = models.CharField('ESTADO', max_length=2)
+    idLogradouro = models.ForeignKey(
+        Logradouro, on_delete=models.CASCADE, verbose_name="LOGRADOURO")
+    idPessoa = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name="PESSOA")
+ 
     def __str__(self):
-        return self.cepRua + self.nomeRua + self.idBairro.nomeBairro  
-
+        return self.cep + " - " + self.enderecoNumero + " - " 
 
     class Meta:
-        verbose_name = "Rua"
-        verbose_name_plural = "Ruas"
+        verbose_name = "Endereco"
+        verbose_name_plural = "Endereco"
