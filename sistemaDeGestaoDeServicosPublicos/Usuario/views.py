@@ -5,10 +5,10 @@ from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .forms import PessoaUserForm, CadastroTelefoneForm
+from .forms import PessoaUserForm, CadastroTelefoneForm, CadastroEnderecoForm, PessoaUserFormUpdate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Telefone, TipoTelefone
+from .models import Telefone, TipoTelefone, Endereco
 
 
 def index(request):
@@ -22,17 +22,24 @@ class CriarCadastro(CreateView):
     model = User
     form_class = PessoaUserForm
     template_name = "Usuario/cadastroUsuario.html"
-
     success_url = reverse_lazy('login')
 
+class AtualizarCadastro(UpdateView):
+    model = User
+    form_class = PessoaUserFormUpdate
+    template_name = "Usuario/atualizarCadastro.html"
+    success_url = reverse_lazy('index')
+
+class CriarEndereco(CreateView):
+    model = Endereco
+    form_class = CadastroEnderecoForm
+    template_name = "Usuario/cadastroEndereco.html"
+    success_url = reverse_lazy('login')
 
 def enderecosList(request):
-    # enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
-    # context = {'enderecos_list': enderecos_list}
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
-    else:
-        return render(request, 'Usuario/enderecosList.html')
+    enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
+    context = {'enderecos_list': enderecos_list}
+    return render(request, 'Usuario/enderecosList.html', context)
 
 
 def CadastroTelefone(request, idTelefone=None):
@@ -95,9 +102,18 @@ class DeletarTelefone(DeleteView):
     template_name = "Usuario/telefone_confirm_delete.html"
     success_url = reverse_lazy('listaTelefones')
 
+class ListarEnderecos(ListView):
+    template_name = "Usuario/enderecosList.html"
+    context_object_name = 'enderecos_list'
 
-def CadastroEndereco(request, idTelefone=None):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
-    else:
-        return render(request, 'Usuario/enderecosList.html')
+    def get_queryset(self):
+        self.idPessoa = get_object_or_404(User, id=self.kwargs['pk'])
+        return Endereco.objects.filter(idPessoa_id=self.idPessoa)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['idPessoa'] = self.idPessoa
+        return context
+

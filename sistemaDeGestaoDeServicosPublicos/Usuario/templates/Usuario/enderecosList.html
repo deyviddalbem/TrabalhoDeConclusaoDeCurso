@@ -3,50 +3,51 @@
 
 {% block centro %}
 {% if user.is_authenticated %}
-<div class="mt-3 container text-center">
-    <p style="color: #2369b3; font-size: 30px;">Meus Endereços</p>
+{% if enderecos_list %}
+<div class="mt-3 container ">
+    <p style="color: #4613ac; font-size: 30px;">Meus Telefones</p>
 </div>
+<div class="section-2">
+    <div class="mt-3 mb-3 table-holder rounded shadow-sm">
 
-<div class="table-responsive-md border">
-    <table class="table table-striped">
-        <thead class="text-light thead-dark">
+        <table>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">NOME DA RUA</th>
-                <th scope="col">NÚMERO DA CASA</th>
-                <th scope="col">COMPLEMENTO</th>
-                <th scope="col">BAIRRO</th>
-                <th scope="col">CIDADE</th>
-                <th scope="col">OBSERVAÇÃO</th>
-                <th scope="col">AÇÃO</th>
-
-
-
-
+                <th>ID</th>
+                <th>Numero do Telefone</th>
+                <th>Tipo Telefone</th>
+                <th>Ação</th>
             </tr>
-        </thead>
-        <tbody>
-           
+            {% for enderecos in enderecos_list %}
             <tr>
-                <th scope="row"></th>
-                <td><a href="#"></a></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td>
-                    <button class="btn btn-danger" title="Excluir Telefone">Deletar</button>
-                    <a class="btn btn-danger" href="#">teste</a>
+                    <a class="btn btn-danger" href="{% url 'telefone_deletar' telefone.id %}" title="Excluir Telefone">
+                        Deletar</a>
+                    <a class="btn btn-danger" href="{% url 'telefone_atualizar' telefone.id %}"
+                        title="Atualizar Telefone">Atualizar</a>
                 </td>
             </tr>
-        </tbody>
-       
-    </table>
-</div>
+            {% endfor %}
+        </table>
+        <a class="btn btn-primary  ml-2 mb-3 mt-3" href="{% url 'cadastroEndereco' %}"
+            title="Cadastrar Endereço">Cadastrar Novo Endereço</a>
+    </div>
+    {% endif %}
+    <div class="text-center">
+        <div class="alert alert-danger mt-5">
+            {{ user.first_name }}, Você Não Possui Enderecos Cadastrados!
+        </div>
+        <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
+            href="{% url 'cadastroEndereco' %}" title="Cadastrar Endereço">Cadastrar
+            Novo Endereço</a>
+    </div>
+    {% else %}
+    <div class="container text-center alert alert-danger mt-3">
+            <p class="">Faça o Cadastro ou realize o Login para Continuar!</p>
+        </div>
+    {% endif %}
+    
 
-{% else %}
-
-{% endif %}
-<a class="btn btn-primary  ml-2 mb-3 mt-3" href="{% url 'cadastroEndereco' %}" title="Cadastrar Endereço">Cadastrar Novo Endereço</a>
-{% endblock %}
+    {% endblock %}

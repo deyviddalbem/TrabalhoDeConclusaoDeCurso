@@ -28,28 +28,22 @@ class Telefone(models.Model):
         verbose_name_plural = "Telefones"
 
 
-class Logradouro(models.Model):
-    logradouro = models.CharField('LOGRADOURO', max_length=45)
-    bairro = models.CharField('BAIRRO', max_length=45)
 
-    class Meta:
-        verbose_name = "Logradouro"
-        verbose_name_plural = "Logradouros"
 
 class Endereco(models.Model):
-    cep = models.IntegerField('CEP')
+    cep = models.CharField('CEP', max_length=8)
+    logradouro = models.CharField('LOGRADOURO', max_length=45)
     enderecoNumero = models.CharField('NÚMERO', max_length=11)
     complemento = models.CharField('COMPLEMENTO', max_length=45)
+    bairro = models.CharField('BAIRRO', max_length=45)
     observacao = models.CharField('OBSERVAÇÃO', max_length=45)
     municipio = models.CharField('MUNICIPIO', max_length=45)
-    estado = models.CharField('ESTADO', max_length=2)
-    idLogradouro = models.ForeignKey(
-        Logradouro, on_delete=models.CASCADE, verbose_name="LOGRADOURO")
+    estado = models.CharField('ESTADO', max_length=2)   
     idPessoa = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="PESSOA")
  
     def __str__(self):
-        return self.cep + " - " + self.enderecoNumero + " - " 
+        return self.logradouro
 
     class Meta:
         verbose_name = "Endereco"
