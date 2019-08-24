@@ -119,6 +119,11 @@ def cadastroEndereco(request,idEndereco=None):
         context = {'formEdit': formEdit }
     return render(request, 'Usuario/cadastroEndereco.html', context)
 
+def enderecosList(request):
+    enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
+    context = {'enderecos_list': enderecos_list}
+    return render(request, 'Usuario/enderecosList.html', context)
+
 class ListarEnderecos(ListView):
     template_name = "Usuario/enderecosList.html"
     context_object_name = 'enderecos_list'
