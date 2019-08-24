@@ -13,25 +13,23 @@
         <table>
             <tr>
                 <th>ID</th>
+                <th>CEP</th>
                 <th>LOGRADOURO</th>
                 <th>NÚMERO</th>
                 <th>COMPLEMENTO</th>
                 <th>BAIRRO</th>
-                <th>OBSERVAÇÃO</th>
-                <th>MUNICÍPIO</th>
-                <th>ESTADO</th>
-                
+                <th>OBSERVAÇÃO</th>        
             </tr>
             {% for enderecos in enderecos_list %}
             <tr>
                 <td>{{enderecos.id}}</td>
+                <td>{{enderecos.cep}}</td>
                 <td>{{enderecos.logradouro}}</td>
                 <td>{{enderecos.enderecoNumero}}</td>
                 <td>{{enderecos.complemento}} </td>
                 <td>{{enderecos.bairro}}</td>
                 <td>{{enderecos.observacao}}</td>
-                <td>{{enderecos.municipio}}</td>
-                <td>{{enderecos.estado}}</td>      
+                   
             </tr>           
             {% endfor %}
         </table>
