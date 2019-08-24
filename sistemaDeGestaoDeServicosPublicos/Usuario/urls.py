@@ -17,7 +17,7 @@ urlpatterns = [
     path('meusTelefones/editar/<int:idTelefone>', views.atualizarMeusTelefones,name='telefone_atualizar'),
     path('meusTelefones/excluir/<int:pk>', views.DeletarTelefone.as_view(),name='telefone_deletar'),
     path('cadastroTelefone/', views.CadastroTelefone, name='cadastroTelefone'),
-    path('cadastroEndereco/', views.CriarEndereco.as_view(), name='cadastroEndereco'),
+    path('cadastroEndereco/', views.cadastroEndereco, name='cadastroEndereco'),
     path('meusDados/', views.mostrarMeusDados, name='meusDados'),
     
 ]

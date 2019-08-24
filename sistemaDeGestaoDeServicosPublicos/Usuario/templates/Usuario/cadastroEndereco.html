@@ -3,21 +3,87 @@
 
 {% block centro %}
 <div class="mt-3 container ">
-        <p style="color: #4613ac; font-size: 30px;">Cadastro de Endereço</p>
-    </div>
+    <p style="color: #4613ac; font-size: 30px;">Cadastro de Endereço</p>
+</div>
 <div class="mt-3 pt-3">
     {% if user.is_authenticated %}
     <form method="POST">
-        <div class="col">
-            {% csrf_token %}
-            {{ form.as_p }}
-            
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="cep">CEP</label>
+                <input onblur="pesquisacep(this.value);" type="text" name="cep" class="form-control" id="cep"
+                    placeholder="Informe seu CEP">
+            </div>
+
         </div>
-       
-        <input type="submit" class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" value="Próximo">
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="inputEmail4">Logradouro</label>
+                <input type="text" class="form-control" id="logradouro" placeholder="Informe seu logradouro">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="enderecoNumero">Número do Imóvel</label>
+                <input type="text" class="form-control" id="enderecoNumero" name="enderecoNumero" placeholder="Número">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="bairro">Bairro</label>
+                <input type="text" name="bairro" id="bairro" class="form-control" placeholder="Informe o Bairro">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="municipio">Munícipio</label>
+                <input type="text" class="form-control" id="municipio" placeholder="Informe o município">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="estado">Estado</label>
+                <input type="text" class="form-control" id="estado" name="estado" placeholder="Informe a UF">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="complemento">Complemento</label>
+                <input type="text" class="form-control" id="complemento" name="complemento"
+                    placeholder="Apartamento, hotel, casa, etc.">
+            </div>
+
+
+        </div>
+
+
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="observação">Observação</label>
+                <input type="text" class="form-control" id="observacao" name="observação"
+                    placeholder="Se houver alguma observação, informe aqui!">
+            </div>
+            <div class="d-none">
+                <label for="idPessoa">Usuário</label>
+                <select class="form-control" id="idPessoa" name="idPessoa">
+                    <option value="{{user.pk}}">{{ user }}</option>
+                </select>
+            </div>
+            <div class="d-none">
+                <label>IBGE:
+                    <input name="ibge" type="text" id="ibge" size="8" />
+                </label>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <input type="submit" class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
+            value="Próximo">
     </form>
     {% else %}
- 
+
     <div class="container text-center alert alert-danger mt-3">
         <p class="">Faça o Cadastro ou realize o Login para Continuar!</p>
     </div>
@@ -28,8 +94,80 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
-$(function() {
-    $("#id_idPessoa").val({{user.id}});
+    $(function () {
+        $("#id_idPessoa").val({{ user.id }});
     document.getElementById("id_idPessoa").style.display = 'none';})
+</script>
+
+<script type="text/javascript">
+
+    function limpa_formulário_cep() {
+        //Limpa valores do formulário de cep.
+        document.getElementById('logradouro').value = ("");
+        document.getElementById('bairro').value = ("");
+        document.getElementById('municipio').value = ("");
+        document.getElementById('estado').value = ("");
+        document.getElementById('ibge').value = ("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('logradouro').value = (conteudo.logradouro);
+            document.getElementById('bairro').value = (conteudo.bairro);
+            document.getElementById('municipio').value = (conteudo.localidade);
+            document.getElementById('estado').value = (conteudo.uf);
+            document.getElementById('ibge').value = (conteudo.ibge);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if (validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('logradouro').value = "...";
+                document.getElementById('bairro').value = "...";
+                document.getElementById('municipio').value = "...";
+                document.getElementById('estado').value = "...";
+                document.getElementById('ibge').value = "...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
 </script>
 {% endblock %}

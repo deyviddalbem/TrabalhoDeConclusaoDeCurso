@@ -102,6 +102,23 @@ class DeletarTelefone(DeleteView):
     template_name = "Usuario/telefone_confirm_delete.html"
     success_url = reverse_lazy('listaTelefones')
 
+
+def cadastroEndereco(request,idEndereco=None):
+    if idEndereco:
+        meuEndereco = get_object_or_404(Endereco, id=idEndereco)
+    else:
+        meuEndereco = None
+
+    if request.method == 'POST':
+        formEdit = CadastroEnderecoForm(request.POST, instance=meuEndereco)
+        if formEdit.is_valid():
+            formEdit.save()
+            return redirect('enderecosList')
+    else:
+        formEdit = meuEndereco
+        context = {'formEdit': formEdit }
+    return render(request, 'Usuario/cadastroEndereco.html', context)
+
 class ListarEnderecos(ListView):
     template_name = "Usuario/enderecosList.html"
     context_object_name = 'enderecos_list'
