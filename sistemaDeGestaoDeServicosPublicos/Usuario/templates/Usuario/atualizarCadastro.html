@@ -3,21 +3,25 @@
 {% block title %}
 <title>Atualizar Cadastro</title>
 {% endblock%}
-
+{% load bootstrap%}
 {% block centro %}
 <div class="container">
-    <div class="">
-        <h3 class="text-center mt-3">Meus dados</h3>
+    <div class="text-center">
+        <p style="color: #4613ac; font-size: 30px;">Atualizar Meus Dados</p>
     </div>
-    
+
+
     <form method="POST">
         <div class="col">
-            {% csrf_token %}
-            {{ form.as_p }}
+            <div class="form-group align-right" style="color: #4613ac">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+
             <input class="btn" style="background-color: #4613ac; color: white;" type="submit" value="Atualizar">
             <!---<input type="submit" value="Enviar">-->
         </div>
-        
+
     </form>
 </div>
 {% endblock%}
