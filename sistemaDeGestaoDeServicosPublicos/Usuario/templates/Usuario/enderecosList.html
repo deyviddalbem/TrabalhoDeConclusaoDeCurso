@@ -1,11 +1,11 @@
-<title>Meus Endereços</title>
+<title>SoliServ-Meus Endereços</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
 
 {% block centro %}
 {% if user.is_authenticated %}
 
 <div class="mt-3 container ">
-    <p style="color: #4613ac; font-size: 30px;">Meus Telefones</p>
+    <p style="color: #4613ac; font-size: 30px;">Meus Endereços</p>
 </div>
 <div class="section-2">
     <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
@@ -31,9 +31,9 @@
                 <td>{{enderecos.bairro}}</td>
                 <td>{{enderecos.observacao}}</td>
                 <td>
-                    <a class="btn btn-danger" href="{% url 'endereco_deletar' enderecos.id  %}" title="Excluir Endereco">
+                    <a class="btn btn-danger" style="color: white;" href="{% url 'endereco_deletar' enderecos.id  %}" title="Excluir Endereco">
                         Deletar</a>
-                    <a class="btn btn-danger" href="#"
+                    <a class="btn" style="background-color: #4613ac; color: white;" href="#"
                         title="Atualizar Telefone">Atualizar</a>
                 </td>
                    
@@ -47,9 +47,9 @@
     {% else %}
     <div class="text-center">
         <div class="alert alert-danger mt-5">
-            {{ user.first_name }}, Você Não Possui Telefones Cadastrados!
+            {{ user.first_name }}, Você Não Possui Endereços Cadastrados!
         </div>
-        <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'cadastroEndereco' %}" title="Cadastrar Telefone">Cadastrar
+        <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'cadastroEndereco' %}" title="Cadastrar Endereço">Cadastrar
             Novo Endereço</a>
     </div>
 

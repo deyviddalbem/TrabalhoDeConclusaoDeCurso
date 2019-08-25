@@ -24,11 +24,13 @@ class CriarCadastro(CreateView):
     template_name = "Usuario/cadastroUsuario.html"
     success_url = reverse_lazy('login')
 
+
 class AtualizarCadastro(UpdateView):
     model = User
     form_class = PessoaUserFormUpdate
     template_name = "Usuario/atualizarCadastro.html"
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('meusDados')
+
 
 def CadastroTelefone(request, idTelefone=None):
     tipos = TipoTelefone.objects.all()

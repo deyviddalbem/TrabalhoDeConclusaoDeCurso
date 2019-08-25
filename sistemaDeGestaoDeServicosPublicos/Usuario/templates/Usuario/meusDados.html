@@ -34,7 +34,7 @@
         value="{{user.username}}">
     </div>
     <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
-    href="#" title="Atualizar meus dados">Atualizar Dados</a>
+    href="{% url 'atualizarCadastro' user.id %}" title="Atualizar meus dados">Atualizar Dados</a>
 </div>
 
 {% endfor %}

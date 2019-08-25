@@ -9,9 +9,9 @@ from . import views
 urlpatterns = [
     path('index.html', views.index, name='index'),
     path('cadastrarUsuario/', views.CriarCadastro.as_view(), name='cadastrar'),
-    path('atualizarMeusDados/', views.AtualizarCadastro.as_view(), name='atualizarCadastro'),
+    path('atualizarMeusDados/<int:pk>', views.AtualizarCadastro.as_view(), name='atualizarCadastro'),
     path('meusDados/', views.mostrarMeusDados, name='meusDados'),
-
+    
     path('cadastroEndereco/', views.cadastroEndereco, name='cadastroEndereco'),
     path('meusEnderecos/', views.enderecosList, name='listaEnderecos'),
     path('enderecos/listar/<int:pk>',views.ListarEnderecos.as_view(), name='listar_enderecos'),
