@@ -30,18 +30,6 @@ class AtualizarCadastro(UpdateView):
     template_name = "Usuario/atualizarCadastro.html"
     success_url = reverse_lazy('index')
 
-class CriarEndereco(CreateView):
-    model = Endereco
-    form_class = CadastroEnderecoForm
-    template_name = "Usuario/cadastroEndereco.html"
-    success_url = reverse_lazy('login')
-
-def enderecosList(request):
-    enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
-    context = {'enderecos_list': enderecos_list}
-    return render(request, 'Usuario/enderecosList.html', context)
-
-
 def CadastroTelefone(request, idTelefone=None):
     tipos = TipoTelefone.objects.all()
     if idTelefone:
@@ -103,7 +91,8 @@ class DeletarTelefone(DeleteView):
     success_url = reverse_lazy('listaTelefones')
 
 
-def cadastroEndereco(request,idEndereco=None):
+
+def cadastroEndereco(request, idEndereco=None):
     if idEndereco:
         meuEndereco = get_object_or_404(Endereco, id=idEndereco)
     else:
@@ -116,7 +105,7 @@ def cadastroEndereco(request,idEndereco=None):
             return redirect('enderecosList')
     else:
         formEdit = meuEndereco
-        context = {'formEdit': formEdit }
+        context = {'formEdit': formEdit}
     return render(request, 'Usuario/cadastroEndereco.html', context)
 
 def enderecosList(request):
@@ -139,3 +128,7 @@ class ListarEnderecos(ListView):
         context['idPessoa'] = self.idPessoa
         return context
 
+class DeletarEndereco(DeleteView):
+    model = Endereco
+    template_name = "Usuario/endereco_confirm_delete.html"
+    success_url = reverse_lazy('listaEnderecos')

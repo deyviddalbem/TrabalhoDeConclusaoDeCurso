@@ -1,0 +1,10 @@
+{% extends 'sistemaDeGestaoDeServicosPublicos/index1.html' %}
+{% block centro %}
+<div class="container text-center mt-5">
+    <form method="post">{% csrf_token %}
+        <h3 class="text-center">Remover endereço</h3>
+        <h6 class="alert alert-danger">Tem certeza que deseja remover "{{ object }}"?</h6>
+        <input type="submit" class="btn btn-primary mt-3" value="Confirmar">
+    </form>
+</div>
+{% endblock%}

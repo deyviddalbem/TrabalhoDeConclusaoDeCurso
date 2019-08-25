@@ -18,7 +18,8 @@
                 <th>NÚMERO</th>
                 <th>COMPLEMENTO</th>
                 <th>BAIRRO</th>
-                <th>OBSERVAÇÃO</th>        
+                <th>OBSERVAÇÃO</th>
+                <th>AÇÃO</th>        
             </tr>
             {% for enderecos in enderecos_list %}
             <tr>
@@ -29,6 +30,12 @@
                 <td>{{enderecos.complemento}} </td>
                 <td>{{enderecos.bairro}}</td>
                 <td>{{enderecos.observacao}}</td>
+                <td>
+                    <a class="btn btn-danger" href="{% url 'endereco_deletar' enderecos.id  %}" title="Excluir Endereco">
+                        Deletar</a>
+                    <a class="btn btn-danger" href="#"
+                        title="Atualizar Telefone">Atualizar</a>
+                </td>
                    
             </tr>           
             {% endfor %}
@@ -42,8 +49,8 @@
         <div class="alert alert-danger mt-5">
             {{ user.first_name }}, Você Não Possui Telefones Cadastrados!
         </div>
-        <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'cadastroTelefone' %}" title="Cadastrar Telefone">Cadastrar
-            Novo Telefone</a>
+        <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'cadastroEndereco' %}" title="Cadastrar Telefone">Cadastrar
+            Novo Endereço</a>
     </div>
 
     {% endif %}
