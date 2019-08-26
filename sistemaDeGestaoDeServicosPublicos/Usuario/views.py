@@ -98,7 +98,7 @@ def cadastroEndereco(request):
         address_form = CadastroEnderecoForm(request.POST)
         if address_form.is_valid():
             address_form.save()
-            return redirect('enderecosList')
+            return redirect('listaEnderecos')
         else:
             context = {'address_form': address_form}
             return render(request, 'Usuario/cadastroEndereco.html', context)
