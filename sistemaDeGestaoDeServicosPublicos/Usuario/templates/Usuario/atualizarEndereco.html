@@ -1,0 +1,33 @@
+<title>SoliServ-Atualizar Endereço</title>
+{% extends 'sistemaDeGestaoDeServicosPublicos/index1.html' %}
+{% block centro %}
+<div class="mt-3 container ">
+        <p style="color: #4613ac; font-size: 30px;">Atualizar Endereço</p>
+    </div>
+<div class="mt-3 pt-3">
+   
+    {% if user.is_authenticated %}
+    <form method="POST">
+        <div class="col">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </div>
+       
+        <input type="submit"  class="btn mb-2"  style="background-color: #4613ac; color: white;" title="Atualizar Endereço" value="Atualizar Endereço">
+    </form>
+    {% else %}
+    <div class="alert alert-danger">
+        Faça o Login, ou Realize o Cadastro!
+    </div>
+    {% endif %}
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+$(function() {
+    $("#id_idPessoa").val({{user.id}});
+    document.getElementById("id_idPessoa").style.display = 'none';})
+</script>
+{% endblock %}

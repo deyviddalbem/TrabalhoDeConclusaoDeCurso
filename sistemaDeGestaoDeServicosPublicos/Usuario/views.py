@@ -93,27 +93,34 @@ class DeletarTelefone(DeleteView):
     success_url = reverse_lazy('listaTelefones')
 
 
-
-def cadastroEndereco(request, idEndereco=None):
-    if idEndereco:
-        meuEndereco = get_object_or_404(Endereco, id=idEndereco)
-    else:
-        meuEndereco = None
-
+def cadastroEndereco(request):
     if request.method == 'POST':
-        formEdit = CadastroEnderecoForm(request.POST, instance=meuEndereco)
-        if formEdit.is_valid():
-            formEdit.save()
+        address_form = CadastroEnderecoForm(request.POST)
+        if address_form.is_valid():
+            address_form.save()
             return redirect('enderecosList')
+        else:
+            context = {'address_form': address_form}
+            return render(request, 'Usuario/cadastroEndereco.html', context)
+            
     else:
-        formEdit = meuEndereco
-        context = {'formEdit': formEdit}
-    return render(request, 'Usuario/cadastroEndereco.html', context)
+        address_form = CadastroEnderecoForm()
+        context = {'address_form': address_form}
+        return render(request, 'Usuario/cadastroEndereco.html', context)
+
+
+class CriarEndereco(CreateView):
+    model = Endereco
+    form_class = CadastroEnderecoForm
+    template_name = "Usuario/cadastroEndereco.html"
+    success_url = reverse_lazy("listaEnderecos")
+
 
 def enderecosList(request):
     enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
     context = {'enderecos_list': enderecos_list}
     return render(request, 'Usuario/enderecosList.html', context)
+
 
 class ListarEnderecos(ListView):
     template_name = "Usuario/enderecosList.html"
@@ -129,6 +136,12 @@ class ListarEnderecos(ListView):
         # Add in the publisher
         context['idPessoa'] = self.idPessoa
         return context
+
+class AtualizarEndereco(UpdateView):
+    model = Endereco
+    form_class = CadastroEnderecoForm
+    template_name = "Usuario/atualizarEndereco.html"
+    success_url = reverse_lazy('listaEnderecos')
 
 class DeletarEndereco(DeleteView):
     model = Endereco

@@ -12,33 +12,38 @@
 
 {% for user in dadosUserList %}
 
-<div class="border container" style="color: #4613ac; display: flex; flex-direction: column; justify-content: space-around; ">
+<div class="border container"
+    style="color: #4613ac; display: flex; flex-direction: column; justify-content: space-around; ">
     <div class="mt-3">
         <label style="text-transform: uppercase;" for="Nome">Nome: </label>
-        <input style="text-transform: uppercase;" type="text" class="form-control" disabled  id="nome"
-        value="{{user.first_name}}">
+        <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="nome"
+            value="{{user.first_name}}">
     </div>
     <div class="mt-3" style="text-transform: uppercase;">
         <label for="SobreNome">SobreNome:</label>
-        <input style="text-transform: uppercase;" type="text" class="form-control" disabled  id="SobreNome"
-        value="{{user.last_name}}">
+        <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="SobreNome"
+            value="{{user.last_name}}">
     </div>
     <div class="mt-3">
         <label style="text-transform: uppercase;" for="email">Endereço de E-mail: </label>
         <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="email"
-        value="{{user.email}}">
+            value="{{user.email}}">
     </div>
     <div class="mt-3 mb-5">
         <label style="text-transform: uppercase;" for="email">usuário: </label>
-        <input style="text-transform: uppercase;" type="text" class="form-control" disabled  id="email"
-        value="{{user.username}}">
+        <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="email"
+            value="{{user.username}}">
     </div>
-    
-    <a class="btn   mb-3 w-30" style="background-color: #4613ac; color: white;"
-    href="{% url 'atualizarCadastro' user.id %}" title="Atualizar meus dados">Atualizar Dados</a>
+    <div class="container w-30">
+        <a class="btn   mb-3 w-30" style="background-color: #4613ac; color: white;"
+            href="{% url 'atualizarCadastro' user.id %}" title="Atualizar meus dados"><i
+            class="material-icons">refresh</i>Atualizar Dados</a>
 
-    <a class="btn   mb-3 w-30" style="background-color: #4613ac; color: white;"
-    href="{% url 'atualizarCadastro' user.id %}" title="Atualizar meus dados">Alterar Senha</a>
+        <a class="btn   mb-3 w-30" style="background-color: #4613ac; color: white;"
+            href="{% url 'password_change' %}" title="Alterar Senha"><i
+            class="material-icons">edit</i>Alterar Senha</a>
+    </div>
+
 </div>
 
 {% endfor %}

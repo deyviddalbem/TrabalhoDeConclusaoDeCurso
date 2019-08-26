@@ -16,6 +16,7 @@ urlpatterns = [
     path('meusEnderecos/', views.enderecosList, name='listaEnderecos'),
     path('enderecos/listar/<int:pk>',views.ListarEnderecos.as_view(), name='listar_enderecos'),
     #path('enderecos/listar/',views.enderecosList, name='enderecosList'),
+    path('enderecos/atualizar/<int:pk>', views.AtualizarEndereco.as_view(),name='endereco_atualizar'),
     path('enderecos/excluir/<int:pk>', views.DeletarEndereco.as_view(),name='endereco_deletar'),
    
     path('cadastroTelefone/', views.CadastroTelefone, name='cadastroTelefone'),

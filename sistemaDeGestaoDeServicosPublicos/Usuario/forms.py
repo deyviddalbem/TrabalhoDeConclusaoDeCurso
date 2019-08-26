@@ -25,11 +25,13 @@ class PessoaUserFormUpdate(forms.ModelForm):
         super(PessoaUserFormUpdate,self).__init__(*args,**kwargs)
         self.fields['first_name'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'Nome'}
         self.fields['last_name'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'Sobrenome'}
-        self.fields['username'].widget.attrs = {'class':'form-group form-control','type':'mail','placeholder':'E-mail'}
+        self.fields['email'].widget.attrs = {'class':'form-group form-control','type':'mail','placeholder':'E-mail'}
+        self.fields['username'].widget.attrs = {'class':'form-group form-control','type':'mail','placeholder':'username'}
+       
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username')
+        fields = ('first_name', 'last_name', 'username', 'email')
 
 class CadastroTelefoneForm(forms.ModelForm):
     class Meta:
