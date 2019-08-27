@@ -17,7 +17,7 @@ def index(request):
     else:
         return render(request, 'sistemaDeGestaoDeServicosPublicos/index1.html')
 
-
+##### Função para criar a view de cadastro de usuário ######
 class CriarCadastro(CreateView):
     model = User
     form_class = PessoaUserForm
