@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Telefone, Endereco
 
 
-
+##### Formulário para cadastro de usuário #####
 class PessoaUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(PessoaUserForm, self).__init__(*args, **kwargs)
