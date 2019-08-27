@@ -98,17 +98,16 @@
 }
 
 
-.table-holder tr:nth-child(odd):hover {
-    background-color: #5e35b19d;
+/**.table-holder tr:nth-child(odd):hover {
+    background-color: turquoise;
     color: white;
 }
+**/
 
-.table-holder tr:nth-child(even):hover {
-    background-color: #ff6f269d;
+.table-holder tr:hover {
+    background-color: #7238e6;
     color: white;
 }
-
-
 
 .table-holder td:first-child {
     border: none;

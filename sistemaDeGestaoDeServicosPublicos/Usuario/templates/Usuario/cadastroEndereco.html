@@ -15,15 +15,16 @@
             <div class="form-group col-md-2">
                 <label for="cep">CEP</label>
                 <input onblur="pesquisacep(this.value);" type="text" name="cep" class="form-control" id="cep"
-                    placeholder="Informe seu CEP">
+                    placeholder="Informe seu CEP" maxlength="9">
             </div>
 
+            
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-5">
-                <label for="inputEmail4">Logradouro</label>
-                <input type="text" class="form-control" id="logradouro" placeholder="Informe seu logradouro">
+                <label for="logradouro">Logradouro</label>
+                <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Informe seu logradouro">
             </div>
             <div class="form-group col-md-2">
                 <label for="enderecoNumero">Número do Imóvel</label>
@@ -31,11 +32,11 @@
             </div>
             <div class="form-group col-md-2">
                 <label for="bairro">Bairro</label>
-                <input type="text" name="bairro" id="bairro" class="form-control" placeholder="Informe o Bairro">
+                <input type="text" name="bairro" id="bairro" name="bairro" class="form-control" placeholder="Informe o Bairro">
             </div>
             <div class="form-group col-md-3">
                 <label for="municipio">Munícipio</label>
-                <input type="text" class="form-control" id="municipio" placeholder="Informe o município">
+                <input type="text" class="form-control" id="municipio" name="municipio" placeholder="Informe o município">
             </div>
         </div>
 
@@ -54,8 +55,8 @@
         
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="observação">Observação</label>
-                <input type="text" class="form-control" id="observacao" name="observação"
+                <label for="observacao">Observação</label>
+                <input type="text" class="form-control" id="observacao" name="observacao"
                     placeholder="Se houver alguma observação, informe aqui!">
             </div>
             <div class="d-none">
