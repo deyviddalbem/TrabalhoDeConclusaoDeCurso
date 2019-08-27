@@ -225,3 +225,90 @@ JavaScript error: http://127.0.0.1:8000/accounts/login/, line 185: TypeError: la
 JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
 
 (firefox:13132): GLib-GObject-WARNING **: 20:47:21.654: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f274f02d9c0' of type 'MaiAtkType139'
+1566914252926	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.DjRNhrVLSUFK"
+1566914266828	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1566914266832	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1566914266837	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1566914266837	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1566914287813	Marionette	INFO	Listening on port 46069
+1566914288072	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://127.0.0.1:8000/Usuario/cadastrarUsuario/, line 135: TypeError: labelInput is null
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:9418): GLib-GObject-WARNING **: 09:58:15.903: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f19a2179d30' of type 'MaiAtkType139'
+
+(firefox:9418): GLib-GObject-WARNING **: 09:58:16.117: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f19a21dc600' of type 'MaiAtkType139'
+
+(firefox:9418): GLib-GObject-WARNING **: 09:58:16.261: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f19a2e206a0' of type 'MaiAtkType139'
+
+(firefox:9418): GLib-GObject-WARNING **: 09:58:16.397: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f19a2eaf0b0' of type 'MaiAtkType139'
+
+(/usr/lib/firefox/firefox:9521): dconf-WARNING **: 09:58:17.203: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permissão negada
+
+(firefox:9418): GLib-GObject-WARNING **: 09:58:17.354: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f19a2eaf790' of type 'MaiAtkType139'
+1566914297481	Marionette	INFO	Stopped listening on port 46069
+1566917271408	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.pw8gCWAfetQH"
+1566917284221	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1566917284221	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1566917284222	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1566917284223	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1566917298455	Marionette	INFO	Listening on port 37585
+1566917298576	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://127.0.0.1:8000/Usuario/cadastrarUsuario/, line 136: TypeError: labelInput is null
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:12168): GLib-GObject-WARNING **: 10:48:23.113: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f9a2fe6e650' of type 'MaiAtkType139'
+
+(firefox:12168): GLib-GObject-WARNING **: 10:48:23.360: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f9a2fe6e790' of type 'MaiAtkType139'
+
+(firefox:12168): GLib-GObject-WARNING **: 10:48:23.562: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f9a2fe95100' of type 'MaiAtkType139'
+
+(firefox:12168): GLib-GObject-WARNING **: 10:48:23.686: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f9a2fe952e0' of type 'MaiAtkType139'
+
+(/usr/lib/firefox/firefox:12290): dconf-WARNING **: 10:48:23.865: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permissão negada
+
+(firefox:12168): GLib-GObject-WARNING **: 10:48:24.011: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f9a2fe95880' of type 'MaiAtkType139'
+JavaScript error: http://127.0.0.1:8000/accounts/login/, line 186: TypeError: labelInput is null
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:12168): GLib-GObject-WARNING **: 10:48:26.530: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f9a2a0c9470' of type 'MaiAtkType139'
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: http://%(server)s/dummy/blocklist//buckets/monitor/collections/changes/records?_expected=%221566864005222%22 is not a valid URL..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:201:13
+
+1566917357361	Marionette	INFO	Stopped listening on port 37585
+1566917367121	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.c9WlE82bg9uk"
+1566917369728	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1566917369730	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1566917369731	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1566917369731	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1566917378505	Marionette	INFO	Listening on port 34931
+1566917378565	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://127.0.0.1:8000/Usuario/cadastrarUsuario/, line 136: TypeError: labelInput is null
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:12527): GLib-GObject-WARNING **: 10:49:42.764: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fd7ec5aac40' of type 'MaiAtkType139'
+
+(firefox:12527): GLib-GObject-WARNING **: 10:49:42.938: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fd7ec5bc150' of type 'MaiAtkType139'
+
+(firefox:12527): GLib-GObject-WARNING **: 10:49:43.135: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fd7ec5bc290' of type 'MaiAtkType139'
+
+(/usr/lib/firefox/firefox:12598): dconf-WARNING **: 10:49:43.405: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permissão negada
+
+(firefox:12527): GLib-GObject-WARNING **: 10:49:43.421: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fd7ec5bc420' of type 'MaiAtkType139'
+
+(firefox:12527): GLib-GObject-WARNING **: 10:49:43.561: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fd7fd4f31a0' of type 'MaiAtkType139'
+JavaScript error: http://127.0.0.1:8000/Usuario/cadastrarUsuario/, line 139: TypeError: labelInput is null
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: http://%(server)s/dummy/blocklist//buckets/monitor/collections/changes/records?_expected=%221566864005222%22 is not a valid URL..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:201:13
+

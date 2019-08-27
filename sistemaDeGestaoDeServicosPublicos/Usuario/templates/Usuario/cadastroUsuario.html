@@ -15,7 +15,10 @@
             {% csrf_token %}
             {{ form.as_p }}
         </div>
-       
+        
+        {% if form.errors %}  
+        <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos e tente novamente!</p>
+        {% endif %}
         <input type="submit"  style="background: #4613ac; color: white;" class="btn  mb-3" title="Salvar Usuário" value="Salvar">
     </form>
   

@@ -9,11 +9,11 @@ from .models import Telefone, Endereco
 class PessoaUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(PessoaUserForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'Nome'}
-        self.fields['last_name'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'Sobrenome'}
+        self.fields['first_name'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'Informe o  Nome'}
+        self.fields['last_name'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'Informe o Sobrenome'}
         #self.fields['username'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'CPF'}
-        self.fields['username'].widget.attrs = {'class':'form-group form-control','type':'mail','placeholder':'E-mail'}
-        self.fields['password1'].widget.attrs = {'class':'form-group form-control','type':'password','placeholder':'Senha'}
+        self.fields['username'].widget.attrs = {'class':'form-group form-control','type':'mail','placeholder':'Insira o E-mail'}
+        self.fields['password1'].widget.attrs = {'class':'form-group form-control','type':'password','placeholder':'Insira a Senha'}
         self.fields['password2'].widget.attrs = {'class':'form-group form-control','type':'password','placeholder':'Repita a senha'}
     class Meta:
         model = User
