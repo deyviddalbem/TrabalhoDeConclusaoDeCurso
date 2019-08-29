@@ -92,7 +92,7 @@ class DeletarTelefone(DeleteView):
     template_name = "Usuario/telefone_confirm_delete.html"
     success_url = reverse_lazy('listaTelefones')
 
-
+##### Função que efetua o cadastro de endereço #####
 def cadastroEndereco(request):
     if request.method == 'POST':
         address_form = CadastroEnderecoForm(request.POST)
@@ -115,12 +115,11 @@ class CriarEndereco(CreateView):
     template_name = "Usuario/cadastroEndereco.html"
     success_url = reverse_lazy("listaEnderecos")
 
-
+##### Função que lista os enderecos #####
 def enderecosList(request):
     enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
     context = {'enderecos_list': enderecos_list}
     return render(request, 'Usuario/enderecosList.html', context)
-
 
 class ListarEnderecos(ListView):
     template_name = "Usuario/enderecosList.html"
@@ -137,12 +136,14 @@ class ListarEnderecos(ListView):
         context['idPessoa'] = self.idPessoa
         return context
 
+##### função que efetua a atualização do endereco #####
 class AtualizarEndereco(UpdateView):
     model = Endereco
     form_class = CadastroEnderecoForm
     template_name = "Usuario/atualizarEndereco.html"
     success_url = reverse_lazy('listaEnderecos')
 
+##### Função que efetua a exclusão do endereco #####
 class DeletarEndereco(DeleteView):
     model = Endereco
     template_name = "Usuario/endereco_confirm_delete.html"
