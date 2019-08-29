@@ -9,41 +9,39 @@
     {% if user.is_authenticated %}
 
     <form method = "POST">
-            {{ form.errors }} {{ form.non_field_errors }}
+           
         {% csrf_token %}
         <div class="form-row">
             <div class="form-group col-md-2">
                 <label for="cep">CEP</label>
                 <input onblur="pesquisacep(this.value);" type="text" name="cep" class="form-control" id="cep"
-                    placeholder="Informe seu CEP" maxlength="9">
-            </div>
-
-            
+                    placeholder="Informe seu CEP" maxlength="8" required>
+            </div>     
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-5">
                 <label for="logradouro">Logradouro</label>
-                <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Informe seu logradouro">
+                <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Informe seu logradouro" maxlength="45" required>
             </div>
             <div class="form-group col-md-2">
                 <label for="enderecoNumero">Número do Imóvel</label>
-                <input type="text" class="form-control" id="enderecoNumero" name="enderecoNumero" placeholder="Número">
+                <input type="text" class="form-control" id="enderecoNumero" name="enderecoNumero" placeholder="Número" required>
             </div>
             <div class="form-group col-md-2">
                 <label for="bairro">Bairro</label>
-                <input type="text" name="bairro" id="bairro" name="bairro" class="form-control" placeholder="Informe o Bairro">
+                <input type="text" name="bairro" id="bairro" name="bairro" class="form-control" placeholder="Informe o Bairro" required>
             </div>
             <div class="form-group col-md-3">
                 <label for="municipio">Munícipio</label>
-                <input type="text" class="form-control" id="municipio" name="municipio" placeholder="Informe o município">
+                <input type="text" class="form-control" id="municipio" name="municipio" placeholder="Informe o município" required>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="estado">Estado</label>
-                <input type="text" class="form-control" id="estado" name="estado" placeholder="Informe a UF">
+                <input type="text" class="form-control" id="estado" name="estado" placeholder="Informe a UF" maxlength="2" required>
             </div>
 
             <div class="form-group col-md-3">
@@ -71,9 +69,13 @@
                 </label>
             </div>
         </div>
-
-        <input type="submit" class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
-            value="Próximo">
+       
+        {% if form.errors %}
+        <p class="container text-center alert alert-danger mt-3">Usuário ou senha incorretos!</p>
+        {% endif %}
+        
+        <input type="submit" title="Cadastrar Endereço" class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
+            value="Salvar Endereco">
     </form>
     {% else %}
 
@@ -94,6 +96,7 @@
 
 <script type="text/javascript">
 
+    //função para auto preencher o endereço atraves do CEP 
     function limpa_formulário_cep() {
         //Limpa valores do formulário de cep.
         document.getElementById('logradouro').value = ("");
