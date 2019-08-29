@@ -31,7 +31,17 @@ class AtualizarCadastro(UpdateView):
     template_name = "Usuario/atualizarCadastro.html"
     success_url = reverse_lazy('meusDados')
 
+def mostrarMeusDados(request):
+    dadosUserList = User.objects.filter(id=request.user.id)
+    context = {'dadosUserList': dadosUserList}
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
+        return render(request, 'Usuario/meusDados.html', context)
 
+
+
+##### Função para efetuar o cadastro do telefone ##### 
 def CadastroTelefone(request, idTelefone=None):
     tipos = TipoTelefone.objects.all()
     if idTelefone:
@@ -49,7 +59,7 @@ def CadastroTelefone(request, idTelefone=None):
         context = {'formEdit': formEdit, 'tipos': tipos}
     return render(request, 'Usuario/cadastroTelefone.html', context)
 
-
+##### Função para lstar os telefones #####
 def TelefonesList(request):
     telefones_list = Telefone.objects.filter(idPessoa_id=request.user.id)
     context = {'telefones_list': telefones_list}
@@ -59,15 +69,7 @@ def TelefonesList(request):
         return render(request, 'Usuario/telefonesList.html', context)
 
 
-def mostrarMeusDados(request):
-    dadosUserList = User.objects.filter(id=request.user.id)
-    context = {'dadosUserList': dadosUserList}
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
-    else:
-        return render(request, 'Usuario/meusDados.html', context)
-
-
+##### Função para atualizar os telefones #####
 def atualizarMeusTelefones(request, idTelefone=None):
 
     tipos = TipoTelefone.objects.all()
@@ -86,7 +88,7 @@ def atualizarMeusTelefones(request, idTelefone=None):
         context = {'formEdit': formEdit, 'tipos': tipos}
     return render(request, 'Usuario/atualizarTelefones.html', context)
 
-
+##### Função para excluir os telefones #####
 class DeletarTelefone(DeleteView):
     model = Telefone
     template_name = "Usuario/telefone_confirm_delete.html"
