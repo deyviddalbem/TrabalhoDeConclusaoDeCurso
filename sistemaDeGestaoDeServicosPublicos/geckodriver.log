@@ -312,3 +312,123 @@ console.error: BroadcastService:
   Stack:
     remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:201:13
 
+1567082603142	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.CjsiwX8QQU8H"
+1567082612893	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1567082612893	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1567082612894	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1567082612895	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1567082625227	Marionette	INFO	Listening on port 32879
+1567082625462	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:6522): GLib-GObject-WARNING **: 08:43:50.295: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f76d3ea9f10' of type 'MaiAtkType139'
+
+(firefox:6522): GLib-GObject-WARNING **: 08:43:50.435: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f76d4107240' of type 'MaiAtkType139'
+
+(firefox:6522): GLib-GObject-WARNING **: 08:43:50.550: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f76d4107ba0' of type 'MaiAtkType139'
+
+(firefox:6522): GLib-GObject-WARNING **: 08:43:50.674: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f76d4107dd0' of type 'MaiAtkType139'
+
+(/usr/lib/firefox/firefox:6645): dconf-WARNING **: 08:43:50.982: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permissão negada
+
+(firefox:6522): GLib-GObject-WARNING **: 08:43:50.994: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f76d41c4f60' of type 'MaiAtkType139'
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: http://%(server)s/dummy/blocklist//buckets/monitor/collections/changes/records?_expected=%221567023479829%22 is not a valid URL..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:201:13
+
+1567082718846	Marionette	INFO	Stopped listening on port 32879
+1567082777582	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.CjwMtlj5mLuu"
+1567082779967	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1567082779968	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1567082779969	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1567082779969	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1567082787790	Marionette	INFO	Listening on port 32861
+1567082787875	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:6926): GLib-GObject-WARNING **: 08:46:29.817: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f316f448e20' of type 'MaiAtkType139'
+
+(firefox:6926): GLib-GObject-WARNING **: 08:46:31.107: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f316f448e20' of type 'MaiAtkType139'
+
+(/usr/lib/firefox/firefox:7001): dconf-WARNING **: 08:46:31.178: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permissão negada
+1567082792295	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Z2PXoCwVJJjk"
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+1567082794753	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1567082794756	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1567082794759	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1567082794760	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1567082802566	Marionette	INFO	Listening on port 44631
+1567082802614	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+
+(firefox:7110): GLib-GObject-WARNING **: 08:46:44.183: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fbd7b5388d0' of type 'MaiAtkType139'
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:7110): GLib-GObject-WARNING **: 08:46:45.325: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fbd7b5388d0' of type 'MaiAtkType139'
+
+(/usr/lib/firefox/firefox:7169): dconf-WARNING **: 08:46:45.406: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permissão negada
+JavaScript warning: https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:7110): GLib-GObject-WARNING **: 08:46:47.044: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fbd78f11e70' of type 'MaiAtkType139'
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: http://%(server)s/dummy/blocklist//buckets/monitor/collections/changes/records?_expected=%221567023479829%22 is not a valid URL..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:201:13
+
+1567082827814	Marionette	INFO	Stopped listening on port 32861
+1567082830074	Marionette	INFO	Stopped listening on port 44631
+1567082835921	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ulDTxp5nmofT"
+1567082838225	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1567082838226	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1567082838227	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1567082838227	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1567082846287	Marionette	INFO	Listening on port 45475
+1567082846327	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+
+(firefox:7331): GLib-GObject-WARNING **: 08:47:28.216: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f261f1acc40' of type 'MaiAtkType139'
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:7331): GLib-GObject-WARNING **: 08:47:30.731: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7f261f1acc40' of type 'MaiAtkType139'
+
+(/usr/lib/firefox/firefox:7407): dconf-WARNING **: 08:47:30.810: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permissão negada
+1567082851937	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ses6n3HtGu20"
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+1567082854306	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1567082854307	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1567082854310	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1567082854310	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1567082861471	Marionette	INFO	Listening on port 36723
+1567082861581	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+
+(firefox:7522): GLib-GObject-WARNING **: 08:47:44.405: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fd7082eace0' of type 'MaiAtkType139'
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: http://%(server)s/dummy/blocklist//buckets/monitor/collections/changes/records?_expected=%221567023479829%22 is not a valid URL..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:201:13
+
+
+(firefox:7522): GLib-GObject-WARNING **: 08:47:47.625: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fd7082eace0' of type 'MaiAtkType139'
+
+(/usr/lib/firefox/firefox:7598): dconf-WARNING **: 08:47:47.677: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permissão negada
+JavaScript warning: https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: https://vlibras.gov.br/app/vlibras-plugin.js, line 7879: unreachable code after return statement
+
+(firefox:7522): GLib-GObject-WARNING **: 08:47:49.287: ../../../gobject/gsignal.c:3492: signal name 'selection_changed' is invalid for instance '0x7fd70732ff60' of type 'MaiAtkType139'
+1567082881699	Marionette	INFO	Stopped listening on port 36723
+1567082889075	Marionette	INFO	Stopped listening on port 45475
