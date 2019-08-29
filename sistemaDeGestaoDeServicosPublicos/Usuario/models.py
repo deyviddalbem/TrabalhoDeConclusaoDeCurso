@@ -31,7 +31,7 @@ class Telefone(models.Model):
 
 
 class Endereco(models.Model):
-    cep = models.CharField('CEP', max_length=9)
+    cep = models.IntegerField('CEP')
     logradouro = models.CharField('LOGRADOURO', max_length=45)
     enderecoNumero = models.CharField('NÚMERO', max_length=11)
     complemento = models.CharField('COMPLEMENTO', max_length=45)
