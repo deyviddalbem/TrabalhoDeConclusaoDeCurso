@@ -14,14 +14,15 @@ class TipoTelefone(models.Model):
 
 
 class Telefone(models.Model):
-    numero = models.CharField('NÚMERO', max_length=11)
+    numero = models.IntegerField('NÚMERO')
     idTipoTelefone = models.ForeignKey(
         TipoTelefone, on_delete=models.CASCADE, verbose_name="TIPO TELEFONE")
     idPessoa = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="PESSOA")
 
     def __str__(self):
-        return self.idPessoa.first_name + " - " + self.numero
+        return(str(self.numero))
+        #return self.numero, "- " , self.idPessoa.first_name
 
     class Meta:
         verbose_name = "Telefone"

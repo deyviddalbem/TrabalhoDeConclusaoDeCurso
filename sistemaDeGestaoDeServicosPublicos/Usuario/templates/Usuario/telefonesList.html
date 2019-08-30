@@ -4,6 +4,15 @@
 {% block centro %}
 {% if user.is_authenticated %}
 {% if telefones_list %}
+<style>
+.link{
+    color: black;
+}
+.link:hover{
+    color: white;
+    text-decoration: none;
+}
+</style>
 <div class="mt-3 container text-center ">
     <p style="color: #4613ac; font-size: 30px;">Meus Telefones</p>
 </div>
@@ -21,15 +30,16 @@
                 {% for telefone in telefones_list %}
                 <tr>
                     <td>{{telefone.id}}</td>
-                    <td>{{telefone.numero}}</td>
+                    <td><a class="link"title="Clique Para Atualizar o Telefone" href="{% url 'telefone_atualizar' telefone.id %}">{{telefone.numero}}</a></td>
                     <td>{{telefone.idTipoTelefone.descricao}}</td>
                     <td>
                         <a class="btn btn-danger" style="color: white;" href="{% url 'telefone_deletar' telefone.id %}"
                             title="Excluir Telefone">
                             Excluir</a>
-                        <a class="btn " style="background-color: #4613ac; color: white;"
-                            href="{% url 'telefone_atualizar' telefone.id %}" title="Atualizar Telefone">Atualizar</a>
-                    </td>
+                        <!---<a class="btn " style="background-color: #4613ac; color: white;"
+                            href="{% url 'telefone_atualizar' telefone.id %}" >Atualizar</a>
+                        -->
+                        </td>
                 </tr>
                 {% endfor %}
             </table>

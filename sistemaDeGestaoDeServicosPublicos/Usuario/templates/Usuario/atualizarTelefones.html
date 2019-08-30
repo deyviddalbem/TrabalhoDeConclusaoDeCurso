@@ -20,8 +20,8 @@
 
             <div class="form-group">
                 <label for="numero">Número de Telefone</label>
-                <input type="text" class="form-control" id="numero" name="numero"
-                    placeholder="Digite o número do telefone" value="{{formEdit.numero}}">
+                <input type="tel"  pattern="^\d{2}\d{4}\d{4}$"  class="form-control" id="numero" name="numero"
+                    placeholder="Digite o número do telefone" maxlength="11" value="{{formEdit.numero}}">
             </div>
             <div class="d-none">
                 <label for="idPessoa">Usuário</label>

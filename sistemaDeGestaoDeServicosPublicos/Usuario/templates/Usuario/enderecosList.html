@@ -10,9 +10,8 @@
 <div class="section-2"  >
     <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm"style="overflow-x: auto; ">
         {% if enderecos_list %}
-        <table>
+        <table class="text-center">
             <tr>
-                <th>ID</th>
                 <th>CEP</th>
                 <th>LOGRADOURO</th>
                 <th>NÚMERO</th>
@@ -23,7 +22,6 @@
             </tr>
             {% for enderecos in enderecos_list %}
             <tr>
-                <td>{{enderecos.id}}</td>
                 <td>{{enderecos.cep}}</td>
                 <td>{{enderecos.logradouro}}</td>
                 <td>{{enderecos.enderecoNumero}}</td>
@@ -34,12 +32,12 @@
                     <a class="btn btn-danger mb-2" style="color: white;" href="{% url 'endereco_deletar' enderecos.id  %}" title="Excluir Endereco">
                         Excluir</a>
                     <a class="btn" style=" background-color: #4613ac; color: white;" href="{% url 'endereco_atualizar' enderecos.id %}"
-                        title="Atualizar Telefone">Atualizar</a>
+                        title="Atualizar Endereco">Atualizar</a>
                 </td>
             </tr>           
             {% endfor %}
         </table>
-        <p class="text-info"> Obs: Algumas informações cadastradas, são ocultadas para facilitar a compreensão.</p>
+        <p class=" mt-1"style="color: #4613ac;" > Obs: Algumas informações cadastradas, são ocultadas para facilitar a compreensão.</p>
     </div>
     <a class="btn ml-2 mb-3 mt-3"  style="background-color: #4613ac; color: white;" href="{% url 'cadastroEndereco' %}"
     title="Cadastrar Endereço">Cadastrar Novo Endereço</a>
