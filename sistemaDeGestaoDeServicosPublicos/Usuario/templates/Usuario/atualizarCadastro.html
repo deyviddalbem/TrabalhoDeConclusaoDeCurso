@@ -19,6 +19,9 @@
                 {{ form.as_p }}
             </div>
 
+            {% if form.errors %}
+            teste
+            {% endif%}
             <input class="btn" style="background-color: #4613ac; color: white;" type="submit" value="Atualizar">
            
         </div>
