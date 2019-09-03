@@ -28,3 +28,5 @@ class EnderecoAdmin(admin.ModelAdmin):
 admin.site.register(Telefone,TelefoneAdmin)
 admin.site.register(TipoTelefone,TipoTelefoneAdmin)
 admin.site.register(Endereco,EnderecoAdmin)
+
+

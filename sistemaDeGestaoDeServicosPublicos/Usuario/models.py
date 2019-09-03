@@ -42,6 +42,7 @@ class Endereco(models.Model):
     estado = models.CharField('ESTADO', max_length=2)   
     idPessoa = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="PESSOA")
+   
  
     def __str__(self):
         return self.logradouro
