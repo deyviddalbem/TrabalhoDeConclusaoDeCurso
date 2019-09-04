@@ -141,6 +141,15 @@
     align-self: center;
 }
 
+#Orgao{
+    display: block;
+}
+#tituloOrgao{
+    background: #4613ac;
+    color: white;
+    text-align: center;
+}
+
 .AcessibilidadeFontes {
     display: flex;
     flex-direction: row;

@@ -35,3 +35,5 @@ def retornaLotacao(request):
             request.session['temVinculo'] = 'yes'
             return render(request, 'Orgao/escolheVinculo.html', context)
     return HttpResponse(request.POST.get('idOrgao'))
+
+
