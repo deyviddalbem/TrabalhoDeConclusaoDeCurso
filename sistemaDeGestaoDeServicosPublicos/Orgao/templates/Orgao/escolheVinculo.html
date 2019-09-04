@@ -1,0 +1,21 @@
+<title>SoliServ- Escolhe Vinculo</title>
+{% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+
+{% block centro %}
+<div class="container">
+    <div id="menuOrgao">
+        <form action="" method="post">
+                {% csrf_token %}
+            <div class="form-group text-center">
+                <label  class="mt-3 text-center" for="idOrgao">Escolher Vínculo</label>
+                <select class="form-control" id="idOrgao" name="idOrgao">
+                    {% for v in userServidor %}
+                    <option value="{{v.idOrgao.id}}">{{ v.idOrgao.nomeOrgao }}</option>
+                    {% endfor %}
+                </select>
+                    <input type="submit" class="btn  mt-2"style="background-color: #4613ac; color: white;" value="Escolher">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

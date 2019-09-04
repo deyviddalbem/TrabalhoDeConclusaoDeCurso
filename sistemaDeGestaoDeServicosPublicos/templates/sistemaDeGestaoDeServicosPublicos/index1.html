@@ -73,6 +73,8 @@
                 <a href="/" title="Chamados Em Aberto"><i class="material-icons">list</i>Abertos</a>
                 <a href="/" title="Chamados Em Andamento "><i class="material-icons">list</i>Em Andamento</a>
                 <a href="/" title="Chamados Concluídos"><i class="material-icons">list</i>Concluídos</a>
+                <p class="naoMostrarMouse">Suas Filiações</p>
+                <a href="{% url 'Orgao:retorna_Lotacao' %}" title="Chamados Em Aberto"><i class="material-icons">list</i>Menu Orgão</a>
             </nav>
             {% else %}
             <a href="{% url 'index' %}" title="Página Inicial"><i class="material-icons mt-3">home</i>Início</a>
@@ -88,7 +90,7 @@
 
                 <div>
                     {% block centro%}
-                     {% endblock %}
+                    {% endblock %}
                 </div>
             </div>
 
@@ -110,7 +112,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-   
+
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');

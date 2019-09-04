@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.views.generic.base import TemplateView
 from . import views
 
-
+app_name = 'Chamados'
 
 urlpatterns = [
     #path('', views.index, name='index'),

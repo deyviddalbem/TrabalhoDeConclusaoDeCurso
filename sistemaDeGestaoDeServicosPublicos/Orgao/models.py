@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db import models
 from django.contrib.auth.models import User
 from Usuario.models import Endereco, Telefone
-from Chamados.models import TipoChamado
+
 
 
 class Orgao(models.Model):
@@ -15,8 +15,7 @@ class Orgao(models.Model):
         Endereco, on_delete=models.CASCADE, verbose_name="ENDERECO ORGAO")
     idTelefone = models.ForeignKey(
         Telefone, on_delete=models.CASCADE, verbose_name="TELEFONE ORGAO")
-    idTipoChamado = models.ForeignKey(
-        TipoChamado, on_delete=models.CASCADE, verbose_name="TIPO CHAMADO")
+    
 
     def __str__(self):
         return self.nomeOrgao
