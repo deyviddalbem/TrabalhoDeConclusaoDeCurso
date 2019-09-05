@@ -18,8 +18,8 @@ class TipoLotacaoAdmin(admin.ModelAdmin):
     list_filter = ['id','descricao']
 
 class LotacaoAdmin(admin.ModelAdmin):
-    list_display = ('id','observacao','idTipoLotacao', 'idUsuario', 'idOrgao')
-    list_filter = ['id']
+    list_display = ('id','idUsuario','idTipoLotacao', 'observacao', 'idOrgao')
+    list_filter = ['id','idTipoLotacao', 'idOrgao',]
 
 admin.site.register(Orgao,OrgaoAdmin)
 admin.site.register(TipoLotacao,TipoLotacaoAdmin)

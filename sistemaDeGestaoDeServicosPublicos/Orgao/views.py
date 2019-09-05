@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Lotacao, Orgao
+from .models import Lotacao, Orgao, TipoLotacao
 
 
 # Create your views here.
@@ -16,8 +16,6 @@ def indexOrgao(request):
         return render(request, 'sistemaDeGestaoDeServicosPublicos/index1.html')
     else:
         return render(request, 'Orgao/indexOrgaoGerenteGeral.html')
-
-
 
 def retornaLotacao(request):    
     lotacao = Lotacao.objects.filter(idUsuario=request.user.id)
