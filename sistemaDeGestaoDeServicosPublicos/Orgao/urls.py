@@ -12,4 +12,5 @@ urlpatterns = [
     path('index_orgao/semosp',views.indexOrgao, name='orgao_index'),
     #path('index_orgao/', views.CriarCadastro.as_view(), name='orgao_index'),
     path('escolheLotacao/', views.retornaLotacao, name='retorna_Lotacao'),
+    path('cadastrarOrgao/', views.CriarOrgao.as_view(), name='cadastro_orgao'),
 ]

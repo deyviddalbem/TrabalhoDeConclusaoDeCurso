@@ -5,7 +5,8 @@ from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm 
+from .forms import CadastroOrgaoForm
 from .models import Lotacao, Orgao, TipoLotacao
 
 
@@ -35,3 +36,9 @@ def retornaLotacao(request):
     return HttpResponse(request.POST.get('idOrgao'))
 
 
+
+class CriarOrgao(CreateView):
+    model = Orgao
+    form_class = CadastroOrgaoForm
+    template_name = "Orgao/cadastroOrgao.html"
+    success_url = reverse_lazy("Orgao:orgao_index")
