@@ -10,7 +10,7 @@ from .models import TipoLotacao
 
 
 class OrgaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nomeOrgao', 'descricao', 'emailOrgao', 'nomeResponsavelOrgao','idEndereco', 'idTelefone', )
+    list_display = ('id', 'nomeOrgao', 'descricao', 'emailOrgao', 'nomeResponsavelOrgao','telefoneOrgao', 'enderecoOrgao', )
     list_filter = ['id', 'nomeOrgao', 'descricao']
 
 class TipoLotacaoAdmin(admin.ModelAdmin):

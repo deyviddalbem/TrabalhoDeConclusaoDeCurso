@@ -11,10 +11,8 @@ class Orgao(models.Model):
     emailOrgao = models.CharField('EMAIL ORGÃO', max_length=45)
     nomeResponsavelOrgao = models.CharField(
         'RESPONSÁVEL PELO ÓRGÃO', max_length=45)
-    idEndereco = models.ForeignKey(
-        Endereco, on_delete=models.CASCADE, verbose_name="ENDERECO ORGAO")
-    idTelefone = models.ForeignKey(
-        Telefone, on_delete=models.CASCADE, verbose_name="TELEFONE ORGAO")
+    enderecoOrgao = models.CharField('ENDERECO ORGÃO', max_length=45, default="")
+    telefoneOrgao = models.CharField('TELEFONE ORGÃO', max_length=45, default="")
     
 
     def __str__(self):
