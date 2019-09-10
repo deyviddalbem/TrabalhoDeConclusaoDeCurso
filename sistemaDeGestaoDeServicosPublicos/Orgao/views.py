@@ -13,10 +13,11 @@ from .models import Lotacao, Orgao, TipoLotacao
 # Create your views here.
 
 def indexOrgao(request):
-    if not request.user.is_authenticated:
-        return render(request, 'sistemaDeGestaoDeServicosPublicos/index1.html')
-    else:
-        return render(request, 'Orgao/indexOrgaoGerenteGeral.html')
+    idOrgao = request.GET.get('idOrgao')
+    context = {'orgaoSelecionado': idOrgao}
+    return render(request, 'Orgao/indexOrgaoGerenteGeral.html', context)
+
+
 
 def retornaLotacao(request):    
     lotacao = Lotacao.objects.filter(idUsuario=request.user.id)
@@ -25,7 +26,7 @@ def retornaLotacao(request):
         idOrgaoVinculo = request.POST.get('idOrgao')
         orgaoVinculo = get_object_or_404(Orgao, pk=idOrgaoVinculo)
         request.session['idVinculo'] = idOrgaoVinculo
-        request.session['nomeVinculo'] = orgaoVinculo.nomeOrgao
+        request.session['nomeVinculo'] = orgaoVinculo.nomeOrgao 
         return redirect('Orgao:orgao_index')
     else:
         if len(lotacao) == 0:
@@ -34,7 +35,6 @@ def retornaLotacao(request):
             request.session['temVinculo'] = 'yes'
             return render(request, 'Orgao/escolheVinculo.html', context)
     return HttpResponse(request.POST.get('idOrgao'))
-
 
 
 class CriarOrgao(CreateView):
