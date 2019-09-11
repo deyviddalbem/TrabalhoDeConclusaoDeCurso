@@ -10,7 +10,9 @@
     </div>
     <div class="container">
     {% block centroOrgao %}
+    <h1>{{orgaoSelecionado}}</h1>
     <a href="{% url 'Orgao:cadastro_orgao'%}">cadastro Orgao</a>
+    <a href="{% url 'Orgao:dados_orgao'%}">dados do  Orgao</a>
     {% endblock %}        
     </div>
 

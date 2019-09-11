@@ -1,22 +1,19 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse_lazy
-from django.core.paginator import Paginator
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import UserCreationForm 
-from .forms import CadastroOrgaoForm
-from .models import Lotacao, Orgao, TipoLotacao
-
+from django.urls import reverse_lazy, reverse
+from .models import Lotacao, Orgao
+from Orgao.forms import CadastroOrgaoForm
 
 # Create your views here.
 
 def indexOrgao(request):
     idOrgao = request.GET.get('idOrgao')
-    context = {'orgaoSelecionado': idOrgao}
-    return render(request, 'Orgao/indexOrgaoGerenteGeral.html', context)
-
+    if idOrgao == None:
+        context = {'orgaoSelecionado':  idOrgao}
+        return render(request, 'Orgao/index.html', context)
+    else:
+        return HttpResponse("aqui")
 
 
 def retornaLotacao(request):    
@@ -26,8 +23,9 @@ def retornaLotacao(request):
         idOrgaoVinculo = request.POST.get('idOrgao')
         orgaoVinculo = get_object_or_404(Orgao, pk=idOrgaoVinculo)
         request.session['idVinculo'] = idOrgaoVinculo
-        request.session['nomeVinculo'] = orgaoVinculo.nomeOrgao 
+        request.session['nomeVinculo'] = orgaoVinculo.nomeOrgao
         return redirect('Orgao:orgao_index')
+       
     else:
         if len(lotacao) == 0:
             return render(request, 'sistemaDeGestaoDeServicosPublicos/index1.html', context)
@@ -35,6 +33,14 @@ def retornaLotacao(request):
             request.session['temVinculo'] = 'yes'
             return render(request, 'Orgao/escolheVinculo.html', context)
     return HttpResponse(request.POST.get('idOrgao'))
+
+def orgaoList(request):
+    orgao_list = Orgao.objects.filter(id=1)
+    context = {'orgao_list': orgao_list}
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
+        return render(request, 'Orgao/dadosOrgao.html', context)
 
 
 class CriarOrgao(CreateView):

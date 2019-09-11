@@ -77,7 +77,9 @@
                 </li>
                 {% if request.session.temVinculo %}
 
-                <a class="mt-3 text-center" title="Clique para Escolher o Vínculo" style="border-radius: 5px; background-color: white; color: black; " href="{% url 'Orgao:retorna_Lotacao' %}">
+                <a class="mt-3 text-center" title="Clique para Escolher o Vínculo"
+                    style="border-radius: 5px; background-color: white; color: black; "
+                    href="{% url 'Orgao:retorna_Lotacao' %}">
 
                     {% if request.session.nomeVinculo %}
                     Vínculo: {{ request.session.nomeVinculo }}
@@ -86,7 +88,9 @@
                     {% endif %}
                 </a>
                 {% else %}
-                <a class="mt-3 text-center" title="Clique para Escolher o Vínculo" style="border-radius: 5px; background-color: white; color: black; " href="{% url 'Orgao:retorna_Lotacao' %}">
+                <a class="mt-3 text-center" title="Clique para Escolher o Vínculo"
+                    style="border-radius: 5px; background-color: white; color: black; "
+                    href="{% url 'Orgao:retorna_Lotacao' %}">
 
                     {% if request.session.nomeVinculo %}
                     Vínculo: {{ request.session.nomeVinculo }}
@@ -95,7 +99,7 @@
                     {% endif %}
                 </a>
                 {% endif %}
-
+               
             </nav>
             {% else %}
             <a href="{% url 'index' %}" title="Página Inicial"><i class="material-icons mt-3">home</i>Início</a>
