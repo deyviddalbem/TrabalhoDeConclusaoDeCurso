@@ -13,5 +13,6 @@ urlpatterns = [
     #path('index_orgao/', views.CriarCadastro.as_view(), name='orgao_index'),
     path('escolheLotacao/', views.retornaLotacao, name='retorna_Lotacao'),
     path('cadastrarOrgao/', views.CriarOrgao.as_view(), name='cadastro_orgao'),
+     path('cadastrarTipoLotacao/', views.CadastrarTipoLotacao.as_view(), name='cadastro_Tipo_Lotacao'),
     path('OrgaoDados/', views.orgaoList, name='dados_orgao'),
 ]

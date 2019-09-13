@@ -45,8 +45,9 @@
                 <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="email"
                     value="{{dados.telefoneOrgao}}">
             </div>
-           
+            
         </div>
+        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}"style="background: #4613ac; color: white;" title="Voltar a HomePage">Página Inicial</a>
     </form>
     {% endfor %}
     {% endif %} 
