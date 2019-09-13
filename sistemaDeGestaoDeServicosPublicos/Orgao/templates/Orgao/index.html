@@ -8,10 +8,10 @@
     <div id="tituloOrgao" class="container pb-2 pt-2">
         <h3>Secretaria Municipal de Obras</h3>
     </div>
-    <div class="container border text-center d-flex">
+    <div class="container border  d-flex">
         {% block centroOrgao %}
         <h1>{{orgaoSelecionado}}</h1>
-        <div class="container border">
+        <div class="container border text-center">
             <p class="text-center">Referentes ao Orgão</p>
                 <a class="btn  mb-3" href="{% url 'Orgao:cadastro_orgao'%}" style="background: #4613ac; color: white;">cadastro Orgao</a>
                 <a class="btn  mb-3" href="{% url 'Orgao:dados_orgao'%}" style="background: #4613ac; color: white;">dados do Orgao</a>
