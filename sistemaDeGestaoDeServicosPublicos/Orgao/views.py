@@ -2,8 +2,9 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
-from .models import Lotacao, Orgao
-from Orgao.forms import CadastroOrgaoForm
+from .models import Lotacao, Orgao, TipoLotacao
+from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm
+
 
 # Create your views here.
 
@@ -47,4 +48,11 @@ class CriarOrgao(CreateView):
     model = Orgao
     form_class = CadastroOrgaoForm
     template_name = "Orgao/cadastroOrgao.html"
+    success_url = reverse_lazy("Orgao:orgao_index")
+
+
+class CadastrarTipoLotacao(CreateView):
+    model = TipoLotacao
+    form_class = CadastroTipoLotacaoForm
+    template_name = "Orgao/cadastroTipoLotacao.html"
     success_url = reverse_lazy("Orgao:orgao_index")
