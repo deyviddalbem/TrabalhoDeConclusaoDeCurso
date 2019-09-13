@@ -12,7 +12,7 @@ class Orgao(models.Model):
     nomeResponsavelOrgao = models.CharField(
         'RESPONSÁVEL PELO ÓRGÃO', max_length=45)
     enderecoOrgao = models.CharField('ENDERECO ORGÃO', max_length=45, default="")
-    telefoneOrgao = models.CharField('TELEFONE ORGÃO', max_length=45, default="")
+    telefoneOrgao = models.IntegerField('TELEFONE ORGÃO')
     
 
     def __str__(self):

@@ -1,18 +1,60 @@
 <title>SoliServ- Cadastrar Orgão</title>
 {% extends 'Orgao/index.html' %}
-    
+
 {% block centroOrgao %}
 
-  
-    <form method="POST" class="mt-3">
-        <div class="col">
-            {% csrf_token %}
-            {{ form.as_p }}
+
+<form method="POST" class="mt-3">
+    {% csrf_token %}
+    <h3 class="text-center">Cadastro Órgão</h3>
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="">ID:</label>
+            <input type="" class="form-control" id="" name=""
+                placeholder="" maxlength="0" disabled>
         </div>
-        
-        {% if form.errors %}  
-        <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos e tente novamente!</p>
-        {% endif %}
-        <input type="submit"  style="background: #4613ac; color: white;" class="btn  mb-3" title="Salvar Usuário" value="Salvar">
-    </form>
+        <div class="form-group col-md-7">
+            <label for="nomeOrgao">Nome Orgão:</label>
+            <input type="text" class="form-control" id="nomeOrgao" name="nomeOrgao"
+                placeholder="Informe o nome do orgão" maxlength="45" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="emailOrgao">E-mail:</label>
+            <input type="email" name="emailOrgao" id="emailOrgao" name="emailOrgao" class="form-control"
+                placeholder="E-Mail" required>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label for="descricao">Descrição:</label>
+            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição" required>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="nomeResponsavelOrgao">Responsável:</label>
+            <input type="text" class="form-control" id="nomeResponsavelOrgao" name="nomeResponsavelOrgao"
+                placeholder="Responsável" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label for="enderecoOrgao">Endereço:</label>
+            <input type="text" class="form-control" id="enderecoOrgao" name="enderecoOrgao" placeholder="Endereço"
+                maxlength="45" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="telefoneOrgao">Telefone:</label>
+            <input type="tel" class="form-control" id="telefoneOrgao" name="telefoneOrgao" placeholder="Telefone"
+                required>
+        </div>
+    </div>
+
+    {% if form.errors %}
+    <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos e
+        tente novamente!</p>
+    {% endif %}
+    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Salvar Cadastro"
+        value="Salvar">
+</form>
 {% endblock %}
