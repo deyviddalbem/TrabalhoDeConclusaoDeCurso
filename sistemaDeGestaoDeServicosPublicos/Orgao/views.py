@@ -8,33 +8,37 @@ from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm
 
 # Create your views here.
 
+
 def indexOrgao(request):
     idOrgao = request.session['idVinculo']
-    if idOrgao != None:
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
         orgaoSelecionado = get_object_or_404(Orgao, pk=idOrgao)
         context = {'orgaoSelecionado':  orgaoSelecionado}
         return render(request, 'Orgao/index.html', context)
-    else:
-        return HttpResponse("aqui")
 
 
 def retornaLotacao(request):    
     lotacao = Lotacao.objects.filter(idUsuario=request.user.id)
     context = {'userServidor': lotacao}
-    if request.method == 'POST':
-        idOrgaoVinculo = request.POST.get('idOrgao')
-        orgaoVinculo = get_object_or_404(Orgao, pk=idOrgaoVinculo)
-        request.session['idVinculo'] = idOrgaoVinculo
-        request.session['nomeVinculo'] = orgaoVinculo.nomeOrgao
-        return redirect('Orgao:orgao_index')
-       
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
     else:
-        if len(lotacao) == 0:
-            return render(request, 'sistemaDeGestaoDeServicosPublicos/index1.html', context)
+        if request.method == 'POST':
+            idOrgaoVinculo = request.POST.get('idOrgao')
+            orgaoVinculo = get_object_or_404(Orgao, pk=idOrgaoVinculo)
+            request.session['idVinculo'] = idOrgaoVinculo
+            request.session['nomeVinculo'] = orgaoVinculo.nomeOrgao
+            return redirect('Orgao:orgao_index')
+       
         else:
-            request.session['temVinculo'] = 'yes'
-            return render(request, 'Orgao/escolheVinculo.html', context)
-    return HttpResponse(request.POST.get('idOrgao'))
+            if len(lotacao) == 0:
+                return render(request, 'sistemaDeGestaoDeServicosPublicos/index1.html', context)
+            else:
+                request.session['temVinculo'] = 'yes'
+                return render(request, 'Orgao/escolheVinculo.html', context)
+        return HttpResponse(request.POST.get('idOrgao'))
 
 def orgaoList(request):
     orgao_list = Orgao.objects.all()
@@ -69,7 +73,6 @@ def TipoLotacaoList(request):
         return render(request, 'Orgao/tiposLotacao.html', context)
     
     
-
 class CriarOrgao(CreateView):
     model = Orgao
     form_class = CadastroOrgaoForm
