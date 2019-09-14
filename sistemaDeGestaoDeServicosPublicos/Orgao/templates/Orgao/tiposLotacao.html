@@ -1,0 +1,38 @@
+<title>SoliServ- Tipos de Lotacao</title>
+{% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+
+{% block centro %}
+
+<main id="Orgao" class="container border">
+
+    <div id="tituloOrgao" class="container pb-2 pt-2">
+        <h3>Secretaria Municipal de Obras</h3>
+    </div>
+    <div class="container">
+    {% block centroOrgao %}
+    {% if tipo_lotacao_list %}
+    
+    <form>
+        <p class="text-center mt-3">Tipos de Lotação</p>
+        <table class="table border">
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+            </tr>
+            {% for tipos in tipo_lotacao_list %}
+            <tr>
+                <td>{{tipos.id}}</td>
+                <td>{{tipos.descricao}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a class="btn  mb-3" href="{% url 'Orgao:cadastro_Tipo_Lotacao'%}"style="background: #4613ac; color: white;">Cadastro Tipo Lotação</a>
+        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}"style="background: #4613ac; color: white;" title="Voltar a HomePage">Página Inicial</a>
+    </form>
+ 
+    {% endif %} 
+    {% endblock %}        
+    </div>
+</main>
+
+{% endblock %}
