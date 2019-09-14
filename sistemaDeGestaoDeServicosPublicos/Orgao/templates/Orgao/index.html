@@ -6,11 +6,11 @@
 <main id="Orgao" class="container border">
 
     <div id="tituloOrgao" class="container pb-2 pt-2">
-        <h3>Secretaria Municipal de Obras</h3>
+        <h3>{{orgaoSelecionado.nomeOrgao}}</h3>
     </div>
     <div class="container border  d-flex">
         {% block centroOrgao %}
-        <h1>{{orgaoSelecionado}}</h1>
+        <h1>{{orgaoSelecionado.id}}</h1>
         <div class="container border text-center">
             <p class="text-center">Referentes ao Orgão</p>             
                 <a class="btn  mb-3" href="{% url 'Orgao:dados_orgao'%}" title="Visualizar os dados do órgão" style="background: #4613ac; color: white;">Dados do Orgao</a>

@@ -9,9 +9,10 @@ from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm
 # Create your views here.
 
 def indexOrgao(request):
-    idOrgao = request.GET.get('idOrgao')
-    if idOrgao == None:
-        context = {'orgaoSelecionado':  idOrgao}
+    idOrgao = request.session['idVinculo']
+    if idOrgao != None:
+        orgaoSelecionado = get_object_or_404(Orgao, pk=idOrgao)
+        context = {'orgaoSelecionado':  orgaoSelecionado}
         return render(request, 'Orgao/index.html', context)
     else:
         return HttpResponse("aqui")
