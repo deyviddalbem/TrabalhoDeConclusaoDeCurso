@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Orgao, TipoLotacao
+from .models import Orgao, TipoLotacao, Lotacao
 
 
 class CadastroOrgaoForm(forms.ModelForm):
@@ -27,4 +27,9 @@ class CadastroOrgaoForm(forms.ModelForm):
 class CadastroTipoLotacaoForm(forms.ModelForm):
      class Meta:
         model = TipoLotacao
+        fields = '__all__'
+
+class CadastroLotacaoForm(forms.ModelForm):
+     class Meta:
+        model = Lotacao
         fields = '__all__'
