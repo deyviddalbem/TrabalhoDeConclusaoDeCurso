@@ -140,6 +140,14 @@
     font-size: .8em;
     align-self: center;
 }
+.link {
+    color: black;
+}
+
+.link:hover {
+    color: #4613ac;
+    text-decoration: none;
+}
 
 #Orgao{
     display: block;

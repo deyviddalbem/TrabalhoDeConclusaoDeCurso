@@ -1,38 +1,52 @@
 <title>SoliServ- Tipos de Lotacao</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
-
 {% block centro %}
 
 <main id="Orgao" class="container border">
-
-    <div id="tituloOrgao" class="container pb-2 pt-2">
-        <h3>Secretaria Municipal de Obras</h3>
-    </div>
     <div class="container">
-    {% block centroOrgao %}
-    {% if tipo_lotacao_list %}
-    
-    <form>
-        <p class="text-center mt-3">Tipos de Lotação</p>
-        <table class="table border">
-            <tr>
-                <th>ID</th>
-                <th>Descrição</th>
-            </tr>
-            {% for tipos in tipo_lotacao_list %}
-            <tr>
-                <td>{{tipos.id}}</td>
-                <td>{{tipos.descricao}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <a class="btn  mb-3" href="{% url 'Orgao:cadastro_Tipo_Lotacao'%}"style="background: #4613ac; color: white;">Cadastro Tipo Lotação</a>
-        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}"style="background: #4613ac; color: white;" title="Voltar a HomePage">Página Inicial</a>
-    </form>
- 
-    {% endif %} 
-    {% endblock %}        
-    </div>
+        {% block centroOrgao %}
+        <form>
+            {% if tipo_lotacao_list %}
+            <table class="table border mt-3">
+                <tr>
+                    <th colspan="1" class="text-center" style="color: #4613ac;">Tipos de Lotação</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>Descrição</th>
+                    <th>AÇÃO</th>
+                </tr>
+                {% for tipos in tipo_lotacao_list %}
+                <tr>
+                    <td>
+                        <a class="link" title="Clique Para Atualizar o Tipo de Lotação"
+                            href="{% url 'Orgao:Tipo_lotacao_atualizar' tipos.id %}">{{tipos.descricao}}
+                        </a>
+                    </td>
+                    <td>
+                         <a class="btn btn-danger" style="color: white;" href="{% url 'Orgao:tipo_lotacao_deletar' tipos.id %}"
+                    title="Excluir Tipo de Lotacao">
+                    Excluir</a>
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+                {% else %}
+                <div class="alert alert-danger mt-3">
+                    Não há Dados Cadastrados!
+                </div>
+                {% endif %}
+            </table>
+
+        </form>
+        <a class="btn  mb-3" href="{% url 'Orgao:cadastro_Tipo_Lotacao'%}" style="background: #4613ac; color: white;"
+            title="cadastrar novo Tipo de Lotação">Cadastro Tipo
+            Lotação</a>
+        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}" style="background: #4613ac; color: white;"
+            title="Voltar a HomePage">Página Inicial</a>
 </main>
 
+
+{% endblock %}
+</div>
 {% endblock %}
