@@ -49,7 +49,7 @@ def orgaoList(request):
         return render(request, 'Orgao/dadosOrgao.html', context)
 
 class ListarOrgao(ListView):
-    template_name = "Orgao/orgaoList.html"
+    template_name = "Orgao/orgaoList"
     context_object_name = 'orgao_list'
     
     def get_queryset(self):
@@ -72,6 +72,21 @@ def TipoLotacaoList(request):
     else:
         return render(request, 'Orgao/tiposLotacao.html', context)
     
+class ListarTipoLotacao(ListView):
+    template_name = "Orgao/TipoLotacaoList.html"
+    context_object_name = 'tipo_lotacao'
+    
+    def get_queryset(self):
+        self.id = get_object_or_404(TipoLotacao, id=self.kwargs['pk'])
+        return TipoLotacao.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['id'] = self.id
+        return context
+    
     
 class CriarOrgao(CreateView):
     model = Orgao
@@ -90,3 +105,14 @@ class CadastrarTipoLotacao(CreateView):
     form_class = CadastroTipoLotacaoForm
     template_name = "Orgao/cadastroTipoLotacao.html"
     success_url = reverse_lazy("Orgao:tipos_lotacao")
+
+class AtualizarTipoLotacao(UpdateView):
+    model = TipoLotacao
+    form_class =  CadastroTipoLotacaoForm
+    template_name = "Orgao/atualizarTipoLotacao.html"
+    success_url = reverse_lazy('Orgao:tipos_lotacao')
+
+class DeletarTipoLotacao(DeleteView):
+    model = TipoLotacao
+    template_name = "Orgao/tipoLotacao_Confirm_delete.html"
+    success_url = reverse_lazy('Orgao:tipos_lotacao')
