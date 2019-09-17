@@ -7,7 +7,7 @@
         {% block centroOrgao %}
         <form>
             {% if tipo_lotacao_list %}
-            <table class="table border mt-3">
+            <table class="table border mt-3" style="text-transform: uppercase; overflow-x: auto">
                 <tr>
                     <th colspan="1" class="text-center" style="color: #4613ac;">Tipos de Lotação</th>
                     <th></th>
@@ -35,38 +35,39 @@
                     Não há Dados Cadastrados!
                 </div>
                 {% endif %}
-      
+
         </form>
-    </table>
+        </table>
 
-    <nav aria-label="text-left pagination  ">
-        <ul class="pagination ">
-            {% if tipo_lotacao_list.has_previous %}
-            <li class="page-item">
-                <a class="page-link"style=" color: #4613ac;" href="?page=1" title="Primeira Página">&laquo; Primeira</a>
-            </li>
+        <nav aria-label="text-left pagination  ">
+            <ul class="pagination ">
+                {% if tipo_lotacao_list.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" style=" color: #4613ac;" href="?page=1" title="Primeira Página">&laquo;
+                        Primeira</a>
+                </li>
 
-            <li class="page-item">
-                <a class="page-link"style=" color: #4613ac;" title="Página Anterior"
-                    href="?page={{ tipo_lotacao_list.previous_page_number }}">Anterior</a>
-            </li>
-            {% endif %}
-            <li class="page-item disabled">
-                <a class="page-link" href="#">Página {{ tipo_lotacao_list.number }} de
-                    {{ tipo_lotacao_list.paginator.num_pages }}</a>
-            </li>
-            {% if tipo_lotacao_list.has_next %}
-            <li class="page-item">
-                <a class="page-link" style=" color: #4613ac;" title="Próxima Página"
-                    href="?page={{ tipo_lotacao_list.next_page_number }}">Próxima</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" title="Ultima Página" style=" color: #4613ac;"
-                    href="?page={{tipo_lotacao_list.paginator.num_pages }}">Última &raquo;</a>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
+                <li class="page-item">
+                    <a class="page-link" style=" color: #4613ac;" title="Página Anterior"
+                        href="?page={{ tipo_lotacao_list.previous_page_number }}">Anterior</a>
+                </li>
+                {% endif %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Página {{ tipo_lotacao_list.number }} de
+                        {{ tipo_lotacao_list.paginator.num_pages }}</a>
+                </li>
+                {% if tipo_lotacao_list.has_next %}
+                <li class="page-item">
+                    <a class="page-link" style=" color: #4613ac;" title="Próxima Página"
+                        href="?page={{ tipo_lotacao_list.next_page_number }}">Próxima</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" title="Ultima Página" style=" color: #4613ac;"
+                        href="?page={{tipo_lotacao_list.paginator.num_pages }}">Última &raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
         <a class="btn  mb-3" href="{% url 'Orgao:cadastro_Tipo_Lotacao'%}" style="background: #4613ac; color: white;"
             title="cadastrar novo Tipo de Lotação">Cadastro Tipo
             Lotação</a>

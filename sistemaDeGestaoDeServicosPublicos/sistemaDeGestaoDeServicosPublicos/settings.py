@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'Usuario.apps.UsuarioConfig',
     'Chamados.apps.ChamadosConfig',
     'Orgao.apps.OrgaoConfig',
-    'bootstrapform' ,
 ]
 
 MIDDLEWARE = [

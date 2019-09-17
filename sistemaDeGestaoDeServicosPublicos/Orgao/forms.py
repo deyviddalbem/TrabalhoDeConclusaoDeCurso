@@ -33,3 +33,8 @@ class CadastroLotacaoForm(forms.ModelForm):
      class Meta:
         model = Lotacao
         fields = '__all__'
+
+class AtualizarLotacaoForm(forms.ModelForm):
+    class Meta:
+        model = Lotacao
+        fields = '__all__'

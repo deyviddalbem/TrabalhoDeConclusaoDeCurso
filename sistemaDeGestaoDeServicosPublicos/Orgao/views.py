@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from .models import Lotacao, Orgao, TipoLotacao
-from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm, CadastroLotacaoForm
+from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm, CadastroLotacaoForm, AtualizarLotacaoForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 
@@ -130,7 +130,7 @@ class DeletarTipoLotacao(DeleteView):
     success_url = reverse_lazy('Orgao:tipos_lotacao')
 
 
-def CadastroLotacao(request,idL=None):
+def CadastroLotacao(request, idL=None):
     if idL:
         idL = get_object_or_404(Lotacao, id=idL)
     else:
@@ -138,7 +138,7 @@ def CadastroLotacao(request,idL=None):
 
         formEdit = CadastroLotacaoForm(request.POST, instance=idL)
     if request.method == 'POST':
-       
+
         if formEdit.is_valid():
             formEdit.save()
             return redirect('Orgao:tipos_lotacao')
@@ -146,7 +146,8 @@ def CadastroLotacao(request,idL=None):
         tipoLotacao = TipoLotacao.objects.all()
         idUsuario = User.objects.all()
         idOrgao = Orgao.objects.all()
-        context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,'idUsuario': idUsuario, 'idOrgao': idOrgao}
+        context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
+                   'idUsuario': idUsuario, 'idOrgao': idOrgao}
     return render(request, 'Orgao/cadastroLotacao.html', context)
 
 
@@ -177,3 +178,33 @@ class ListarLotacao(ListView):
         context['id'] = self.id
         return context
 
+
+class AtualizarLotacao(UpdateView):
+    model = Lotacao
+    form_class = AtualizarLotacaoForm
+    template_name = "Orgao/atualizarLotacao.html"
+    success_url = reverse_lazy('Orgao:lista_lotacao')
+
+
+def atualiza_Lotacao(request, idLotacao=None):
+    tipoLotacao = TipoLotacao.objects.all()
+    idUsuario = User.objects.all()
+    idOrgao = Orgao.objects.all()
+    if idLotacao:
+        idLotacao = get_object_or_404(Lotacao, id=idLotacao)
+        print("aqui")
+    else:
+        idLotacao = None
+        
+
+   
+    if request.method == 'POST':
+        formEdit = AtualizarLotacaoForm(request.POST, instance=idLotacao)
+        if formEdit.is_valid():
+            formEdit.save()
+            return redirect('Orgao:lista_lotacao')
+    else:
+        formEdit= AtualizarLotacaoForm(instance=idLotacao)
+        context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
+                   'idUsuario': idUsuario, 'idOrgao': idOrgao}
+    return render(request, 'Orgao/atualizarLotacao.html', context)
