@@ -1,6 +1,5 @@
 <title>Cadastrar Usuário</title>
 {% extends 'sistemaDeGestaoDeServicosPublicos/index1.html' %}
-    
 {% block centro %}
 <div class="mt-3 container text-center">
         <p style="cursor: pointer; color: #4613ac; font-size: 30px;">Cadastrar Usuário</p>
@@ -9,29 +8,16 @@
     <div>
         <h3 class="text-center"></h3>
     </div>
-  
     <form method="POST">
         <div class="col">
             {% csrf_token %}
             {{ form.as_p }}
         </div>
-        
         {% if form.errors %}  
         <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos e tente novamente!</p>
         {% endif %}
         <input type="submit"  style="background: #4613ac; color: white;" class="btn  mb-3" title="Salvar Usuário" value="Salvar">
     </form>
-  
-  
 </div>
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-<!---<script>
-$(function() {
-    $("#id_idPessoa").val({{user.id}});
-    document.getElementById("id_idPessoa").style.display = 'none';})
-</script>-->
-
 {% endblock %}

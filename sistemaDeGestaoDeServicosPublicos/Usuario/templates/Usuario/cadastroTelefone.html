@@ -17,15 +17,12 @@
             {% endfor %}
         </select>
     </div>
-
     <div class="form-group">
         <label for="numero">Número de Telefone</label>
         <input type="tel" pattern="^\d{2}\d{4}\d{4}$" class="form-control" id="numero" name="numero"
             placeholder="Digite o número do telefone no formato (DD + numero)" value="{{formEdit.numero}}"
             maxlength="11" required>
-   
     </div>
-
     <div class="d-none">
         <label for="idPessoa">Usuário</label>
         <select class="form-control" id="idPessoa" name="idPessoa">
@@ -33,9 +30,7 @@
         </select>
     </div>
     <input type="submit" class="btn " style="background-color: #4613ac; color: white;" value="Salvar">
-
 </form>
-
 {% else %}
 {% endif %}
 {% endblock %}

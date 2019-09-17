@@ -195,9 +195,6 @@ def atualiza_Lotacao(request, idLotacao=None):
         print("aqui")
     else:
         idLotacao = None
-        
-
-   
     if request.method == 'POST':
         formEdit = AtualizarLotacaoForm(request.POST, instance=idLotacao)
         if formEdit.is_valid():
@@ -208,3 +205,9 @@ def atualiza_Lotacao(request, idLotacao=None):
         context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
                    'idUsuario': idUsuario, 'idOrgao': idOrgao}
     return render(request, 'Orgao/atualizarLotacao.html', context)
+
+
+class DeletarLotacao(DeleteView):
+    model = Lotacao
+    template_name = "Orgao/lotacao_confirm_delete.html"
+    success_url = reverse_lazy('Orgao:lista_lotacao')

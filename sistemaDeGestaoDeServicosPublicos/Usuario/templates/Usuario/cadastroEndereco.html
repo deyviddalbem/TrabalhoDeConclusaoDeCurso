@@ -1,15 +1,12 @@
 <title>SoliServ-Cadastrar Endereço</title>
 {% extends 'sistemaDeGestaoDeServicosPublicos/index1.html' %}
-
 {% block centro %}
 <div class="mt-3 container ">
     <p style="color: #4613ac; font-size: 30px;">Cadastro de Endereço</p>
 </div>
 <div class="mt-3 pt-3">
     {% if user.is_authenticated %}
-
     <form method = "POST">
-           
         {% csrf_token %}
         <div class="form-row">
             <div class="form-group col-md-2">
@@ -18,7 +15,6 @@
                     placeholder="Informe seu CEP" maxlength="8" required>
             </div>     
         </div>
-
         <div class="form-row">
             <div class="form-group col-md-5">
                 <label for="logradouro">Logradouro</label>
@@ -37,20 +33,17 @@
                 <input type="text" class="form-control" id="municipio" name="municipio" placeholder="Informe o município" required>
             </div>
         </div>
-
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="estado">Estado</label>
                 <input type="text" class="form-control" id="estado" name="estado" placeholder="Informe a UF" maxlength="2" required>
             </div>
-
             <div class="form-group col-md-3">
                 <label for="complemento">Complemento</label>
                 <input type="text" class="form-control" id="complemento" name="complemento"
                     placeholder="Apartamento, hotel, casa, etc.">
             </div>
         </div>
-        
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="observacao">Observação</label>
@@ -69,33 +62,25 @@
                 </label>
             </div>
         </div>
-       
         {% if form.errors %}
         <p class="container text-center alert alert-danger mt-3">Usuário ou senha incorretos!</p>
         {% endif %}
-        
         <input type="submit" title="Cadastrar Endereço" class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
             value="Salvar Endereco">
     </form>
     {% else %}
-
     <div class="container text-center alert alert-danger mt-3">
         <p class="">Faça o Cadastro ou realize o Login para Continuar!</p>
     </div>
     {% endif %}
 </div>
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
 <script>
     $(function () {
         $("#id_idPessoa").val({{ user.id }});
     document.getElementById("id_idPessoa").style.display = 'none';})
 </script>
-
 <script type="text/javascript">
-
     //função para auto preencher o endereço atraves do CEP 
     function limpa_formulário_cep() {
         //Limpa valores do formulário de cep.
@@ -105,7 +90,6 @@
         document.getElementById('estado').value = ("");
         document.getElementById('ibge').value = ("");
     }
-
     function meu_callback(conteudo) {
         if (!("erro" in conteudo)) {
             //Atualiza os campos com os valores.
@@ -121,37 +105,27 @@
             alert("CEP não encontrado.");
         }
     }
-
     function pesquisacep(valor) {
-
         //Nova variável "cep" somente com dígitos.
         var cep = valor.replace(/\D/g, '');
-
         //Verifica se campo cep possui valor informado.
         if (cep != "") {
-
             //Expressão regular para validar o CEP.
             var validacep = /^[0-9]{8}$/;
-
             //Valida o formato do CEP.
             if (validacep.test(cep)) {
-
                 //Preenche os campos com "..." enquanto consulta webservice.
                 document.getElementById('logradouro').value = "...";
                 document.getElementById('bairro').value = "...";
                 document.getElementById('municipio').value = "...";
                 document.getElementById('estado').value = "...";
                 document.getElementById('ibge').value = "...";
-
                 //Cria um elemento javascript.
                 var script = document.createElement('script');
-
                 //Sincroniza com o callback.
                 script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
-
                 //Insere script no documento e carrega o conteúdo.
                 document.body.appendChild(script);
-
             } //end if.
             else {
                 //cep é inválido.
@@ -164,6 +138,5 @@
             limpa_formulário_cep();
         }
     };
-
 </script>
 {% endblock %}

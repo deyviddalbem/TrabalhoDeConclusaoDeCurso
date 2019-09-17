@@ -21,7 +21,6 @@
                     </option>
                     {% endfor %}
                 </select>
-
             </div>
             <div class="form-group col-md-6">
                 <label for=" idUsuario">Usuário:</label>
@@ -49,9 +48,7 @@
                 <input type="text" class="form-control" id="observacao" name="observacao"
                 required {{formEdit.observacao}}>
             </div>
-           
         </div>
-
         {% if form.errors %}
         <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos
             e
@@ -63,6 +60,5 @@
             title="Voltar a Lista de Lotações">Lista de Lotações</a>
     </form>
 </main>
-
 {% endblock %}
 {% endblock %}
