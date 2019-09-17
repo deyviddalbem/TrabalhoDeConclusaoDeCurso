@@ -5,12 +5,13 @@
 <main id="Orgao" class="container border">
     <div class="container">
         {% block centroOrgao %}
-        <form>
+        <form style="overflow-x: auto;">
             {% if lotacao_list %}
             <table class="table border mt-3">
                 <tr>
-                    <th colspan="6" class="text-center" style="color: #4613ac; text-transform: uppercase">Lista de Lotações</th>
-                  
+                    <th colspan="6" class="text-center" style="color: #4613ac; text-transform: uppercase">Lista de
+                        Lotações</th>
+
                 </tr>
                 <tr>
                     <th>ID</th>
@@ -26,29 +27,26 @@
                         <a class="link" title="Clique Para Atualizar o Tipo de Lotação" href="#">{{lotacao.id}}
                         </a>
                     </td>
+                   
                     <td>
-                        <a class="link" title="Clique Para Atualizar o Tipo de Lotação"
-                            href="#">{{lotacao.idTipoLotacao.descricao}}
+                        <a class="link" title="Clique Para Atualizar a Lotação"
+                            href="{% url 'Orgao:lotacao_atualizar' lotacao.id %}">{{lotacao.idTipoLotacao.descricao}}
                         </a>
                     </td>
                     <td>
-                        <a class="link" title="Clique Para Atualizar o Tipo de Lotação"
-                            href="#">{{lotacao.idUsuario.first_name}}
-                        </a>
+                        {{lotacao.idUsuario.first_name}}
+
                     </td>
                     <td>
-                        <a class="link" title="Clique Para Atualizar o Tipo de Lotação"
-                            href="#">{{lotacao.idOrgao.nomeOrgao}}
-                        </a>
+                        {{lotacao.idOrgao.nomeOrgao}}
+
                     </td>
                     <td>
-                        <a class="link" title="Clique Para Atualizar o Tipo de Lotação"
-                            href="#">{{lotacao.observacao}}
-                        </a>
+                        {{lotacao.observacao}}
+
                     </td>
                     <td>
-                        <a class="btn btn-danger" style="color: white;"
-                            href="#" title="Excluir Tipo de Lotacao">
+                        <a class="btn btn-danger" style="color: white;" href="#" title="Excluir Tipo de Lotacao">
                             Excluir</a>
                     </td>
                 </tr>
@@ -58,10 +56,8 @@
                     Não há Dados Cadastrados!
                 </div>
                 {% endif %}
-
+            </table>
         </form>
-        </table>
-
         <nav aria-label="text-left pagination  ">
             <ul class="pagination ">
                 {% if lotacao_list.has_previous %}
