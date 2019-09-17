@@ -24,7 +24,7 @@
 
         </div>
         <div class="form-group col-md-6">
-            <label for=" idUsuario">Usuário:</label>
+            <label for="idUsuario">Usuário:</label>
             <select class="form-control" id="idUsuario" name="idUsuario">
                 {% for user in idUsuario %}
                 <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario %} selected="selected" {% endif %}>
@@ -50,7 +50,6 @@
                 required>
         </div>
     </div>
-
     {% if form.errors %}
     <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos e
         tente novamente!</p>
@@ -59,5 +58,13 @@
         value="Cadastrar Lotação">
     <a class="btn  mb-3" href="{% url 'Orgao:lista_lotacao'%}" style="background: #4613ac; color: white;"
         title="Voltar a Lista de Lotações">Lista de Lotações</a>
+
 </form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#idUsuario").select2();
+    });
+</script>
+
+
 {% endblock %}

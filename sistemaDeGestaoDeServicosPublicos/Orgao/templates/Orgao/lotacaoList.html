@@ -1,7 +1,6 @@
 <title>SoliServ- Tipos de Lotacao</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
 {% block centro %}
-
 <main id="Orgao" class="container border">
     <div class="container">
         {% block centroOrgao %}
@@ -10,8 +9,8 @@
             <table class="table border mt-3">
                 <tr>
                     <th colspan="6" class="text-center" style="color: #4613ac; text-transform: uppercase">Lista de
-                        Lotações</th>
-
+                        Lotações
+                    </th>
                 </tr>
                 <tr>
                     <th>ID</th>
@@ -24,30 +23,23 @@
                 {% for lotacao in lotacao_list %}
                 <tr style="text-transform: uppercase">
                     <td>
-                        <a class="link" title="Clique Para Atualizar o Tipo de Lotação" href="#">{{lotacao.id}}
+                        <a class="link" title="Clique Para Atualizar o Tipo de Lotação" href="#">
+                            {{lotacao.id}}
                         </a>
                     </td>
-                   
                     <td>
                         <a class="link" title="Clique Para Atualizar a Lotação"
-                            href="{% url 'Orgao:lotacao_atualizar' lotacao.id %}">{{lotacao.idTipoLotacao.descricao}}
+                            href="{% url 'Orgao:lotacao_atualizar' lotacao.id %}">
+                            {{lotacao.idTipoLotacao.descricao}}
                         </a>
                     </td>
+                    <td>{{lotacao.idUsuario.first_name}}</td>
+                    <td>{{lotacao.idOrgao.nomeOrgao}}</td>
+                    <td>{{lotacao.observacao}}</td>
                     <td>
-                        {{lotacao.idUsuario.first_name}}
-
-                    </td>
-                    <td>
-                        {{lotacao.idOrgao.nomeOrgao}}
-
-                    </td>
-                    <td>
-                        {{lotacao.observacao}}
-
-                    </td>
-                    <td>
-                        <a class="btn btn-danger" style="color: white;" href="#" title="Excluir Tipo de Lotacao">
-                            Excluir</a>
+                        <a  href="{% url 'Orgao:lotacao_deletar' lotacao.id %}" class="btn btn-danger" style="color: white;"title="Excluir Lotação">
+                            Excluir
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -63,37 +55,47 @@
                 {% if lotacao_list.has_previous %}
                 <li class="page-item">
                     <a class="page-link" style=" color: #4613ac;" href="?page=1" title="Primeira Página">&laquo;
-                        Primeira</a>
+                        Primeira
+                    </a>
                 </li>
-
                 <li class="page-item">
                     <a class="page-link" style=" color: #4613ac;" title="Página Anterior"
-                        href="?page={{lotacao_list.previous_page_number }}">Anterior</a>
+                        href="?page={{lotacao_list.previous_page_number }}">
+                        Anterior
+                    </a>
                 </li>
                 {% endif %}
                 <li class="page-item disabled">
-                    <a class="page-link" href="#">Página {{ lotacao_list.number }} de
-                        {{ lotacao_list.paginator.num_pages }}</a>
+                    <a class="page-link" href="#">
+                        Página {{ lotacao_list.number }} de
+                        {{ lotacao_list.paginator.num_pages }}
+                    </a>
                 </li>
                 {% if lotacao_list.has_next %}
                 <li class="page-item">
                     <a class="page-link" style=" color: #4613ac;" title="Próxima Página"
-                        href="?page={{ lotacao_list.next_page_number }}">Próxima</a>
+                        href="?page={{ lotacao_list.next_page_number }}">
+                        Próxima
+                    </a>
                 </li>
                 <li class="page-item">
                     <a class="page-link" title="Ultima Página" style=" color: #4613ac;"
-                        href="?page={{lotacao_list.paginator.num_pages }}">Última &raquo;</a>
+                        href="?page={{lotacao_list.paginator.num_pages }}">
+                        Última &raquo;
+                    </a>
                 </li>
                 {% endif %}
             </ul>
         </nav>
         <a class="btn  mb-3" href="{% url 'Orgao:cadastro_Lotacao'%}" style="background: #4613ac; color: white;"
-            title="cadastrar nova Lotação">Cadastrar nova Lotação</a>
+            title="cadastrar nova Lotação">
+            Cadastrar nova Lotação
+        </a>
         <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}" style="background: #4613ac; color: white;"
-            title="Voltar a HomePage">Página Inicial</a>
+            title="Voltar a HomePage">
+            Página Inicial
+        </a>
 </main>
-
-
 {% endblock %}
 </div>
 {% endblock %}

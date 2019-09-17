@@ -4,16 +4,15 @@ from django.contrib.auth.models import User
 from Usuario.models import Endereco, Telefone
 
 
-
 class Orgao(models.Model):
     nomeOrgao = models.CharField('NOME ORGÃO', max_length=45)
     descricao = models.CharField('DESCRIÇÃO', max_length=100)
     emailOrgao = models.CharField('EMAIL ORGÃO', max_length=45)
     nomeResponsavelOrgao = models.CharField(
         'RESPONSÁVEL PELO ÓRGÃO', max_length=45)
-    enderecoOrgao = models.CharField('ENDERECO ORGÃO', max_length=45, default="")
+    enderecoOrgao = models.CharField(
+        'ENDERECO ORGÃO', max_length=45, default="")
     telefoneOrgao = models.IntegerField('TELEFONE ORGÃO')
-    
 
     def __str__(self):
         return self.nomeOrgao
@@ -33,6 +32,8 @@ class TipoLotacao(models.Model):
         verbose_name = "TipoLotacao"
         verbose_name_plural = "TiposLotacao"
 
+    
+
 
 class Lotacao(models.Model):
     observacao = models.CharField('OBSERVAÇÃO', max_length=45)
@@ -44,7 +45,7 @@ class Lotacao(models.Model):
         Orgao, on_delete=models.CASCADE, verbose_name="ÓRGÃO")
 
     def __str__(self):
-        return self.idUsuario.first_name + " - " + self.idTipoLotacao.descricao 
+        return self.idUsuario.first_name + " - " + self.idTipoLotacao.descricao
 
     class Meta:
         verbose_name = "Lotacao"

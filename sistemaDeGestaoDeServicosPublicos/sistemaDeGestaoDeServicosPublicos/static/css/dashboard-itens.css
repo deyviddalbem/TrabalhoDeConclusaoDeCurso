@@ -105,8 +105,8 @@
 **/
 
 .table-holder tr:hover {
-    background-color: #7238e6;
-    color: white;
+    background-color: white;
+    color: #7238e6;
 }
 
 
