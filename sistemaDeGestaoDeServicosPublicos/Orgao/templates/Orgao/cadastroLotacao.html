@@ -6,7 +6,7 @@
 
 <form method="POST" class="mt-3">
     {% csrf_token %}
-    <h3 class="text-center">Cadastro de Lotação</h3>
+    <h3 class="text-center" style="color: #4613ac;">Cadastro de Lotação</h3>
     <div class="form-row">
         <div class="form-group col-md-1">
             <label for="">ID:</label>
@@ -15,6 +15,7 @@
         <div class="form-group col-md-5">
             <label for="idTipoLotacao">Tipo Lotação:</label>
             <select class="form-control" id="idTipoLotacao" name="idTipoLotacao">
+                <option>----</option>
                 {% for tipo in tipoLotacao %}
                 <option value="{{tipo.pk}}" {% if tipo.pk == formEdit.idTipoLotacao.id %} selected="selected"
                     {% endif %}>
@@ -26,6 +27,7 @@
         <div class="form-group col-md-6">
             <label for="idUsuario">Usuário:</label>
             <select class="form-control" id="idUsuario" name="idUsuario">
+                    <option>----</option>
                 {% for user in idUsuario %}
                 <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario %} selected="selected" {% endif %}>
                     0{{user.pk}} - {{ user.first_name}} {{user.last_name}}</option>

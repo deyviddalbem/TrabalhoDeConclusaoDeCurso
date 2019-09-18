@@ -9,10 +9,10 @@
         {% block centroOrgao %}
         <h1>{{orgaoSelecionado.id}}</h1>
         <div class="container border text-center">
-            <p class="text-center">Referentes ao Orgão</p>             
-                <a class="btn  mb-3" href="{% url 'Orgao:dados_orgao'%}" title="Visualizar os dados do órgão" style="background: #4613ac; color: white;">Dados do Orgao</a>
-                <a class="btn  mb-3" href="{% url 'Orgao:tipos_lotacao'%}"title="visualizar os Tipos de lotação órgão" style="background: #4613ac; color: white;">tipos de Lotação</a>
-                <a class="btn  mb-3" href="{% url 'Orgao:lista_lotacao'%}"title="visualizar os Tipos de lotação órgão" style="background: #4613ac; color: white;">Lotações Cadastradas</a>
+            <h4 class="text-center m-3">Referentes ao Orgão</h4>             
+                <a class="btn  mb-3" href="{% url 'Orgao:dados_orgao'%}" title="Visualizar os dados" style="background: #4613ac; color: white;">Dados do Orgao</a>
+                <a class="btn  mb-3" href="{% url 'Orgao:tipos_lotacao'%}"title="Visualizar os Tipos de lotação do órgão" style="background: #4613ac; color: white;">tipos de Lotação</a>
+                <a class="btn  mb-3" href="{% url 'Orgao:lista_lotacao'%}"title="Visualizar as Lotações do órgão" style="background: #4613ac; color: white;">Lotações</a>
         </div>
         {% endblock %}
     </div>
