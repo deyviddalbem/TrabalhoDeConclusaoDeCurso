@@ -17,16 +17,17 @@
                 </tr>
                 {% for tipos in tipo_lotacao_list %}
                 <tr>
-                    <td>
-                        <a class="link" title="Clique Para Atualizar o Tipo de Lotação"
-                            href="{% url 'Orgao:Tipo_lotacao_atualizar' tipos.id %}">
-                            {{tipos.descricao}}
-                        </a>
+                    <td>    
+                        {{tipos.descricao}}
                     </td>
                     <td>
+                            <a class="btn" style="background: #4613ac; color: white;"
+                            href="{% url 'Orgao:Tipo_lotacao_atualizar' tipos.id %}" title="Editar Tipo de Lotacao">
+                            <i class="material-icons">edit</i>
+                        </a>
                         <a class="btn btn-danger" style="color: white;"
                             href="{% url 'Orgao:tipo_lotacao_deletar' tipos.id %}" title="Excluir Tipo de Lotacao">
-                            Excluir
+                            <i class="material-icons">delete</i>
                         </a>
                     </td>
                 </tr>
@@ -80,7 +81,7 @@
         </a>
         <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}" style="background: #4613ac; color: white;"
             title="Voltar a HomePage">
-            Página Inicial
+            <i class="material-icons">home</i>
         </a>
 </main>
 {% endblock %}

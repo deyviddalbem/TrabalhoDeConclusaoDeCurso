@@ -19,13 +19,15 @@
                 {% for telefone in telefones_list %}
                 <tr>
                     <td>{{telefone.id}}</td>
-                    <td><a class="link" title="Clique Para Atualizar o Telefone"
-                            href="{% url 'telefone_atualizar' telefone.id %}">{{telefone.numero}}</a></td>
+                    <td>{{telefone.numero}}</td>
                     <td>{{telefone.idTipoTelefone.descricao}}</td>
                     <td>
+                            <a class="btn" style="background: #4613ac; color: white;" href="{% url 'telefone_atualizar' telefone.id %}"
+                           title="Editar Telefone">
+                            <i class="material-icons">edit</i></a>
                         <a class="btn btn-danger" style="color: white;" href="{% url 'telefone_deletar' telefone.id %}"
                             title="Excluir Telefone">
-                            Excluir</a>
+                            <i class="material-icons">delete</i></a>
                     </td>
                 </tr>
                 {% endfor %}

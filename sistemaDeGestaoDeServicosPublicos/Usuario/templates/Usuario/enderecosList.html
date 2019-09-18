@@ -27,11 +27,12 @@
                 <td>{{enderecos.bairro}}</td>
                 <td>{{enderecos.observacao}}</td>
                 <td>
+                        <a class="btn mb-1" style=" background-color: #4613ac; color: white;"
+                        href="{% url 'endereco_atualizar' enderecos.id %}" title="Atualizar Endereco"> <i class="material-icons">edit</i></a></a>
                     <a class="btn btn-danger mb-2" style="color: white;"
                         href="{% url 'endereco_deletar' enderecos.id  %}" title="Excluir Endereco">
-                        Excluir</a>
-                    <a class="btn" style=" background-color: #4613ac; color: white;"
-                        href="{% url 'endereco_atualizar' enderecos.id %}" title="Atualizar Endereco">Atualizar</a>
+                        <i class="material-icons">delete</i></a>
+                   
                 </td>
             </tr>
             {% endfor %}
