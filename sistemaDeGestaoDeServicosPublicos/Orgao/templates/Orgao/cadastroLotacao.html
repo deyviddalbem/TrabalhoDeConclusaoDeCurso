@@ -25,7 +25,7 @@
             <div class="form-row">
                 <div class=" col-md-10">
                     <label for="idUsuario">Usuário:</label>
-                    <select class="form-control" id="idUsuario"  style="width: 100%" name="idUsuario">
+                    <select class="form-group" id="idUsuario"  style="width: 100%" name="idUsuario">
                         <option>----</option>
                         {% for user in idUsuario %}
                         <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario %} selected="selected" {% endif %}>
@@ -70,8 +70,8 @@
     $(document).ready(function () {
         $('#idUsuario').select2();
         $('#idTipoLotacao').select2();
-        $('#idOrgao').select2();
+        
     });
-    $("#idUsuario").select2({class:"form-group"}); 
+   
 </script>
 {% endblock %}

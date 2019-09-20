@@ -21,7 +21,7 @@ urlpatterns = [
     path('orgao/excluirTipoLotacao/<int:pk>', views.DeletarTipoLotacao.as_view(),name='tipo_lotacao_deletar'),
     path('cadastrarLotacao/', views.CadastroLotacao, name='cadastro_Lotacao'),
     path('listarLotacoes/', views.LotacaoList, name='lista_lotacao'),
-    path('atualizarLotacao/<int:idLotacao>/alterar', views.atualiza_Lotacao, name='lotacao_atualizar'),
+    path('atualizarLotacao/<int:idLotacao>', views.atualiza_Lotacao, name='lotacao_atualizar'),
     path('orgao/excluirLotacao/<int:pk>', views.DeletarLotacao.as_view(),name='lotacao_deletar'),
 ]
 

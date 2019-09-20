@@ -7,6 +7,10 @@ from . import views
 app_name = 'Chamados'
 
 urlpatterns = [
-    #path('', views.index, name='index'),
-    #path('cadastrarUsuario/', views.CriarCadastro.as_view(), name='cadastrar'),
+    path('cadastrarTipoChamado/', views.CadastroTipoChamado, name='cadastro_tipo_chamado'),
+    path('listarTiposDeChamado/', views.tiposChamadosList, name='lista_tipo_chamado'),
+    path('atualizarTiposDeChamado/<int:pk>', views.atualizarTipoChamado, name='tipo_chamado_atualizar'),
+    path('excluirTipoDeChamado/<int:pk>', views.DeletarTipoChamado.as_view(),name='tipo_chamado_deletar'),
+    ####
+    
 ]

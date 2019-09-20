@@ -1,0 +1,27 @@
+<title>SoliServ- Cadastrar Tipo de Chamado</title>
+{% extends 'Orgao/index.html' %}
+{% block centroOrgao %}
+<form action="." method="POST">
+    {% csrf_token %}
+    <h4 class="text-center mt-3" style="color: #4613ac">Cadastro Tipo de Chamado</h4>
+    <div class="form-row">
+        <label for="idOrgao">Orgão:</label>
+        <select class="form-control" id="idOrgao" name="idOrgao">
+            {% for orgao in idOrgao %}
+            <option value="{{orgao.pk}}" {% if orgao.pk == formEdit.idOrgao.id %} selected="selected" {% endif %}>
+                0{{orgao.pk}} - {{ orgao }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group mt-3">
+        <label for="descricaoTipoChamado">Descrição do Tipo de Chamado:</label>
+        <input type="text" class="form-control" id="descricaoTipoChamado" name="descricaoTipoChamado"
+            placeholder="Descrição do Tipo de Chamado" maxlength="45" required autofocus>
+    </div>
+
+    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Cadastrar Tipo de Chamado"
+        value="Cadastrar">
+    <a class="btn  mb-3" href="{% url 'Chamados:lista_tipo_chamado'%}" style="background: #4613ac; color: white;"
+        title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
+</form>
+{% endblock %}

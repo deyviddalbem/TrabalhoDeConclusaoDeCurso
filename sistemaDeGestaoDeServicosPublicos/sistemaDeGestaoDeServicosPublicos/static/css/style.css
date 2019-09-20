@@ -84,6 +84,7 @@
 
 .sidebar a:hover {
     color: #ff6f26;
+    text-decoration: none;
 }
 
 .content {
