@@ -12,7 +12,7 @@
         <div class="form-row">
                 <div class="form-group col-md-10">
                     <label for="idTipoLotacao">Tipo Lotação:</label>
-                    <select class="form-control" id="idTipoLotacao" style="width: 100%" name="idTipoLotacao">
+                    <select class="custom-select" id="idTipoLotacao" style="width: 100%" name="idTipoLotacao">
                         <option>----</option>
                         {% for tipo in tipoLotacao %}
                         <option value="{{tipo.pk}}" {% if tipo.pk == formEdit.idTipoLotacao.id %} selected="selected"
@@ -25,7 +25,7 @@
             <div class="form-row">
                 <div class=" col-md-10">
                     <label for="idUsuario">Usuário:</label>
-                    <select class="form-group" id="idUsuario"  style="width: 100%" name="idUsuario">
+                    <select class="form-control" id="idUsuario"  style="width: 100%" name="idUsuario">
                         <option>----</option>
                         {% for user in idUsuario %}
                         <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario %} selected="selected" {% endif %}>

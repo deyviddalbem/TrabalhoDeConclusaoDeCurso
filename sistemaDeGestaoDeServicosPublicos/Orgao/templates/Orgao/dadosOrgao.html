@@ -47,8 +47,8 @@
        <a class="btn  mb-3" href="{% url 'Orgao:cadastro_orgao'%}"title="Cadastrar o órgão" style="background: #4613ac; color: white;">Cadastro Orgão</a>
         {% else %} 
         {% endif %}
-        <a class="btn  mb-3" href="{% url 'Orgao:orgao_atualizar' dados.id %}" title="Visualizar os dados do órgão" style="background: #4613ac; color: white;">Atualizar Dados do Orgao</a>
-        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}"style="background: #4613ac; color: white;" title="Voltar a HomePage">Página Inicial</a>
+        <a class="btn  mb-3" href="{% url 'Orgao:orgao_atualizar' dados.id %}" title="Visualizar os dados do órgão" style="background: #4613ac; color: white;">Atualizar Dados</a>
+        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}"style="background: #4613ac; color: white;" title="Voltar a HomePage"><i class="material-icons">home</i></a>
     </form>
     {% endfor %}
     {% endif %} 
