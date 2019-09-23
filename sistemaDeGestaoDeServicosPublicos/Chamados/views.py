@@ -2,8 +2,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
-from .models import Orgao, TipoChamado, Status, OcorrenciasChamado, Chamado
-from Chamados.forms import CadastroTiposChamadosForm, AtualizarTiposChamadosForm, CriarStatusForm, AtualizarStatusForm, CadastrarOcorrenciasChamadoForm
+from .models import Orgao, TipoChamado, Status, OcorrenciasChamado, Chamado, Endereco
+from Chamados.forms import CadastroTiposChamadosForm, AtualizarTiposChamadosForm, CriarStatusForm, AtualizarStatusForm, CadastrarOcorrenciasChamadoForm, CriarChamadoForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
@@ -149,3 +149,56 @@ class CadastrarOcorrencias(CreateView):
     form_class = CadastrarOcorrenciasChamadoForm
     template_name = "Chamados/Ocorrencias/cadastroOcorrenciaasChamado.html"
     success_url = reverse_lazy("Chamados:lista_status_chamado")
+
+@login_required
+def CadastroChamado(request, pk=None):
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
+        if pk:
+            pk = get_object_or_404(Chamado, id=pk)
+        else:
+            pk = None
+        if request.method == 'POST':
+            formEdit = CriarChamadoForm(request.POST, instance=pk)
+            if formEdit.is_valid():
+                formEdit.save()
+                return redirect('Chamados:lista_chamado')
+        else:
+            formEdit = CriarChamadoForm(instance=pk)
+            idStatus = Status.objects.filter(id=1)
+            idOrgao = Orgao.objects.all()
+            idTipoChamado = TipoChamado.objects.all()
+            idUsuario = User.objects.filter(id=request.user.id)
+            idOcorrenciasChamado = OcorrenciasChamado.objects.all()
+            idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
+            context = {'formEdit': formEdit,'idOrgao': idOrgao, 'idTipoChamado':idTipoChamado, 'idStatus':idStatus,
+            'idUsuario':idUsuario,'idOcorrenciasChamado':idOcorrenciasChamado, 'idEndereco':idEndereco}
+        return render(request, 'Chamados/Chamados/criarChamado.html', context)
+
+def ListaChamados(request):
+    chamados_list = Chamado.objects.filter(idUsuario=request.user.id)
+    paginator = Paginator(chamados_list, 5)
+    page = request.GET.get('page')
+    chamados_list = paginator.get_page(page)
+    context = {'chamados_list': chamados_list}
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
+        return render(request, 'Chamados/Chamados/listarChamado.html', context)
+
+
+class ListChamados(ListView):
+    template_name = "Chamados/ListaChamados"
+    context_object_name = 'chamados_list'
+
+    def get_queryset(self):
+        self.id = get_object_or_404(Chamado, id=self.kwargs['pk'])
+        return Chamado.objects.all()
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['id'] = self.id
+        return context
