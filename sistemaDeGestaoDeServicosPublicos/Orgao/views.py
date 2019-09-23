@@ -46,7 +46,7 @@ def retornaLotacao(request):
 class CriarOrgao(CreateView):
     model = Orgao
     form_class = CadastroOrgaoForm
-    template_name = "Orgao/cadastroOrgao.html"
+    template_name = "Orgao/Orgao/cadastroOrgao.html"
     success_url = reverse_lazy("Orgao:orgao_index")
 
 
@@ -56,7 +56,7 @@ def orgaoList(request):
     if not request.user.is_authenticated:
         return render(request, 'Usuario/acessoNegado.html')
     else:
-        return render(request, 'Orgao/dadosOrgao.html', context)
+        return render(request, 'Orgao/Orgao/dadosOrgao.html', context)
 
 
 class ListarOrgao(ListView):
@@ -99,13 +99,13 @@ def atualizaOrgao(request, idOrgao=None):
         else:
             formEdit = CadastroOrgaoForm(instance=idOrgao)
             context = {'formEdit': formEdit}
-        return render(request, 'Orgao/atualizarOrgao.html', context)
+        return render(request, 'Orgao/Orgao/atualizarOrgao.html', context)
 
 
 class CadastrarTipoLotacao(CreateView):
     model = TipoLotacao
     form_class = CadastroTipoLotacaoForm
-    template_name = "Orgao/cadastroTipoLotacao.html"
+    template_name = "Orgao/TipoLotacao/cadastroTipoLotacao.html"
     success_url = reverse_lazy("Orgao:tipos_lotacao")
 
 
@@ -121,7 +121,7 @@ def TipoLotacaoList(request):
         if not request.user.is_authenticated:
             return render(request, 'Usuario/acessoNegado.html')
         else:
-            return render(request, 'Orgao/tiposLotacao.html', context)
+            return render(request, 'Orgao/TipoLotacao/tiposLotacao.html', context)
 
 
 class ListarTipoLotacao(ListView):
@@ -143,13 +143,13 @@ class ListarTipoLotacao(ListView):
 class AtualizarTipoLotacao(UpdateView):
     model = TipoLotacao
     form_class = CadastroTipoLotacaoForm
-    template_name = "Orgao/atualizarTipoLotacao.html"
+    template_name = "Orgao/TipoLotacao/atualizarTipoLotacao.html"
     success_url = reverse_lazy('Orgao:tipos_lotacao')
 
 
 class DeletarTipoLotacao(DeleteView):
     model = TipoLotacao
-    template_name = "Orgao/tipoLotacao_Confirm_delete.html"
+    template_name = "Orgao/TipoLotacao/tipoLotacao_Confirm_delete.html"
     success_url = reverse_lazy('Orgao:tipos_lotacao')
 
 
@@ -174,7 +174,7 @@ def CadastroLotacao(request, idL=None):
             idOrgao = Orgao.objects.all()
             context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
                        'idUsuario': idUsuario, 'idOrgao': idOrgao}
-        return render(request, 'Orgao/cadastroLotacao.html', context)
+        return render(request, 'Orgao/Lotacao/cadastroLotacao.html', context)
 
 
 def LotacaoList(request):
@@ -189,7 +189,7 @@ def LotacaoList(request):
         if not request.user.is_authenticated:
             return render(request, 'Usuario/acessoNegado.html')
         else:
-            return render(request, 'Orgao/lotacaoList.html', context)
+            return render(request, 'Orgao/Lotacao/lotacaoList.html', context)
 
 
 class ListarLotacao(ListView):
@@ -211,7 +211,7 @@ class ListarLotacao(ListView):
 class AtualizarLotacao(UpdateView):
     model = Lotacao
     form_class = AtualizarLotacaoForm
-    template_name = "Orgao/atualizarLotacao.html"
+    template_name = "Orgao/Lotacao/atualizarLotacao.html"
     success_url = reverse_lazy('Orgao:lista_lotacao')
 
 
@@ -236,10 +236,10 @@ def atualiza_Lotacao(request, idLotacao=None):
             formEdit = AtualizarLotacaoForm(instance=idLotacao)
             context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
                        'idUsuario': idUsuario, 'idOrgao': idOrgao}
-        return render(request, 'Orgao/atualizarLotacao.html', context)
+        return render(request, 'Orgao/Lotacao/atualizarLotacao.html', context)
 
 
 class DeletarLotacao(DeleteView):
     model = Lotacao
-    template_name = "Orgao/lotacao_confirm_delete.html"
+    template_name = "Orgao/Lotacao/lotacao_confirm_delete.html"
     success_url = reverse_lazy('Orgao:lista_lotacao')
