@@ -7,14 +7,18 @@
     </div>
     <div class="container border">
         {% block centroOrgao %}
-        <h1>{{orgaoSelecionado.id}}</h1>
         <div class="container border text-center">
             <h4 class="text-center m-3">Referentes ao Orgão</h4>             
                 <a class="btn  mb-3" href="{% url 'Orgao:dados_orgao'%}" title="Visualizar os dados" style="background: #4613ac; color: white;">Órgão</a>
                 <a class="btn  mb-3" href="{% url 'Orgao:tipos_lotacao'%}"title="Visualizar os Tipos de lotação do órgão" style="background: #4613ac; color: white;">tipos de Lotação</a>
                 <a class="btn  mb-3" href="{% url 'Orgao:lista_lotacao'%}"title="Visualizar as Lotações do órgão" style="background: #4613ac; color: white;">Lotações</a>
-                <a class="btn  mb-3" href="{% url 'Chamados:lista_tipo_chamado'%}"title="visualizar Tipo de Chamado" style="background: #4613ac; color: white;">Tipo de Chamado</a>
         </div>
+        <div class="container border text-center">
+            <h4 class="text-center m-3">Referentes ao Chamado</h4>
+                <a class="btn  mb-3" href="{% url 'Chamados:lista_tipo_chamado' %}"title="visualizar Tipo de Chamado" style="background: #4613ac; color: white;">Tipo de Chamado</a>
+                <a class="btn  mb-3" href="{% url 'Chamados:lista_status_chamado' %}"title="visualizar os Tipos de Status" style="background: #4613ac; color: white;">Status do Chamado</a>
+               
+            </div>
         {% endblock %}
     </div>
 </main>

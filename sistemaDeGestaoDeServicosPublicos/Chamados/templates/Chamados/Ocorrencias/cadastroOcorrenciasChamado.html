@@ -1,0 +1,19 @@
+<title>SoliServ- Cadastro Ocorrencias de Chamado</title>
+{% extends 'Orgao/index.html' %}
+{% block centroOrgao %}
+<form action="." method="POST">
+    {% csrf_token %}
+    <h4 class="text-center mt-3" style="color: #4613ac">Cadastro Ocorrencias de Chamado</h4>
+  
+    <div class="form-group mt-3">
+        <label for="descricaoOcorrenciasChamado">Descrição do Tipo de Chamado:</label>
+        <input type="text" class="form-control" id="descricaoOcorrenciasChamado" name="descricaoOcorrenciasChamado"
+            placeholder="Descrição da Ocorrência do Chamado" maxlength="100" required autofocus>
+    </div>
+
+    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Cadastrar Tipo de Chamado"
+        value="Cadastrar">
+    <a class="btn  mb-3" href="{% url 'Chamados:lista_tipo_chamado'%}" style="background: #4613ac; color: white;"
+        title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
+</form>
+{% endblock %}

@@ -1,0 +1,90 @@
+<title>SoliServ- Tipos de Status</title>
+{% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block centro %}
+<main id="Orgao" class="container border">
+    <div class="container">
+        {% block centroOrgao %}
+        <form>
+            {% if status_list %}
+            <table class="table border mt-3" style="text-transform: uppercase; overflow-x: auto">
+                <tr>
+                    <th colspan="2" class=" border text-center" style="color: #4613ac;">Tipos de Status</th>
+                    
+
+                </tr>
+                <tr>
+                    <th>Descrição</th>
+                    <th class="text-center">AÇÃO</th>
+                </tr>
+                {% for status in status_list %}
+                <tr>
+                    <td>
+                        {{status.descricao}}
+                    </td>
+                    <td class="text-center">
+                        <a class="btn" style="background: #4613ac; color: white;" href="{% url 'Chamados:status_atualizar' status.id %}"
+                            title="AtualizarStatus de Chamado">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a class="btn btn-danger" style="color: white;" href="{% url 'Chamados:status_deletar' status.id %}" title="Excluir Status do Chamado">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <div class="alert alert-danger mt-3">
+                    Não há Dados Cadastrados!
+                </div>
+                {% endif %}
+        </form>
+        </table>
+        <nav aria-label="text-left pagination  ">
+            <ul class="pagination ">
+                {% if status_list.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" style=" color: #4613ac;" href="?page=1" title="Primeira Página">&laquo;
+                        Primeira
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" style=" color: #4613ac;" title="Página Anterior"
+                        href="?page={{ status_list.previous_page_number }}">
+                        Anterior
+                    </a>
+                </li>
+                {% endif %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">
+                        Página {{ status_list.number }} de {{ status_list.paginator.num_pages }}
+                    </a>
+                </li>
+                {% if status_list.has_next %}
+                <li class="page-item">
+                    <a class="page-link" style=" color: #4613ac;" title="Próxima Página"
+                        href="?page={{ status_list.next_page_number }}">
+                        Próxima
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" title="Ultima Página" style=" color: #4613ac;"
+                        href="?page={{status_list.paginator.num_pages }}">
+                        Última &raquo;
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <a class="btn  mb-3" href="{% url 'Chamados:cadastro_status_chamado'%}" style="background: #4613ac; color: white;"
+            title="cadastrar Status de Chamado">
+            Cadastro Novo Status
+        </a>
+        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index' %}" style="background: #4613ac; color: white;"
+            title="Voltar a HomePage">
+            <i class="material-icons">home</i>
+        </a>
+    </div>
+</main>
+{% endblock %}
+
+{% endblock %}
