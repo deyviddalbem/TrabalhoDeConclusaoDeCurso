@@ -16,4 +16,7 @@ urlpatterns = [
     path('listarStatusChamado/', views.ListaStatus, name='lista_status_chamado'),
     path('atualizarStatusChamado/<int:pk>', views.atualizarStatus, name='status_atualizar'),
     path('excluirStatusChamado/<int:pk>', views.DeletarStatus.as_view(),name='status_deletar'),
+    ####
+    path('cadastrarChamado/', views.CadastroChamado, name='cadastro_chamado'),
+    path('listarChamado/', views.ListaChamados, name='lista_chamado'),
 ]

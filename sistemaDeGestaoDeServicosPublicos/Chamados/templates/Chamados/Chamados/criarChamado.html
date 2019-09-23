@@ -1,0 +1,99 @@
+<title>SoliServ- Cadastrar Chamado</title>
+{% extends 'Orgao/index.html' %}
+{% block centroOrgao %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="idOrgao">ÓRGÃO:</label>
+        <select class="form-control" id="idOrgao" name="idOrgao">
+            {% for Orgao in idOrgao %}
+            <option value="{{Orgao.pk}}" {% if Orgao.pk == formEdit.idOrgao.id %} selected="selected" {% endif %}>
+                {{ Orgao.nomeOrgao }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="idTipoChamado">SERVIÇO:</label>
+        <select class="form-control" id="idTipoChamado" style="width: 100%;" name="idTipoChamado">
+            <option>----</option>
+            {% for tipoChamado in idTipoChamado %}
+            <option value="{{tipoChamado.pk}}" {% if tipoChamado.pk == formEdit.idTipoChamado.id %} selected="selected"
+                {% endif %}>0{{tipoChamado.id}} - {{ tipoChamado.descricaoTipoChamado }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="idEndereco">ENDEREÇO:</label>
+        <select class="form-control" id="idEndereco" name="idEndereco">
+            <option>----</option>
+            {% for endereco in idEndereco %}
+            <option value="{{endereco.pk}}" {% if endereco.pk == formEdit.idEndereco.id %} selected="selected"
+                {% endif %}>
+                0{{ endereco.id}} - {{ endereco.cep }}, {{ endereco.logradouro }}, {{ endereco.enderecoNumero}},
+                {{ endereco.bairro }}, {{ endereco.municipio }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="idEndereco">STATUS:</label>
+        <select class="form-control" id="idEndereco" name="idEndereco">
+            {% for status in idStatus %}
+            <option value="{{status.pk}}" {% if status.pk == formEdit.idStatus.id %} selected="selected" {% endif %}>
+                0{{status.id}} - {{status.descricao}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="idEndereco">SOLICITANTE:</label>
+        <select class="form-control" id="idUsuario" name="idUsuario">
+            {% for usuario in idUsuario %}
+            <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario.id %} selected="selected" {% endif %}>
+                0{{user.id}} - {{user.first_name}} {{user.last_name}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="observacao">Observação</label>
+        <input type="text" class="form-control" id="observacao" name="observacao" placeholder="Observação" required
+            maxlength="100" />
+    </div>
+
+    <div class="form-group">
+        <label for="observacao">Protocolo:</label>
+        <input type="text" class="form-control" id="observacao" name="observacao" placeholder="Observação"
+            value="run()" />
+    </div>
+
+    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Atualizar Tipo de Chamado"
+        value="Atualizar Tipo de Chamado">
+    <a class="btn  mb-3" href="{% url 'Chamados:lista_tipo_chamado'%}" style="background: #4613ac; color: white;"
+        title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
+
+
+</form>
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#idTipoChamado').select2();
+        $('#idEndereco').select2();
+    });
+
+</script>
+<script type="text/javascript">
+    function run() {
+        var data = new Date();
+        return ("0" + data.getDate()).substr(-2) + ("0" + (data.getMonth() + 1)).substr(-2) + data.getFullYear() + Math.floor(1000 + Math.random() * 9000);
+    }
+    return (run())
+</script>
+
+{% endblock %}

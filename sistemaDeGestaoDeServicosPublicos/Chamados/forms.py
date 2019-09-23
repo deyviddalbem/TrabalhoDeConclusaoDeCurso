@@ -27,3 +27,8 @@ class CadastrarOcorrenciasChamadoForm(forms.ModelForm):
     class Meta:
         model = OcorrenciasChamado
         fields = '__all__'
+
+class CriarChamadoForm(forms.ModelForm):
+    class Meta:
+        model = Chamado
+        fields = '__all__'

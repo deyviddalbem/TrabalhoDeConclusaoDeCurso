@@ -1,0 +1,62 @@
+<title>SoliServ-Meus Chamados</title>
+{% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block centro %}
+{% if user.is_authenticated %}
+{% if chamados_list %}
+<div class="mt-3 container text-center ">
+    <p style="color: #4613ac; font-size: 30px;">Meus Chamados</p>
+</div>
+<div>
+    <div class="section-2" style="overflow-x: auto;">
+        <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>NÚMERO DO PROTOCOLO</th>
+                    <th>DATA DE ABERTURA</th>
+                    <th>TIPO DO CHAMADO</th>
+                    <th>ENDEREÇO</th>
+                    <th>DATA DE CONCLUSÃO</th>
+                    <th>AÇÃO</th>
+                </tr>
+                {% for chamado in chamados_list %}
+                <tr>
+                    <td>{{chamado.id}}</td>
+                    <td>{{chamado.numeroProtocolo}}</td>
+                    <td>{{chamado.dataAbertura}}</td>
+                    <td>{{chamado.idEndereco}}</td>
+                    <td>{{chamado.dataConclusao}}</td>
+                    <td>
+                        <a class="btn" style="background: #4613ac; color: white;"
+                            href="#" title="Editar Telefone">
+                            <i class="material-icons">edit</i></a>
+                        <a class="btn btn-danger" style="color: white;" href="#"
+                            title="Excluir Telefone">
+                            <i class="material-icons">delete</i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="#"
+        title="Cadastrar Chamados">Cadastrar
+        Novo Chamado
+    </a>
+</div>
+{% else %}
+<div class="text-center">
+    <div class="mt-3 container text-center ">
+        <p style="color: #4613ac; font-size: 30px;">Meus Chamados</p>
+    </div>
+    <div class="alert alert-danger mt-3">
+        {{ user.first_name }}, Você Não Possui Chamados Cadastrados!
+    </div>
+    <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'Chamados:cadastro_chamado' %}"
+        title="Cadastrar Chamado">Cadastrar
+        Novo Chamado
+    </a>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}
