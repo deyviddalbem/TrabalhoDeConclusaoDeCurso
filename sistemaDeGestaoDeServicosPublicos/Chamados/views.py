@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from .models import Orgao, TipoChamado, Status, OcorrenciasChamado, Chamado, Endereco
-from Chamados.forms import CadastroTiposChamadosForm, AtualizarTiposChamadosForm, CriarStatusForm, AtualizarStatusForm, CadastrarOcorrenciasChamadoForm, CriarChamadoForm
+from Chamados.forms import CadastroTiposChamadosForm, AtualizarTiposChamadosForm, CriarStatusForm, AtualizarStatusForm, CadastrarOcorrenciasChamadoForm, CriarChamadoForm, AtualizarChamadoForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
@@ -167,7 +167,7 @@ def CadastroChamado(request, pk=None):
             pk = get_object_or_404(Chamado, id=pk)
         else:
             pk = None
-       
+
         if request.method == 'POST':
             formEdit = CriarChamadoForm(request.POST, instance=pk)
             if formEdit.is_valid():
@@ -185,7 +185,6 @@ def CadastroChamado(request, pk=None):
             context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
                        'idUsuario': idUsuario, 'idEndereco': idEndereco}
             return render(request, 'Chamados/Chamados/criarChamado.html', context)
-        
 
 
 def ListaChamados(request):
@@ -214,3 +213,33 @@ class ListChamados(ListView):
         # Add in the publisher
         context['id'] = self.id
         return context
+
+
+def atualizarChamado(request, pk=None):
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
+        if pk:
+            pk = get_object_or_404(Chamado, id=pk)
+            print("aqui")
+        else:
+            pk = None
+
+        if request.method == 'POST':
+            formEdit = AtualizarChamadoForm(request.POST, instance=pk)
+            if formEdit.is_valid():
+                formEdit.save()
+                return redirect('Chamados:lista_chamado')
+            else: 
+                return HttpResponse("deu pau")
+        else:
+            idStatus = Status.objects.filter(id=1)
+            idOrgao = Orgao.objects.all()
+            idTipoChamado = TipoChamado.objects.all()
+            idUsuario = User.objects.filter(id=request.user.id)
+            idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
+            formEdit = AtualizarChamadoForm(instance=pk)
+            context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
+                       'idUsuario': idUsuario, 'idEndereco': idEndereco}
+        return render(request, 'Chamados/Chamados/atualizarChamado.html', context)
+

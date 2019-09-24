@@ -19,4 +19,5 @@ urlpatterns = [
     ####
     path('cadastrarChamado/', views.CadastroChamado, name='cadastro_chamado'),
     path('listarChamado/', views.ListaChamados, name='lista_chamado'),
+    path('atualizarChamado/<int:pk>', views.atualizarChamado, name='atualiza_chamado'),
 ]
