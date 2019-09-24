@@ -36,7 +36,7 @@ def retornaLotacao(request):
 
         else:
             if len(lotacao) == 0:
-                return render(request, 'sistemaDeGestaoDeServicosPublicos/index1.html', context)
+                return HttpResponseRedirect(reverse('index'))
             else:
                 request.session['temVinculo'] = 'yes'
                 return render(request, 'Orgao/escolheVinculo.html', context)
