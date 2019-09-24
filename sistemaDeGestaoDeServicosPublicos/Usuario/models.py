@@ -45,7 +45,7 @@ class Endereco(models.Model):
    
  
     def __str__(self):
-        return self.logradouro
+        return (str (self.cep))+" - " + self.logradouro +" - "+ self.enderecoNumero + " - " + self.bairro
 
     class Meta:
         verbose_name = "Endereco"

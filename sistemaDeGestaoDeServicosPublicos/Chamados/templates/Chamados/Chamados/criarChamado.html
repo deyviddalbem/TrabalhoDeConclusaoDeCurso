@@ -28,7 +28,7 @@
         </div>
         <div class="form-group col-md-3">
             <label for="numeroProtocolo">Protocolo:</label>
-            <input type="text" value="" class="form-control" id="numeroProtocolo" name="numeroProtocolo" >
+            <input type="text" value="" class="form-control" id="numeroProtocolo" name="numeroProtocolo" disabled>
         </div>
     </div>
     <div class="form-row">
@@ -78,7 +78,7 @@
 
     <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3"
         title="CadastrarChamado" value="Cadastrar Chamado">
-    <a class="btn  mb-3" href="{% url 'Chamados:lista_tipo_chamado'%}" style="background: #4613ac; color: white;"
+    <a class="btn  mb-3" href="{% url 'Chamados:lista_chamado'%}" style="background: #4613ac; color: white;"
         title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
 
 

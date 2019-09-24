@@ -32,3 +32,8 @@ class CriarChamadoForm(forms.ModelForm):
     class Meta:
         model = Chamado
         fields = '__all__'
+
+class AtualizarChamadoForm(forms.ModelForm):
+    class Meta:
+        model = Chamado
+        fields = '__all__'
