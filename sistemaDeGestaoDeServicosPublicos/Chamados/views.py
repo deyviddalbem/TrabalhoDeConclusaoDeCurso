@@ -171,7 +171,13 @@ def CadastroChamado(request, pk=None):
         if request.method == 'POST':
             formEdit = CriarChamadoForm(request.POST, instance=pk)
             if formEdit.is_valid():
-                formEdit.save()
+                if pk:
+                    formEdit.save()
+                else:
+                    b = formEdit.save(commit=False)
+                    b.numeroProtocolo = Chamado.gerarProtocolo()
+                    print(Chamado.gerarProtocolo()+" aqui1122")
+                    b.save()
                 return redirect('Chamados:lista_chamado')
             else:
                 return HttpResponse("aqui")
@@ -220,15 +226,14 @@ def atualizarChamado(request, pk=None):
         return render(request, 'Usuario/acessoNegado.html')
     else:
         if pk:
-            pk = get_object_or_404(Chamado, id=pk)
-            print("aqui")
+            chamado = get_object_or_404(Chamado, id=pk)
+            
         else:
-            pk = None
+            chamado = None
 
         if request.method == 'POST':
-            formEdit = AtualizarChamadoForm(request.POST, instance=pk)
+            formEdit = AtualizarChamadoForm(request.POST, instance=chamado)
             if formEdit.is_valid():
-                formEdit.save()
                 return redirect('Chamados:lista_chamado')
             else: 
                 return HttpResponse("deu pau")
@@ -238,7 +243,7 @@ def atualizarChamado(request, pk=None):
             idTipoChamado = TipoChamado.objects.all()
             idUsuario = User.objects.filter(id=request.user.id)
             idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
-            formEdit = AtualizarChamadoForm(instance=pk)
+            formEdit = AtualizarChamadoForm(instance=chamado)
             context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
                        'idUsuario': idUsuario, 'idEndereco': idEndereco}
         return render(request, 'Chamados/Chamados/atualizarChamado.html', context)

@@ -66,7 +66,7 @@ class Chamado(models.Model):
         verbose_name = "Chamado"
         verbose_name_plural = "Chamados"
 
-    def save(self, *args, **kwargs):
+    def gerarProtocolo(*args, **kwargs):
         now = datetime.now()
         ano = now.year
         mes = now.month
@@ -76,7 +76,5 @@ class Chamado(models.Model):
         segundos = now.second
         aleatorio = (randint(0,9)* segundos)
         protocolo =  '{}{}{}{}{}{}{}'.format(ano,mes,dia,horas,minutos,segundos,aleatorio)
-        self.numeroProtocolo = protocolo
-        super(Chamado, self).save(*args, **kwargs)
-
+        return protocolo
 

@@ -37,3 +37,4 @@ class AtualizarChamadoForm(forms.ModelForm):
     class Meta:
         model = Chamado
         fields = '__all__'
+        exclude = ('idOrgao', 'idStatus', 'idTipoChamado', 'idUsuario', 'idEndereco', 'numeroProtocolo')
