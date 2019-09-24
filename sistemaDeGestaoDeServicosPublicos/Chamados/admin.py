@@ -13,11 +13,11 @@ class StatusAdmin(admin.ModelAdmin):
     list_filter = ['id', 'descricao']
 
 class OcorrenciasChamadoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'descricaoOcorrenciasChamado')
+    list_display = ('id', 'descricaoOcorrenciasChamado','idChamado',)
     list_filter = ['id', 'descricaoOcorrenciasChamado']
 
 class ChamadoAdmin(admin.ModelAdmin):
-    list_display = ('id','dataAbertura','dataConclusao','numeroProtocolo','observacao','observacaoOrgao','idStatus','idOrgao','idTipoChamado','idUsuario','idOcorrenciasChamado','idEndereco')
+    list_display = ('id','dataAbertura','dataConclusao','numeroProtocolo','observacao','observacaoOrgao','idStatus','idOrgao','idTipoChamado','idUsuario','idEndereco')
     list_filter = ['id', 'numeroProtocolo', 'dataAbertura','dataConclusao','idStatus' ]
     
 admin.site.register(TipoChamado,TipoChamadoAdmin)

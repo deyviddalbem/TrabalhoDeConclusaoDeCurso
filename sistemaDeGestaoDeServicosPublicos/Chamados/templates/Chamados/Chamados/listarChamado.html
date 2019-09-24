@@ -24,6 +24,7 @@
                     <td>{{chamado.id}}</td>
                     <td>{{chamado.numeroProtocolo}}</td>
                     <td>{{chamado.dataAbertura}}</td>
+                    <td>{{chamado.idTipoChamado.descricaoTipoChamado}}</td>
                     <td>{{chamado.idEndereco}}</td>
                     <td>{{chamado.dataConclusao}}</td>
                     <td>
@@ -39,7 +40,7 @@
             </table>
         </div>
     </div>
-    <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="#"
+    <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'Chamados:cadastro_chamado' %}"
         title="Cadastrar Chamados">Cadastrar
         Novo Chamado
     </a>

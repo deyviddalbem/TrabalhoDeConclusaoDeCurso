@@ -28,7 +28,7 @@ def CadastroTipoChamado(request, pk=None):
         else:
             formEdit = CadastroTiposChamadosForm(instance=pk)
             idOrgao = Orgao.objects.all()
-            context = {'formEdit': formEdit,'idOrgao': idOrgao}
+            context = {'formEdit': formEdit, 'idOrgao': idOrgao}
         return render(request, 'Chamados/tipoChamado/cadastroTipoChamado.html', context)
 
 
@@ -60,6 +60,7 @@ class ListarTipoChamado(ListView):
         context['id'] = self.id
         return context
 
+
 def atualizarTipoChamado(request, pk=None):
     if not request.user.is_authenticated:
         return render(request, 'Usuario/acessoNegado.html')
@@ -81,16 +82,19 @@ def atualizarTipoChamado(request, pk=None):
             context = {'formEdit': formEdit, 'idOrgao': idOrgao}
         return render(request, 'Chamados/tipoChamado/atualizaTipoChamado.html', context)
 
+
 class DeletarTipoChamado(DeleteView):
     model = TipoChamado
     template_name = "Chamados/tipo_Chamado_confirm_delete.html"
     success_url = reverse_lazy('Chamados:lista_tipo_chamado')
+
 
 class CadastrarStatus(CreateView):
     model = Status
     form_class = CriarStatusForm
     template_name = "Chamados/Status/cadastroStatus.html"
     success_url = reverse_lazy("Chamados:lista_status_chamado")
+
 
 def ListaStatus(request):
     status_list = Status.objects.all()
@@ -119,6 +123,7 @@ class ListStatus(ListView):
         context['id'] = self.id
         return context
 
+
 def atualizarStatus(request, pk=None):
     if not request.user.is_authenticated:
         return render(request, 'Usuario/acessoNegado.html')
@@ -139,16 +144,19 @@ def atualizarStatus(request, pk=None):
             context = {'formEdit': formEdit}
         return render(request, 'Chamados/Status/atualizarStatus.html', context)
 
+
 class DeletarStatus(DeleteView):
     model = Status
     template_name = "Chamados/Status/status_confirm_delete.html"
     success_url = reverse_lazy('Chamados:lista_status_chamado')
+
 
 class CadastrarOcorrencias(CreateView):
     model = OcorrenciasChamado
     form_class = CadastrarOcorrenciasChamadoForm
     template_name = "Chamados/Ocorrencias/cadastroOcorrenciaasChamado.html"
     success_url = reverse_lazy("Chamados:lista_status_chamado")
+
 
 @login_required
 def CadastroChamado(request, pk=None):
@@ -159,22 +167,26 @@ def CadastroChamado(request, pk=None):
             pk = get_object_or_404(Chamado, id=pk)
         else:
             pk = None
+       
         if request.method == 'POST':
             formEdit = CriarChamadoForm(request.POST, instance=pk)
             if formEdit.is_valid():
                 formEdit.save()
                 return redirect('Chamados:lista_chamado')
+            else:
+                return HttpResponse("aqui")
         else:
-            formEdit = CriarChamadoForm(instance=pk)
             idStatus = Status.objects.filter(id=1)
             idOrgao = Orgao.objects.all()
             idTipoChamado = TipoChamado.objects.all()
             idUsuario = User.objects.filter(id=request.user.id)
-            idOcorrenciasChamado = OcorrenciasChamado.objects.all()
             idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
-            context = {'formEdit': formEdit,'idOrgao': idOrgao, 'idTipoChamado':idTipoChamado, 'idStatus':idStatus,
-            'idUsuario':idUsuario,'idOcorrenciasChamado':idOcorrenciasChamado, 'idEndereco':idEndereco}
-        return render(request, 'Chamados/Chamados/criarChamado.html', context)
+            formEdit = CriarChamadoForm(instance=pk)
+            context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
+                       'idUsuario': idUsuario, 'idEndereco': idEndereco}
+            return render(request, 'Chamados/Chamados/criarChamado.html', context)
+        
+
 
 def ListaChamados(request):
     chamados_list = Chamado.objects.filter(idUsuario=request.user.id)

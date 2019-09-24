@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from Orgao.models import Orgao
 from Usuario.models import Endereco
+from datetime import datetime
+from random import randint
+
 
 class TipoChamado(models.Model):
     descricaoTipoChamado = models.CharField('TIPO CHAMADO', max_length=45)
@@ -27,6 +30,8 @@ class Status(models.Model):
 
 class OcorrenciasChamado(models.Model):
     descricaoOcorrenciasChamado = models.CharField('DESCRIÇÃO DE OCORRENCIAS DE CHAMADO', max_length=45)
+    idChamado = models.ForeignKey(
+        'Chamado', on_delete=models.CASCADE, verbose_name="CHAMADO",  default="")
     
     def __str__(self):
         return self.descricaoOcorrenciasChamado
@@ -38,7 +43,7 @@ class OcorrenciasChamado(models.Model):
 class Chamado(models.Model):
     dataAbertura = models.DateField('ABERTO EM',auto_now_add=True)
     dataConclusao = models.DateField('CONCLUÍDO EM',auto_now=True)
-    numeroProtocolo = models.CharField('NÚMERO DE PROTOCOLO', max_length=45)
+    numeroProtocolo = models.CharField('NÚMERO DE PROTOCOLO', max_length=45, null=True, blank=True)
     observacao = models.CharField('OBSERVAÇÃO',max_length=100)
     observacaoOrgao = models.CharField('RETORNO DO ÓRGÃO', max_length=100, null=True, blank=True)
     idStatus = models.ForeignKey(
@@ -49,17 +54,29 @@ class Chamado(models.Model):
         TipoChamado, on_delete=models.CASCADE, verbose_name="TIPO DE CHAMADO")
     idUsuario = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="USUÁRIO")
-    idOcorrenciasChamado = models.ForeignKey(
-        OcorrenciasChamado, on_delete=models.CASCADE, verbose_name="OCORRENCIAS DO CHAMADO")
     idEndereco = models.ForeignKey(
         Endereco, on_delete=models.CASCADE, verbose_name="ENDEREÇO DO CHAMADO")
     
 
     
     def __str__(self):
-        return self.descricaoOcorrenciasChamado
+        return self.observacao
 
     class Meta:
         verbose_name = "Chamado"
         verbose_name_plural = "Chamados"
+
+    def save(self, *args, **kwargs):
+        now = datetime.now()
+        ano = now.year
+        mes = now.month
+        dia = now.day
+        horas = now.hour
+        minutos = now.minute
+        segundos = now.second
+        aleatorio = (randint(0,9)* segundos)
+        protocolo =  '{}{}{}{}{}{}{}'.format(ano,mes,dia,horas,minutos,segundos,aleatorio)
+        self.numeroProtocolo = protocolo
+        super(Chamado, self).save(*args, **kwargs)
+
 
