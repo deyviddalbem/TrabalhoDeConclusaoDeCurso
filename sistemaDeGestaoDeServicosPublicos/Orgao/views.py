@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from .models import Lotacao, Orgao, TipoLotacao
 from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm, CadastroLotacaoForm, AtualizarLotacaoForm
 from django.core.paginator import Paginator
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 
 # Create your views here.
@@ -166,6 +166,11 @@ def CadastroLotacao(request, idL=None):
         if request.method == 'POST':
 
             if formEdit.is_valid():
+               
+                usuario = User.objects.get(id=request.POST.get('idUsuario'))
+                tipo_Lotacao =TipoLotacao.objects.get(id = request.POST.get('idTipoLotacao'))
+                grupo = Group.objects.get(name= tipo_Lotacao.descricao)
+                usuario.groups.add(grupo)
                 formEdit.save()
                 return redirect('Orgao:tipos_lotacao')
         else:
