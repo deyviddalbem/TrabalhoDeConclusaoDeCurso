@@ -227,13 +227,13 @@ def atualizarChamado(request, pk=None):
     else:
         if pk:
             chamado = get_object_or_404(Chamado, id=pk)
-            
         else:
             chamado = None
 
         if request.method == 'POST':
             formEdit = AtualizarChamadoForm(request.POST, instance=chamado)
             if formEdit.is_valid():
+                formEdit.save()
                 return redirect('Chamados:lista_chamado')
             else: 
                 return HttpResponse("deu pau")
