@@ -25,7 +25,7 @@ SECRET_KEY = '1xt874#i909*6v!1l-ug&ce+a968$)+v0r=x$==^448@sa8$qf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['deyvid.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition
