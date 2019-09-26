@@ -15,7 +15,7 @@ class PessoaUserForm(UserCreationForm):
             'class': 'form-group form-control', 'type': 'text', 'placeholder': 'Informe o Sobrenome'}
         #self.fields['username'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'CPF'}
         self.fields['username'].widget.attrs = {
-            'class': 'form-group form-control', 'type': 'mail', 'placeholder': 'Insira o E-mail'}
+            'class': 'form-group form-control', 'type': 'mail', 'placeholder': 'Insira nome de usuário'}
         self.fields['password1'].widget.attrs = {
             'class': 'form-group form-control', 'type': 'password', 'placeholder': 'Insira a Senha'}
         self.fields['password2'].widget.attrs = {
@@ -25,7 +25,7 @@ class PessoaUserForm(UserCreationForm):
         model = User
         fields = ('first_name', 'last_name',
                   'username', 'password1', 'password2')
-        labels = {'username': 'email'}
+        labels = {'username': 'Nome de Usuário'}
 
 
 class PessoaUserFormUpdate(forms.ModelForm):

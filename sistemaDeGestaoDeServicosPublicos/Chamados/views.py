@@ -7,11 +7,12 @@ from Chamados.forms import CadastroTiposChamadosForm, AtualizarTiposChamadosForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+
 
 
 # Create your views here.
-@login_required
+@permission_required
 def CadastroTipoChamado(request, pk=None):
     if not request.user.is_authenticated:
         return render(request, 'Usuario/acessoNegado.html')
@@ -32,7 +33,6 @@ def CadastroTipoChamado(request, pk=None):
         return render(request, 'Chamados/tipoChamado/cadastroTipoChamado.html', context)
 
 
-@login_required
 def tiposChamadosList(request):
     tipo_chamado_list = TipoChamado.objects.all()
     paginator = Paginator(tipo_chamado_list, 5)
@@ -59,7 +59,6 @@ class ListarTipoChamado(ListView):
         # Add in the publisher
         context['id'] = self.id
         return context
-
 
 def atualizarTipoChamado(request, pk=None):
     if not request.user.is_authenticated:
@@ -106,7 +105,6 @@ def ListaStatus(request):
         return render(request, 'Usuario/acessoNegado.html')
     else:
         return render(request, 'Chamados/Status/listarStatus.html', context)
-
 
 class ListStatus(ListView):
     template_name = "Chamados/ListaStatus"
@@ -158,7 +156,6 @@ class CadastrarOcorrencias(CreateView):
     success_url = reverse_lazy("Chamados:lista_status_chamado")
 
 
-@login_required
 def CadastroChamado(request, pk=None):
     if not request.user.is_authenticated:
         return render(request, 'Usuario/acessoNegado.html')
@@ -220,7 +217,6 @@ class ListChamados(ListView):
         context['id'] = self.id
         return context
 
-
 def atualizarChamado(request, pk=None):
     if not request.user.is_authenticated:
         return render(request, 'Usuario/acessoNegado.html')
@@ -248,3 +244,24 @@ def atualizarChamado(request, pk=None):
                        'idUsuario': idUsuario, 'idEndereco': idEndereco}
         return render(request, 'Chamados/Chamados/atualizarChamado.html', context)
 
+
+class FiltrarChamados(ListView):
+    template_name = "Chamados/Chamados/listarChamado.html"
+    context_object_name = 'chamados_list'
+
+    def get_queryset(self):
+        self.idPessoa = get_object_or_404(User, id=self.kwargs['pk'])
+        self.idStatus = get_object_or_404(
+            Status, id=self.kwargs['statusChamado'])
+        return Chamado.objects.filter(idUsuario_id=self.idPessoa, idStatus_id=self.idStatus)
+
+def home_ajax_search(request, search_string=None):
+    
+    if search_string is None:
+        chamados_list = Chamado.objects.filter(idUsuario = request.user.id)
+    else:
+        chamados_list = Chamado.objects.filter(numeroProtocolo__icontains=search_string) | Chamado.objects.filter(dataAbertura__icontains=search_string) | Chamado.objects.filter(idEndereco__logradouro__icontains=search_string) |  Chamado.objects.filter(idTipoChamado__descricaoTipoChamado__icontains=search_string)
+        paginator = Paginator(chamados_list, 10)
+        page = request.GET.get('page')
+        chamados_list = paginator.get_page(page)
+    return render(request, 'Chamados/Chamados/listarChamado.html', {'chamados_list': chamados_list})

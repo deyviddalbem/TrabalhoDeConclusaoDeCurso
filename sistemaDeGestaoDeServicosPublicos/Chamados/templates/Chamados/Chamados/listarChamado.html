@@ -3,40 +3,69 @@
 {% block centro %}
 {% if user.is_authenticated %}
 {% if chamados_list %}
+<script type="text/javascript">
+    function termoPesquisado() {
+        httpRequest = new XMLHttpRequest();
+        var texto = $('#texttarget').val();
+        window.location.href = '../ajax-search/' + texto
+        console.log(httpRequest);
+        httpRequest.send(null);
+    }
+</script>
+
 <div class="mt-3 container text-center ">
     <p style="color: #4613ac; font-size: 30px;">Meus Chamados</p>
 </div>
 
 <form>
+    <div class="form-row">
+        <div class="form-group w-50">
+            <input id="texttarget" class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar Chamado"
+                aria-label="Pesquisar">
+          
+        </div>
+        <p class="btn ml-2"style="background: #4613ac; color: white;" onclick="termoPesquisado()">Pesquisar</p>
+    </div>
     <div class="section-2" style="overflow-x: auto;">
         <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
             <table>
                 <tr>
-                    <th>ID</th>
                     <th>NÚMERO DO PROTOCOLO</th>
                     <th>DATA DE ABERTURA</th>
                     <th>TIPO DO CHAMADO</th>
                     <th>ENDEREÇO</th>
-                    <th>DATA DE CONCLUSÃO</th>
+                    <th>STATUS</th>
                     <th>AÇÃO</th>
                 </tr>
                 {% for chamado in chamados_list %}
                 <tr>
-                    <td>{{chamado.id}}</td>
                     <td>{{chamado.numeroProtocolo}}</td>
                     <td>{{chamado.dataAbertura}}</td>
                     <td>{{chamado.idTipoChamado.descricaoTipoChamado}}</td>
                     <td>{{chamado.idEndereco}}</td>
-                    <td>{{chamado.dataConclusao}}</td>
+                    {% if chamado.idStatus.pk == 1  %}
+                    <td style="color: green">{{chamado.idStatus.descricao}}</td>
+                    {% elif chamado.idStatus.pk == 3  %}
+                    <td style="color: yellow">{{chamado.idStatus.descricao}}</td>
+                    {% elif chamado.idStatus.pk == 2 %}
+                    <td style="color: red">{{chamado.idStatus.descricao}}</td>
+                    {% endif %}
                     <td>
-                        <a class="btn mb-3" style="background: #4613ac; color: white;" href="{% url 'Chamados:atualiza_chamado' chamado.id %}" title="Editar Chamado">
+                        {% if chamado.idStatus.pk == 1 %}
+                        <a class="btn mb-3" style="background: #4613ac; color: white;"
+                            href="{% url 'Chamados:atualiza_chamado' chamado.id %}" title="Editar Chamado">
                             <i class="material-icons">edit</i></a>
+                        {% else %}
+
+                        {% endif %}
                         <a class="btn" style="background: #4613ac; color: white;" href="#" title="Detalhes do Chamado">
                             <i class="material-icons">search</i></a>
                     </td>
                 </tr>
                 {% endfor %}
             </table>
+            <p class=" mt-1" style="color: #4613ac;"> Obs: Algumas informações cadastradas, são ocultadas para facilitar a
+                    compreensão.</p>
         </div>
     </div>
 </form>
@@ -80,18 +109,26 @@
     href="{% url 'Chamados:cadastro_chamado' %}" title="Cadastrar Chamados">Cadastrar
     Novo Chamado
 </a>
+<a class="btn" href="{% url 'Chamados:lista_chamado'%}" style="background: #4613ac; color: white;"
+title="Lista de Chamados"><i class="material-icons">list</i></a>
 {% else %}
 <div class="text-center">
     <div class="mt-3 container text-center ">
         <p style="color: #4613ac; font-size: 30px;">Meus Chamados</p>
     </div>
-    <div class="alert alert-danger mt-3">
-        {{ user.first_name }}, Você Não Possui Chamados Cadastrados!
+
+
+    <div class="container text-center mt-5">
+        <div class="alert alert-danger mt-5">
+            {{ user.first_name }}, Você não possui nenhum chamado com esse filtro!
+        </div>
+        <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
+            href="{% url 'Chamados:cadastro_chamado' %}" title="Cadastrar Chamado">Cadastrar
+            Novo Chamado
+        </a>
+
     </div>
-    <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
-        href="{% url 'Chamados:cadastro_chamado' %}" title="Cadastrar Chamado">Cadastrar
-        Novo Chamado
-    </a>
+
 </div>
 {% endif %}
 {% endif %}

@@ -18,7 +18,7 @@
         <div class="form-group col-md-5">
             <label for="idTipoChamado">SERVIÇO:</label>
             <select class="form-control" id="idTipoChamado" style="width: 100%;" name="idTipoChamado" disabled>
-               {% for tipoChamado in idTipoChamado %}
+                {% for tipoChamado in idTipoChamado %}
                 <option value="{{tipoChamado.pk}}" {% if tipoChamado.pk == formEdit.idTipoChamado.id %}
                     selected="selected" {% endif %}>{{ tipoChamado.descricaoTipoChamado }}
                 </option>
@@ -27,7 +27,9 @@
         </div>
         <div class="form-group col-md-3">
             <label for="numeroProtocolo">Protocolo:</label>
-            <input type="text"class="form-control" id="numeroProtocolo" name="numeroProtocolo" disabled {{formEdit.numeroProtocolo}}>
+            <input type="text" class="form-control" id="numeroProtocolo" name="numeroProtocolo" disabled
+                {{ formEdit.numeroProtocolo }} />
+         
         </div>
     </div>
     <div class="form-row">
@@ -59,8 +61,8 @@
     <div class="form-row">
         <div class="form-group col-md-8">
             <label for="observacao">Observação</label>
-            <input type="text" class="form-control" id="observacao" name="observacao" required
-                maxlength="100"{{formEdit.observacao}} />
+            <input type="text" class="form-control" id="observacao" name="observacao" required maxlength="100"
+                {{formEdit.observacao}} />
         </div>
         <div class="form-group col-md-3">
             <label for="idEndereco">SOLICITANTE:</label>
@@ -74,8 +76,8 @@
         </div>
     </div>
 
-    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3"
-        title="Atualizar Chamado" value="Atualizar Chamado">
+    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Atualizar Chamado"
+        value="Atualizar Chamado">
     <a class="btn  mb-3" href="{% url 'Chamados:lista_chamado'%}" style="background: #4613ac; color: white;"
         title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
 
