@@ -128,7 +128,21 @@
     }
   
 }
+@media(min-width: 1024px) {
+    #login, #alterarSenha {
+        width: 40%;
+        border-radius: 10px;
 
+    }
+}
+
+@media (max-width: 768px) {
+    #login, #alterarSenha {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+}
 .naoMostrarMouse {
     cursor: pointer;
     text-transform: uppercase;

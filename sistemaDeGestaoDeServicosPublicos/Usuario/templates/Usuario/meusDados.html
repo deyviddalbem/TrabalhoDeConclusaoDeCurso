@@ -10,11 +10,17 @@
 <form>
     <div class="border container"
         style="color: #4613ac; display: flex; flex-direction: column; justify-content: space-around; ">
-        <div class="mt-3">
+        <div class="container text-center">
+            <img class="mt-1 text-center" src="../../static/img/avatar_2x.png" alt="circulo com o desenho de uma pessoa dentro"
+                width="120" height="120">
+        </div>
+        <div class="mt-3 ">
             <label style="text-transform: uppercase;" for="Nome">Nome: </label>
             <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="nome"
                 value="{{user.first_name}}">
         </div>
+
+
         <div class="mt-3" style="text-transform: uppercase;">
             <label for="SobreNome">SobreNome:</label>
             <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="SobreNome"
