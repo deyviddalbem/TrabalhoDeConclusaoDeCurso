@@ -185,6 +185,7 @@ def CadastroChamado(request, pk=None):
             idUsuario = User.objects.filter(id=request.user.id)
             idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
             formEdit = CriarChamadoForm(instance=pk)
+            
             context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
                        'idUsuario': idUsuario, 'idEndereco': idEndereco}
             return render(request, 'Chamados/Chamados/criarChamado.html', context)
@@ -203,8 +204,9 @@ def ListaChamados(request):
 
 
 class ListChamados(ListView):
-    template_name = "Chamados/ListaChamados"
+    template_name = "Chamados/Chamados/listarChamado.html"
     context_object_name = 'chamados_list'
+    paginate_by = 5 
 
     def get_queryset(self):
         self.id = get_object_or_404(Chamado, id=self.kwargs['pk'])
@@ -230,7 +232,8 @@ def atualizarChamado(request, pk=None):
             formEdit = AtualizarChamadoForm(request.POST, instance=chamado)
             if formEdit.is_valid():
                 formEdit.save()
-                return redirect('Chamados:lista_chamado')
+                return redirect(reverse_lazy('Chamados:lista_chamado', kwargs={'pk':request.user.id}))
+                
             else: 
                 return HttpResponse("deu pau")
         else:
@@ -239,15 +242,18 @@ def atualizarChamado(request, pk=None):
             idTipoChamado = TipoChamado.objects.all()
             idUsuario = User.objects.filter(id=request.user.id)
             idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
+            nProtocolo = chamado.numeroProtocolo
+            print (nProtocolo)
             formEdit = AtualizarChamadoForm(instance=chamado)
             context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
-                       'idUsuario': idUsuario, 'idEndereco': idEndereco}
+                       'idUsuario': idUsuario, 'idEndereco': idEndereco, 'nProtocolo' : nProtocolo }
         return render(request, 'Chamados/Chamados/atualizarChamado.html', context)
 
 
 class FiltrarChamados(ListView):
     template_name = "Chamados/Chamados/listarChamado.html"
     context_object_name = 'chamados_list'
+    paginate_by= 5
 
     def get_queryset(self):
         self.idPessoa = get_object_or_404(User, id=self.kwargs['pk'])

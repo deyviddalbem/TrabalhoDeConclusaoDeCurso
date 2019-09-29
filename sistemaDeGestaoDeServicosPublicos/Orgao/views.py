@@ -1,3 +1,5 @@
+import json
+from social_django.models import UserSocialAuth
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -22,6 +24,16 @@ def indexOrgao(request):
 
 
 def retornaLotacao(request):
+    context= {}
+    try:
+        picture = UserSocialAuth.objects.get(uid=request.user.email)
+        path_dump = json.dumps(picture.extra_data)
+        path_load = json.loads(path_dump)
+        picture = path_load["picture"]
+        context = {'picture': picture}
+        request.session['profile_picture'] = picture
+    except:
+        pass
     lotacao = Lotacao.objects.filter(idUsuario=request.user.id)
     context = {'userServidor': lotacao}
     if not request.user.is_authenticated:

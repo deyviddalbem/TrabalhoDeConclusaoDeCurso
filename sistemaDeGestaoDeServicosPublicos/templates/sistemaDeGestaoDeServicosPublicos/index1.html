@@ -65,7 +65,7 @@
                     Telefones</a>
                 <a href="{% url 'logout' %}" title="Log-out"><i class="material-icons">exit_to_app</i>Sair</a>
                 <p class="naoMostrarMouse">Meus Chamados</p>
-                <a href="{% url 'Chamados:lista_chamado' %}" title="Chamados Em Aberto"><i
+                <a href="{% url 'Chamados:lista_chamado' user.id %}" title="Chamados Em Aberto"><i
                         class="material-icons">list</i>Todos os Chamados</a>
                 <a href="{% url 'Chamados:filtrar_chamados' user.id 1 %}" title="Chamados Em Aberto"><i
                         class="material-icons">list</i>Chamados Abertos</a>

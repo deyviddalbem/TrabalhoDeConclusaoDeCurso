@@ -71,7 +71,7 @@
 </form>
 <nav aria-label="text-left pagination  ">
     <ul class="pagination ">
-        {% if chamados_list.has_previous %}
+        {% if page_obj.has_previous %}
         <li class="page-item">
             <a class="page-link" style=" color: #4613ac;" href="?page=1" title="Primeira Página">&laquo;
                 Primeira
@@ -79,26 +79,26 @@
         </li>
         <li class="page-item">
             <a class="page-link" style=" color: #4613ac;" title="Página Anterior"
-                href="?page={{ chamados_list.previous_page_number }}">
+                href="?page={{ page_obj.previous_page_number }}">
                 Anterior
             </a>
         </li>
         {% endif %}
         <li class="page-item disabled">
             <a class="page-link" href="#">
-                Página {{ chamados_list.number }} de {{ chamados_list.paginator.num_pages }}
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
             </a>
         </li>
-        {% if chamados_list.has_next %}
+        {% if page_obj.has_next %}
         <li class="page-item">
             <a class="page-link" style=" color: #4613ac;" title="Próxima Página"
-                href="?page={{ chamados_list.next_page_number }}">
+                href="?page={{ page_obj.next_page_number }}">
                 Próxima
             </a>
         </li>
         <li class="page-item">
             <a class="page-link" title="Ultima Página" style=" color: #4613ac;"
-                href="?page={{chamados_list.paginator.num_pages }}">
+                href="?page={{page_obj.paginator.num_pages }}">
                 Última &raquo;
             </a>
         </li>
@@ -109,7 +109,7 @@
     href="{% url 'Chamados:cadastro_chamado' %}" title="Cadastrar Chamados">Cadastrar
     Novo Chamado
 </a>
-<a class="btn" href="{% url 'Chamados:lista_chamado'%}" style="background: #4613ac; color: white;"
+<a class="btn" href="{% url 'Chamados:lista_chamado' user.id %}" style="background: #4613ac; color: white;"
 title="Lista de Chamados"><i class="material-icons">list</i></a>
 {% else %}
 <div class="text-center">

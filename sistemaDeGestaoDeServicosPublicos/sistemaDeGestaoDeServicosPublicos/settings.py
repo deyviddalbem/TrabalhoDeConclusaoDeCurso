@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Usuario.apps.UsuarioConfig',
     'Chamados.apps.ChamadosConfig',
     'Orgao.apps.OrgaoConfig',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -50,8 +51,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-  
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+
+SOCIAL_AUTH_LOGIN_ERROR_URL = 'painel:erro-login'
+SOCIAL_AUTH_BACKEND_ERROR_URL = 'painel:erro-backend'
 
 ROOT_URLCONF = 'sistemaDeGestaoDeServicosPublicos.urls'
 
@@ -66,15 +70,34 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends', # login social
+                'social_django.context_processors.login_redirect', # login social
             ],
         },
     },
 ]
 AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
 WSGI_APPLICATION = 'sistemaDeGestaoDeServicosPublicos.wsgi.application'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '229946487280-0673uuf2ku25de7leousbbk3dd1smir7.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Z4jOL9b_MTphzSuLegpAUila'
+SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['picture']
 
 
 # Database
