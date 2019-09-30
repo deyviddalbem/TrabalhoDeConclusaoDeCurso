@@ -55,9 +55,10 @@
                 onclick="window.toggleContrast()" onkeydown="window.toggleContrast()">Auto
                 Contraste</a> {% endif %} {% if user.is_authenticated %}
             <nav>
-                <p class="border-bottom text-center naoMostrarMouse">Bem Vindo {{ user.first_name }}!
-                        <img class="mt-1 text-center" src="{{ request.session.profile_picture }}" alt=""
+                <p class="border-bottom text-center naoMostrarMouse">
+                        <img class="text-center" src="{{ request.session.profile_picture }}" alt="foto do usuário do sistema"
                         width="65" height="60" style="border-radius: 50%;">
+                        Bem Vindo {{ user.first_name }}!
                 </p>
                
                 <a href="{% url 'index' %}" title="Página Inicial"><i class="material-icons mt-1">home</i>Início</a>
@@ -84,7 +85,6 @@
                     {% endif %}
                 </a>
                 {% else %}
-
                 {% endif %}
             </nav>
             {% else %}

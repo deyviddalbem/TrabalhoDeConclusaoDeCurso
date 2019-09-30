@@ -1,0 +1,12 @@
+<title>
+        SoliServ-Acesso Negado
+    </title>
+    {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+    {% block centro %}
+    {% block centroOrgao %}
+    <div class="container text-center alert alert-danger mt-3">
+        <p class="">Você não Possui Permissão para executar essa Função!</p>
+    </div>
+    <a class="btn  mb-3 text-center" href="{% url 'Orgao:orgao_index'%}"style="background: #4613ac; color: white;" title="Voltar a HomePage"><i class="material-icons">home</i></a>
+    {% endblock %}
+    {% endblock %}

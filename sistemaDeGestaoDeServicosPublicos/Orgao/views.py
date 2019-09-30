@@ -8,6 +8,7 @@ from .models import Lotacao, Orgao, TipoLotacao
 from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm, CadastroLotacaoForm, AtualizarLotacaoForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User, Group
+from django.core.exceptions import PermissionDenied
 
 
 # Create your views here.
@@ -63,12 +64,15 @@ class CriarOrgao(CreateView):
 
 
 def orgaoList(request):
-    orgao_list = Orgao.objects.all()
-    context = {'orgao_list': orgao_list}
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
-    else:
-        return render(request, 'Orgao/dadosOrgao.html', context)
+    if not request.user.has_perm('Orgao.view_Orgao'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
+    else: 
+        orgao_list = Orgao.objects.all()
+        context = {'orgao_list': orgao_list}
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
+        else:
+            return render(request, 'Orgao/dadosOrgao.html', context)
 
 
 class ListarOrgao(ListView):
@@ -95,23 +99,26 @@ class AtualizarOrgao(UpdateView):
 
 
 def atualizaOrgao(request, idOrgao=None):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    if not request.user.has_perm('Orgao.change_Orgao'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
-        if idOrgao:
-            idOrgao = get_object_or_404(Orgao, id=idOrgao)
-            print("aqui")
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
         else:
-            idOrgao = None
-        if request.method == 'POST':
-            formEdit = CadastroOrgaoForm(request.POST, instance=idOrgao)
-            if formEdit.is_valid():
-                formEdit.save()
-                return redirect('Orgao:dados_orgao')
-        else:
-            formEdit = CadastroOrgaoForm(instance=idOrgao)
-            context = {'formEdit': formEdit}
-        return render(request, 'Orgao/atualizarOrgao.html', context)
+            if idOrgao:
+                idOrgao = get_object_or_404(Orgao, id=idOrgao)
+                print("aqui")
+            else:
+                idOrgao = None
+            if request.method == 'POST':
+                formEdit = CadastroOrgaoForm(request.POST, instance=idOrgao)
+                if formEdit.is_valid():
+                    formEdit.save()
+                    return redirect('Orgao:dados_orgao')
+            else:
+                formEdit = CadastroOrgaoForm(instance=idOrgao)
+                context = {'formEdit': formEdit}
+            return render(request, 'Orgao/atualizarOrgao.html', context)
 
 
 class CadastrarTipoLotacao(CreateView):
@@ -122,18 +129,21 @@ class CadastrarTipoLotacao(CreateView):
 
 
 def TipoLotacaoList(request):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    if not request.user.has_perm('TipoLotacao.view_TipoLotacao'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
-        tipo_lotacao_list = TipoLotacao.objects.all()
-        paginator = Paginator(tipo_lotacao_list, 5)
-        page = request.GET.get('page')
-        tipo_lotacao_list = paginator.get_page(page)
-        context = {'tipo_lotacao_list': tipo_lotacao_list}
         if not request.user.is_authenticated:
             return render(request, 'Usuario/acessoNegado.html')
         else:
-            return render(request, 'Orgao/tiposLotacao.html', context)
+            tipo_lotacao_list = TipoLotacao.objects.all()
+            paginator = Paginator(tipo_lotacao_list, 5)
+            page = request.GET.get('page')
+            tipo_lotacao_list = paginator.get_page(page)
+            context = {'tipo_lotacao_list': tipo_lotacao_list}
+            if not request.user.is_authenticated:
+                return render(request, 'Usuario/acessoNegado.html')
+            else:
+                return render(request, 'Orgao/tiposLotacao.html', context)
 
 
 class ListarTipoLotacao(ListView):
@@ -166,47 +176,53 @@ class DeletarTipoLotacao(DeleteView):
 
 
 def CadastroLotacao(request, idL=None):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    if not request.user.has_perm('Lotacao.add_Lotacao'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
-        if idL:
-            idL = get_object_or_404(Lotacao, id=idL)
-        else:
-            idL = None
-
-            formEdit = CadastroLotacaoForm(request.POST, instance=idL)
-        if request.method == 'POST':
-
-            if formEdit.is_valid():
-               
-                usuario = User.objects.get(id=request.POST.get('idUsuario'))
-                tipo_Lotacao =TipoLotacao.objects.get(id = request.POST.get('idTipoLotacao'))
-                grupo = Group.objects.get(name= tipo_Lotacao.descricao)
-                usuario.groups.add(grupo)
-                formEdit.save()
-                return redirect('Orgao:tipos_lotacao')
-        else:
-            tipoLotacao = TipoLotacao.objects.all()
-            idUsuario = User.objects.all()
-            idOrgao = Orgao.objects.all()
-            context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
-                       'idUsuario': idUsuario, 'idOrgao': idOrgao}
-        return render(request, 'Orgao/cadastroLotacao.html', context)
-
-
-def LotacaoList(request):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
-    else:
-        lotacao_list = Lotacao.objects.all()
-        paginator = Paginator(lotacao_list, 6)
-        page = request.GET.get('page')
-        lotacao_list = paginator.get_page(page)
-        context = {'lotacao_list': lotacao_list}
         if not request.user.is_authenticated:
             return render(request, 'Usuario/acessoNegado.html')
         else:
-            return render(request, 'Orgao/lotacaoList.html', context)
+            if idL:
+                idL = get_object_or_404(Lotacao, id=idL)
+            else:
+                idL = None
+
+                formEdit = CadastroLotacaoForm(request.POST, instance=idL)
+            if request.method == 'POST':
+
+                if formEdit.is_valid():
+                
+                    usuario = User.objects.get(id=request.POST.get('idUsuario'))
+                    tipo_Lotacao =TipoLotacao.objects.get(id = request.POST.get('idTipoLotacao'))
+                    grupo = Group.objects.get(name= tipo_Lotacao.descricao)
+                    usuario.groups.add(grupo)
+                    formEdit.save()
+                    return redirect('Orgao:tipos_lotacao')
+            else:
+                tipoLotacao = TipoLotacao.objects.all()
+                idUsuario = User.objects.all()
+                idOrgao = Orgao.objects.all()
+                context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
+                        'idUsuario': idUsuario, 'idOrgao': idOrgao}
+            return render(request, 'Orgao/cadastroLotacao.html', context)
+
+
+def LotacaoList(request):
+    if not request.user.has_perm('Lotacao.add_Lotacao'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
+    else:
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
+        else:
+            lotacao_list = Lotacao.objects.all()
+            paginator = Paginator(lotacao_list, 6)
+            page = request.GET.get('page')
+            lotacao_list = paginator.get_page(page)
+            context = {'lotacao_list': lotacao_list}
+            if not request.user.is_authenticated:
+                return render(request, 'Usuario/acessoNegado.html')
+            else:
+                return render(request, 'Orgao/lotacaoList.html', context)
 
 
 class ListarLotacao(ListView):
@@ -233,27 +249,30 @@ class AtualizarLotacao(UpdateView):
 
 
 def atualiza_Lotacao(request, idLotacao=None):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    if not request.user.has_perm('Lotacao.add_Lotacao'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
-        tipoLotacao = TipoLotacao.objects.all()
-        idUsuario = User.objects.all()
-        idOrgao = Orgao.objects.all()
-        if idLotacao:
-            idLotacao = get_object_or_404(Lotacao, id=idLotacao)
-            print("aqui")
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
         else:
-            idLotacao = None
-        if request.method == 'POST':
-            formEdit = AtualizarLotacaoForm(request.POST, instance=idLotacao)
-            if formEdit.is_valid():
-                formEdit.save()
-                return redirect('Orgao:lista_lotacao')
-        else:
-            formEdit = AtualizarLotacaoForm(instance=idLotacao)
-            context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
-                       'idUsuario': idUsuario, 'idOrgao': idOrgao}
-        return render(request, 'Orgao/atualizarLotacao.html', context)
+            tipoLotacao = TipoLotacao.objects.all()
+            idUsuario = User.objects.all()
+            idOrgao = Orgao.objects.all()
+            if idLotacao:
+                idLotacao = get_object_or_404(Lotacao, id=idLotacao)
+                print("aqui")
+            else:
+                idLotacao = None
+            if request.method == 'POST':
+                formEdit = AtualizarLotacaoForm(request.POST, instance=idLotacao)
+                if formEdit.is_valid():
+                    formEdit.save()
+                    return redirect('Orgao:lista_lotacao')
+            else:
+                formEdit = AtualizarLotacaoForm(instance=idLotacao)
+                context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
+                        'idUsuario': idUsuario, 'idOrgao': idOrgao}
+            return render(request, 'Orgao/atualizarLotacao.html', context)
 
 
 class DeletarLotacao(DeleteView):

@@ -12,37 +12,42 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 
 # Create your views here.
-@permission_required
 def CadastroTipoChamado(request, pk=None):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    if not request.user.has_perm('TipoChamado.add_TipoChamado'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
-        if pk:
-            pk = get_object_or_404(TipoChamado, id=pk)
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
         else:
-            pk = None
-        if request.method == 'POST':
-            formEdit = CadastroTiposChamadosForm(request.POST, instance=pk)
-            if formEdit.is_valid():
-                formEdit.save()
-                return redirect('Chamados:lista_tipo_chamado')
-        else:
-            formEdit = CadastroTiposChamadosForm(instance=pk)
-            idOrgao = Orgao.objects.all()
-            context = {'formEdit': formEdit, 'idOrgao': idOrgao}
-        return render(request, 'Chamados/tipoChamado/cadastroTipoChamado.html', context)
+            if pk:
+                pk = get_object_or_404(TipoChamado, id=pk)
+            else:
+                pk = None
+            if request.method == 'POST':
+                formEdit = CadastroTiposChamadosForm(request.POST, instance=pk)
+                if formEdit.is_valid():
+                    formEdit.save()
+                    return redirect('Chamados:lista_tipo_chamado')
+            else:
+                formEdit = CadastroTiposChamadosForm(instance=pk)
+                idOrgao = Orgao.objects.all()
+                context = {'formEdit': formEdit, 'idOrgao': idOrgao}
+            return render(request, 'Chamados/tipoChamado/cadastroTipoChamado.html', context)
 
 
 def tiposChamadosList(request):
-    tipo_chamado_list = TipoChamado.objects.all()
-    paginator = Paginator(tipo_chamado_list, 5)
-    page = request.GET.get('page')
-    tipo_chamado_list = paginator.get_page(page)
-    context = {'tipo_chamado_list': tipo_chamado_list}
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    if not request.user.has_perm('TiposChamados.view_TiposChamados'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
-        return render(request, 'Chamados/tipoChamado/listaTiposChamados.html', context)
+        tipo_chamado_list = TipoChamado.objects.all()
+        paginator = Paginator(tipo_chamado_list, 5)
+        page = request.GET.get('page')
+        tipo_chamado_list = paginator.get_page(page)
+        context = {'tipo_chamado_list': tipo_chamado_list}
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
+        else:
+            return render(request, 'Chamados/tipoChamado/listaTiposChamados.html', context)
 
 
 class ListarTipoChamado(ListView):
@@ -61,25 +66,28 @@ class ListarTipoChamado(ListView):
         return context
 
 def atualizarTipoChamado(request, pk=None):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    if not request.user.has_perm('TipoChamado.change_TipoChamado'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
-        if pk:
-            pk = get_object_or_404(TipoChamado, id=pk)
-            print("aqui")
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
         else:
-            pk = None
+            if pk:
+                pk = get_object_or_404(TipoChamado, id=pk)
+                print("aqui")
+            else:
+                pk = None
 
-        if request.method == 'POST':
-            formEdit = AtualizarTiposChamadosForm(request.POST, instance=pk)
-            if formEdit.is_valid():
-                formEdit.save()
-                return redirect('Chamados:lista_tipo_chamado')
-        else:
-            formEdit = AtualizarTiposChamadosForm(instance=pk)
-            idOrgao = Orgao.objects.all()
-            context = {'formEdit': formEdit, 'idOrgao': idOrgao}
-        return render(request, 'Chamados/tipoChamado/atualizaTipoChamado.html', context)
+            if request.method == 'POST':
+                formEdit = AtualizarTiposChamadosForm(request.POST, instance=pk)
+                if formEdit.is_valid():
+                    formEdit.save()
+                    return redirect('Chamados:lista_tipo_chamado')
+            else:
+                formEdit = AtualizarTiposChamadosForm(instance=pk)
+                idOrgao = Orgao.objects.all()
+                context = {'formEdit': formEdit, 'idOrgao': idOrgao}
+            return render(request, 'Chamados/tipoChamado/atualizaTipoChamado.html', context)
 
 
 class DeletarTipoChamado(DeleteView):
@@ -96,15 +104,18 @@ class CadastrarStatus(CreateView):
 
 
 def ListaStatus(request):
-    status_list = Status.objects.all()
-    paginator = Paginator(status_list, 5)
-    page = request.GET.get('page')
-    status_list = paginator.get_page(page)
-    context = {'status_list': status_list}
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    if not request.user.has_perm('Status.view_Status'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
-        return render(request, 'Chamados/Status/listarStatus.html', context)
+        status_list = Status.objects.all()
+        paginator = Paginator(status_list, 5)
+        page = request.GET.get('page')
+        status_list = paginator.get_page(page)
+        context = {'status_list': status_list}
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
+        else:
+            return render(request, 'Chamados/Status/listarStatus.html', context)
 
 class ListStatus(ListView):
     template_name = "Chamados/ListaStatus"
@@ -123,24 +134,27 @@ class ListStatus(ListView):
 
 
 def atualizarStatus(request, pk=None):
-    if not request.user.is_authenticated:
-        return render(request, 'Usuario/acessoNegado.html')
+    if not request.user.has_perm('Status.add_Status'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
-        if pk:
-            pk = get_object_or_404(Status, id=pk)
-            print("aqui")
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
         else:
-            pk = None
+            if pk:
+                pk = get_object_or_404(Status, id=pk)
+                print("aqui")
+            else:
+                pk = None
 
-        if request.method == 'POST':
-            formEdit = AtualizarStatusForm(request.POST, instance=pk)
-            if formEdit.is_valid():
-                formEdit.save()
-                return redirect('Chamados:lista_status_chamado')
-        else:
-            formEdit = AtualizarStatusForm(instance=pk)
-            context = {'formEdit': formEdit}
-        return render(request, 'Chamados/Status/atualizarStatus.html', context)
+            if request.method == 'POST':
+                formEdit = AtualizarStatusForm(request.POST, instance=pk)
+                if formEdit.is_valid():
+                    formEdit.save()
+                    return redirect('Chamados:lista_status_chamado')
+            else:
+                formEdit = AtualizarStatusForm(instance=pk)
+                context = {'formEdit': formEdit}
+            return render(request, 'Chamados/Status/atualizarStatus.html', context)
 
 
 class DeletarStatus(DeleteView):
