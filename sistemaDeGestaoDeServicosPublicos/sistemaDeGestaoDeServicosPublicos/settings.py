@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Chamados.apps.ChamadosConfig',
     'Orgao.apps.OrgaoConfig',
     'social_django',
+    
 ]
 
 MIDDLEWARE = [
@@ -52,12 +53,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
+
 ]
 
 SOCIAL_AUTH_LOGIN_ERROR_URL = 'painel:erro-login'
 SOCIAL_AUTH_BACKEND_ERROR_URL = 'painel:erro-backend'
 
 ROOT_URLCONF = 'sistemaDeGestaoDeServicosPublicos.urls'
+SESSION_COOKIE_AGE = 7200 # 2 horas * 60 minutos * 60 segundos
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
 
 TEMPLATES = [
     {
