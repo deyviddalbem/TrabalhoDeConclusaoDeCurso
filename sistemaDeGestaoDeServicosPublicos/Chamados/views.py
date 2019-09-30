@@ -49,22 +49,6 @@ def tiposChamadosList(request):
         else:
             return render(request, 'Chamados/tipoChamado/listaTiposChamados.html', context)
 
-
-class ListarTipoChamado(ListView):
-    template_name = "Chamados/tiposChamadosList"
-    context_object_name = 'lista_tipo_chamado'
-
-    def get_queryset(self):
-        self.id = get_object_or_404(TipoChamado, id=self.kwargs['pk'])
-        return TipoChamado.objects.all()
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in the publisher
-        context['id'] = self.id
-        return context
-
 def atualizarTipoChamado(request, pk=None):
     if not request.user.has_perm('TipoChamado.change_TipoChamado'):
         return render(request, 'Orgao/bloqueioDeAcesso.html')
@@ -116,22 +100,6 @@ def ListaStatus(request):
             return render(request, 'Usuario/acessoNegado.html')
         else:
             return render(request, 'Chamados/Status/listarStatus.html', context)
-
-class ListStatus(ListView):
-    template_name = "Chamados/ListaStatus"
-    context_object_name = 'status_list'
-
-    def get_queryset(self):
-        self.id = get_object_or_404(Status, id=self.kwargs['pk'])
-        return Status.objects.all()
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in the publisher
-        context['id'] = self.id
-        return context
-
 
 def atualizarStatus(request, pk=None):
     if not request.user.has_perm('Status.add_Status'):

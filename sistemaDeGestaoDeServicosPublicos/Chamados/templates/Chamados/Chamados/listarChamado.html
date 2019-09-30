@@ -6,10 +6,16 @@
 <script type="text/javascript">
     function termoPesquisado() {
         httpRequest = new XMLHttpRequest();
-        var texto = $('#texttarget').val();
-        window.location.href = '../ajax-search/' + texto
-        console.log(httpRequest);
-        httpRequest.send(null);
+        if (document.getElementById("texttarget").value === "") {
+            document.getElementById("texttarget").disabled == true;
+        }
+        else {
+            document.getElementById("texttarget").disabled == false;
+            var texto = $('#texttarget').val();
+            window.location.href = '../ajax-search/' + texto
+            console.log(httpRequest);
+            httpRequest.send(null);
+        }
     }
 </script>
 <style>
@@ -158,9 +164,9 @@
             Novo Chamado
         </a>
         <a class="btn mb-3 mt-3" style="background-color: #4613ac; color: white;"
-        href="{% url 'Chamados:lista_chamado' user.id %}" title="Voltar a Lista de Chamados">
-        <i class="material-icons">undo</i>
-    </a>
+            href="{% url 'Chamados:lista_chamado' user.id %}" title="Voltar a Lista de Chamados">
+            <i class="material-icons">undo</i>
+        </a>
 
     </div>
 

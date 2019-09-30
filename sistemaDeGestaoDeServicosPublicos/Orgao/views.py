@@ -75,29 +75,6 @@ def orgaoList(request):
             return render(request, 'Orgao/dadosOrgao.html', context)
 
 
-class ListarOrgao(ListView):
-    template_name = "Orgao/orgaoList"
-    context_object_name = 'orgao_list'
-
-    def get_queryset(self):
-        self.id = get_object_or_404(Orgao, id=self.kwargs['pk'])
-        return Orgao.objects.all()
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in the publisher
-        context['id'] = self.id
-        return context
-
-
-class AtualizarOrgao(UpdateView):
-    model = Orgao
-    form_class = CadastroOrgaoForm
-    template_name = "Orgao/atualizarOrgao.html"
-    success_url = reverse_lazy('Orgao:dados_orgao')
-
-
 def atualizaOrgao(request, idOrgao=None):
     if not request.user.has_perm('Orgao.change_Orgao'):
         return render(request, 'Orgao/bloqueioDeAcesso.html')
@@ -124,7 +101,7 @@ def atualizaOrgao(request, idOrgao=None):
 class CadastrarTipoLotacao(CreateView):
     model = TipoLotacao
     form_class = CadastroTipoLotacaoForm
-    template_name = "Orgao/cadastroTipoLotacao.html"
+    template_name = "TipoLotacao/cadastroTipoLotacao.html"
     success_url = reverse_lazy("Orgao:tipos_lotacao")
 
 
@@ -143,35 +120,19 @@ def TipoLotacaoList(request):
             if not request.user.is_authenticated:
                 return render(request, 'Usuario/acessoNegado.html')
             else:
-                return render(request, 'Orgao/tiposLotacao.html', context)
-
-
-class ListarTipoLotacao(ListView):
-    template_name = "Orgao/TipoLotacaoList.html"
-    context_object_name = 'tipo_lotacao'
-
-    def get_queryset(self):
-        self.id = get_object_or_404(TipoLotacao, id=self.kwargs['pk'])
-        return TipoLotacao.objects.all()
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in the publisher
-        context['id'] = self.id
-        return context
+                return render(request, 'TipoLotacao/tiposLotacao.html', context)
 
 
 class AtualizarTipoLotacao(UpdateView):
     model = TipoLotacao
     form_class = CadastroTipoLotacaoForm
-    template_name = "Orgao/atualizarTipoLotacao.html"
+    template_name = "TipoLotacao/atualizarTipoLotacao.html"
     success_url = reverse_lazy('Orgao:tipos_lotacao')
 
 
 class DeletarTipoLotacao(DeleteView):
     model = TipoLotacao
-    template_name = "Orgao/tipoLotacao_Confirm_delete.html"
+    template_name = "TipoLotacao/tipoLotacao_Confirm_delete.html"
     success_url = reverse_lazy('Orgao:tipos_lotacao')
 
 
@@ -191,7 +152,6 @@ def CadastroLotacao(request, idL=None):
             if request.method == 'POST':
 
                 if formEdit.is_valid():
-                
                     usuario = User.objects.get(id=request.POST.get('idUsuario'))
                     tipo_Lotacao =TipoLotacao.objects.get(id = request.POST.get('idTipoLotacao'))
                     grupo = Group.objects.get(name= tipo_Lotacao.descricao)
@@ -222,31 +182,7 @@ def LotacaoList(request):
             if not request.user.is_authenticated:
                 return render(request, 'Usuario/acessoNegado.html')
             else:
-                return render(request, 'Orgao/lotacaoList.html', context)
-
-
-class ListarLotacao(ListView):
-    template_name = "Orgao/LotacaoList.html"
-    context_object_name = 'list_lotacao'
-
-    def get_queryset(self):
-        self.id = get_object_or_404(Lotacao, id=self.kwargs['pk'])
-        return Lotacao.objects.all()
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in the publisher
-        context['id'] = self.id
-        return context
-
-
-class AtualizarLotacao(UpdateView):
-    model = Lotacao
-    form_class = AtualizarLotacaoForm
-    template_name = "Orgao/atualizarLotacao.html"
-    success_url = reverse_lazy('Orgao:lista_lotacao')
-
+                return render(request, 'Lotacao/lotacaoList.html', context)
 
 def atualiza_Lotacao(request, idLotacao=None):
     if not request.user.has_perm('Lotacao.add_Lotacao'):
@@ -272,10 +208,10 @@ def atualiza_Lotacao(request, idLotacao=None):
                 formEdit = AtualizarLotacaoForm(instance=idLotacao)
                 context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
                         'idUsuario': idUsuario, 'idOrgao': idOrgao}
-            return render(request, 'Orgao/atualizarLotacao.html', context)
+            return render(request, 'Lotacao/atualizarLotacao.html', context)
 
 
 class DeletarLotacao(DeleteView):
     model = Lotacao
-    template_name = "Orgao/lotacao_confirm_delete.html"
+    template_name = "Lotacao/lotacao_confirm_delete.html"
     success_url = reverse_lazy('Orgao:lista_lotacao')

@@ -36,7 +36,6 @@ class CriarCadastro(CreateView):
     template_name = "Usuario/cadastroUsuario.html"
     success_url = reverse_lazy('login')
 
-
 class AtualizarCadastro(UpdateView):
     model = User
     form_class = PessoaUserFormUpdate
@@ -69,7 +68,7 @@ def CadastroTelefone(request, idTelefone=None):
     else:
         formEdit = meuTelefone
         context = {'formEdit': formEdit, 'tipos': tipos}
-    return render(request, 'Usuario/cadastroTelefone.html', context)
+    return render(request, 'Telefone/cadastroTelefone.html', context)
 
 ##### Função para lstar os telefones #####
 def TelefonesList(request):
@@ -78,7 +77,7 @@ def TelefonesList(request):
     if not request.user.is_authenticated:
         return render(request, 'Usuario/acessoNegado.html')
     else:
-        return render(request, 'Usuario/telefonesList.html', context)
+        return render(request, 'Telefone/telefonesList.html', context)
 
 
 ##### Função para atualizar os telefones #####
@@ -98,12 +97,12 @@ def atualizarMeusTelefones(request, idTelefone=None):
     else:
         formEdit = meuTelefone
         context = {'formEdit': formEdit, 'tipos': tipos}
-    return render(request, 'Usuario/atualizarTelefones.html', context)
+    return render(request, 'Telefone/atualizarTelefones.html', context)
 
 ##### Função para excluir os telefones #####
 class DeletarTelefone(DeleteView):
     model = Telefone
-    template_name = "Usuario/telefone_confirm_delete.html"
+    template_name = "Telefone/telefone_confirm_delete.html"
     success_url = reverse_lazy('listaTelefones')
 
 ##### Função que efetua o cadastro de endereço #####
@@ -115,28 +114,22 @@ def cadastroEndereco(request):
             return redirect('listaEnderecos')
         else:
             context = {'address_form': address_form}
-            return render(request, 'Usuario/cadastroEndereco.html', context)
+            return render(request, 'Endereco/cadastroEndereco.html', context)
             
     else:
         address_form = CadastroEnderecoForm()
         context = {'address_form': address_form}
-        return render(request, 'Usuario/cadastroEndereco.html', context)
+        return render(request, 'Endereco/cadastroEndereco.html', context)
 
-
-class CriarEndereco(CreateView):
-    model = Endereco
-    form_class = CadastroEnderecoForm
-    template_name = "Usuario/cadastroEndereco.html"
-    success_url = reverse_lazy("listaEnderecos")
 
 ##### Função que lista os enderecos #####
 def enderecosList(request):
     enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
     context = {'enderecos_list': enderecos_list}
-    return render(request, 'Usuario/enderecosList.html', context)
+    return render(request, 'Endereco/enderecosList.html', context)
 
 class ListarEnderecos(ListView):
-    template_name = "Usuario/enderecosList.html"
+    template_name = "Endereco/enderecosList.html"
     context_object_name = 'enderecos_list'
 
     def get_queryset(self):
@@ -154,11 +147,11 @@ class ListarEnderecos(ListView):
 class AtualizarEndereco(UpdateView):
     model = Endereco
     form_class = CadastroEnderecoForm
-    template_name = "Usuario/atualizarEndereco.html"
+    template_name = "Endereco/atualizarEndereco.html"
     success_url = reverse_lazy('listaEnderecos')
 
 ##### Função que efetua a exclusão do endereco #####
 class DeletarEndereco(DeleteView):
     model = Endereco
-    template_name = "Usuario/endereco_confirm_delete.html"
+    template_name = "Endereco/endereco_confirm_delete.html"
     success_url = reverse_lazy('listaEnderecos')
