@@ -55,7 +55,11 @@
                 onclick="window.toggleContrast()" onkeydown="window.toggleContrast()">Auto
                 Contraste</a> {% endif %} {% if user.is_authenticated %}
             <nav>
-                <p class="border-bottom text-center naoMostrarMouse">Bem Vindo {{ user.first_name }}!</p>
+                <p class="border-bottom text-center naoMostrarMouse">Bem Vindo {{ user.first_name }}!
+                        <img class="mt-1 text-center" src="{{ request.session.profile_picture }}" alt=""
+                        width="65" height="60" style="border-radius: 50%;">
+                </p>
+               
                 <a href="{% url 'index' %}" title="Página Inicial"><i class="material-icons mt-1">home</i>Início</a>
                 <a href="{% url 'meusDados' %}" title="Meus Dados"><i class="material-icons"> account_circle</i>Meus
                     Dados</a>
@@ -66,14 +70,9 @@
                 <a href="{% url 'logout' %}" title="Log-out"><i class="material-icons">exit_to_app</i>Sair</a>
                 <p class="naoMostrarMouse">Meus Chamados</p>
                 <a href="{% url 'Chamados:lista_chamado' user.id %}" title="Chamados Em Aberto"><i
-                        class="material-icons">list</i>Todos os Chamados</a>
-                <a href="{% url 'Chamados:filtrar_chamados' user.id 1 %}" title="Chamados Em Aberto"><i
-                        class="material-icons">list</i>Chamados Abertos</a>
-                <a href="{% url 'Chamados:filtrar_chamados' user.id 3 %}" title="Chamados Em Andamento "><i
-                        class="material-icons">list</i>Chamados Em Andamento</a>
-                <a href="{% url 'Chamados:filtrar_chamados' user.id 2 %}" title="Chamados Concluídos"><i
-                        class="material-icons">list</i>Chamados Concluídos</a>
-                </li>
+                        class="material-icons">list</i>Todos os Chamados
+                </a>
+
                 {% if request.session.temVinculo %}
                 <a class="mt-3 text-center" title="Clique para Escolher o Vínculo"
                     style="border-radius: 5px; background-color: white; color: black; "

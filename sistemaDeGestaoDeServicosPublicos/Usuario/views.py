@@ -1,3 +1,5 @@
+import json
+from social_django.models import UserSocialAuth
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -12,6 +14,16 @@ from .models import Telefone, TipoTelefone, Endereco
 
 
 def index(request):
+    context= {}
+    try:
+        picture = UserSocialAuth.objects.get(uid=request.user.email)
+        path_dump = json.dumps(picture.extra_data)
+        path_load = json.loads(path_dump)
+        picture = path_load["picture"]
+        context = {'picture': picture}
+        request.session['profile_picture'] = picture
+    except:
+        pass
     if not request.user.is_authenticated:
         return render(request, 'sistemaDeGestaoDeServicosPublicos/index1.html')
     else:

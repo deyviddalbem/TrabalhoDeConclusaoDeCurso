@@ -12,7 +12,19 @@
         httpRequest.send(null);
     }
 </script>
+<style>
+    #btn-filtros {
+        background: #4613ac;
+        color: white;
+    }
 
+    #btn-filtros:hover {
+        color: #4613ac;
+        background: white;
+        border-style: solid;
+        border-color: #4613ac;
+    }
+</style>
 <div class="mt-3 container text-center ">
     <p style="color: #4613ac; font-size: 30px;">Meus Chamados</p>
 </div>
@@ -20,11 +32,29 @@
 <form>
     <div class="form-row">
         <div class="form-group w-50">
-            <input id="texttarget" class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar Chamado"
+            <input id="texttarget" class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar Item"
                 aria-label="Pesquisar">
-          
         </div>
-        <p class="btn ml-2"style="background: #4613ac; color: white;" onclick="termoPesquisado()">Pesquisar</p>
+        <a class="btn ml-2 mb-4" title="Pesquisar Intem" onclick="termoPesquisado()" id="btn-filtros">Pesquisar</a>
+
+    </div>
+    <div class="form-row">
+        <a href="{% url 'Chamados:lista_chamado' user.id %}" class=" btn ml-2 mb-4" id="btn-filtros"
+            title="Todos os Chamados">
+            Todos Os Chamados
+        </a>
+        <a href="{% url 'Chamados:filtrar_chamados' user.id 1 %}" class=" btn ml-2 mb-4" id="btn-filtros"
+            title="Filtrar por Chamados Em aberto">
+            Em Aberto
+        </a>
+        <a href="{% url 'Chamados:filtrar_chamados' user.id 3%}" class="btn ml-2 mb-4" id="btn-filtros"
+            title="Filtrar por Chamados Em Andamento">
+            Em Andamento
+        </a>
+        <a href="{% url 'Chamados:filtrar_chamados' user.id 2 %}" class="btn ml-2 mb-4" id="btn-filtros"
+            title="Filtrar por Chamados Concluídos">
+            Concluídos
+        </a>
     </div>
     <div class="section-2" style="overflow-x: auto;">
         <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
@@ -64,8 +94,9 @@
                 </tr>
                 {% endfor %}
             </table>
-            <p class=" mt-1" style="color: #4613ac;"> Obs: Algumas informações cadastradas, são ocultadas para facilitar a
-                    compreensão.</p>
+            <p class=" mt-1" style="color: #4613ac;"> Obs: Algumas informações cadastradas, são ocultadas para facilitar
+                a
+                compreensão.</p>
         </div>
     </div>
 </form>
@@ -110,7 +141,7 @@
     Novo Chamado
 </a>
 <a class="btn" href="{% url 'Chamados:lista_chamado' user.id %}" style="background: #4613ac; color: white;"
-title="Lista de Chamados"><i class="material-icons">list</i></a>
+    title="Lista de Chamados"><i class="material-icons">list</i></a>
 {% else %}
 <div class="text-center">
     <div class="mt-3 container text-center ">
@@ -126,6 +157,10 @@ title="Lista de Chamados"><i class="material-icons">list</i></a>
             href="{% url 'Chamados:cadastro_chamado' %}" title="Cadastrar Chamado">Cadastrar
             Novo Chamado
         </a>
+        <a class="btn mb-3 mt-3" style="background-color: #4613ac; color: white;"
+        href="{% url 'Chamados:lista_chamado' user.id %}" title="Voltar a Lista de Chamados">
+        <i class="material-icons">undo</i>
+    </a>
 
     </div>
 
