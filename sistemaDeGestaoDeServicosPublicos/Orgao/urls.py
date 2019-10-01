@@ -30,5 +30,8 @@ urlpatterns = [
     path('listarLotacoes/', views.LotacaoList, name='lista_lotacao'),
     path('atualizarLotacao/<int:idLotacao>', views.atualiza_Lotacao, name='lotacao_atualizar'),
     path('orgao/excluirLotacao/<int:pk>', views.DeletarLotacao.as_view(),name='lotacao_deletar'),
+    
+    ###
+   
 ]
 

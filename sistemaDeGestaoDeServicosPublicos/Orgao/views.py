@@ -215,3 +215,4 @@ class DeletarLotacao(DeleteView):
     model = Lotacao
     template_name = "Lotacao/lotacao_confirm_delete.html"
     success_url = reverse_lazy('Orgao:lista_lotacao')
+

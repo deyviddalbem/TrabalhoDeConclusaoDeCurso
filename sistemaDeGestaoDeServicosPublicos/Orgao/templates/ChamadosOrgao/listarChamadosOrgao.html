@@ -1,4 +1,4 @@
-<title>SoliServ-Meus Chamados</title>
+<title>SoliServ-Chamados</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
 {% block centro %}
 {% if user.is_authenticated %}
@@ -32,7 +32,7 @@
     }
 </style>
 <div class="mt-3 container text-center ">
-    <p style="color: #4613ac; font-size: 30px;">Meus Chamados</p>
+    <p style="color: #4613ac; font-size: 30px;">Chamados</p>
 </div>
 
 <form>
@@ -51,11 +51,11 @@
         </a>
         <a href="{% url 'Chamados:filtrar_chamados' user.id 1 %}" class=" btn ml-2 mb-4" id="btn-filtros"
             title="Filtrar por Chamados Em aberto">
-            Abertos
+            Em Aberto
         </a>
         <a href="{% url 'Chamados:filtrar_chamados' user.id 3%}" class="btn ml-2 mb-4" id="btn-filtros"
             title="Filtrar por Chamados Em Andamento">
-            Andamento
+            Em Andamento
         </a>
         <a href="{% url 'Chamados:filtrar_chamados' user.id 2 %}" class="btn ml-2 mb-4" id="btn-filtros"
             title="Filtrar por Chamados Concluídos">
