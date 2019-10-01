@@ -9,7 +9,7 @@
 <div>
     <div class="section-2" style="overflow-x: auto;">
         <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
-            <table>
+            <table id="tabela">
                 <tr>
                     <th>ID</th>
                     <th>Numero do Telefone</th>
@@ -55,3 +55,13 @@
 {% endif %}
 {% endif %}
 {% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<!--<script>
+$(document).ready( function () {
+    $('#tabela').DataTable();
+} );
+</script>
+{% endblock %}
+-->

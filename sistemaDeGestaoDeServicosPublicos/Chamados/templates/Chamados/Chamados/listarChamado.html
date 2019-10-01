@@ -63,8 +63,8 @@
         </a>
     </div>
     <div class="section-2" style="overflow-x: auto;">
-        <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
-            <table>
+        <div  class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
+            <table id="tabela">
                 <tr>
                     <th>NÚMERO DO PROTOCOLO</th>
                     <th>DATA DE ABERTURA</th>
@@ -173,4 +173,16 @@
 </div>
 {% endif %}
 {% endif %}
+
 {% endblock %}
+<!--
+{% block scripts %}
+{{ block.super }}
+<script>
+$(document).ready( function () {
+    $('#tabela').DataTable();
+} );
+</script>
+{% endblock %}
+
+-->
