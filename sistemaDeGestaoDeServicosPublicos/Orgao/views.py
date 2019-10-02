@@ -9,6 +9,7 @@ from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm, CadastroLota
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import PermissionDenied
+from Chamados.models import Chamado
 
 
 # Create your views here.
@@ -164,7 +165,7 @@ def CadastroLotacao(request, idL=None):
                 idOrgao = Orgao.objects.all()
                 context = {'formEdit': formEdit, 'tipoLotacao': tipoLotacao,
                         'idUsuario': idUsuario, 'idOrgao': idOrgao}
-            return render(request, 'Orgao/cadastroLotacao.html', context)
+            return render(request, 'Lotacao/cadastroLotacao.html', context)
 
 
 def LotacaoList(request):
@@ -216,3 +217,16 @@ class DeletarLotacao(DeleteView):
     template_name = "Lotacao/lotacao_confirm_delete.html"
     success_url = reverse_lazy('Orgao:lista_lotacao')
 
+def ListaOrgaoChamado(request):
+    if not request.user.has_perm('Chamado.view_Chamado'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
+    else:
+        lista_chamados = Chamado.objects.all()
+        paginator = Paginator(lista_chamados, 5)
+        page = request.GET.get('page')
+        lista_chamados = paginator.get_page(page)
+        context = {'lista_chamados': lista_chamados}
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
+        else:
+            return render(request, 'ChamadosOrgao/listarChamadosOrgao.html', context)

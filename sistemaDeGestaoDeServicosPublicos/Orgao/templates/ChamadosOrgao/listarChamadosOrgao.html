@@ -1,8 +1,8 @@
-<title>SoliServ-Chamados</title>
+<title>SoliServ-Meus Chamados</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
 {% block centro %}
 {% if user.is_authenticated %}
-{% if chamados_list %}
+{% if lista_chamados %}
 <script type="text/javascript">
     function termoPesquisado() {
         httpRequest = new XMLHttpRequest();
@@ -32,7 +32,7 @@
     }
 </style>
 <div class="mt-3 container text-center ">
-    <p style="color: #4613ac; font-size: 30px;">Chamados</p>
+    <p style="color: #4613ac; font-size: 30px;">Chamados Semosp</p>
 </div>
 
 <form>
@@ -45,17 +45,17 @@
 
     </div>
     <div class="form-row">
-        <a href="{% url 'Chamados:lista_chamado' user.id %}" class=" btn ml-2 mb-4" id="btn-filtros"
+        <a href="{% url 'Orgao:lista_chamados_orgao' %}" class=" btn ml-2 mb-4" id="btn-filtros"
             title="Todos os Chamados">
             Todos Os Chamados
         </a>
-        <a href="{% url 'Chamados:filtrar_chamados' user.id 1 %}" class=" btn ml-2 mb-4" id="btn-filtros"
+        <a href="#" class=" btn ml-2 mb-4" id="btn-filtros"
             title="Filtrar por Chamados Em aberto">
-            Em Aberto
+            Abertos
         </a>
-        <a href="{% url 'Chamados:filtrar_chamados' user.id 3%}" class="btn ml-2 mb-4" id="btn-filtros"
+        <a href="#" class="btn ml-2 mb-4" id="btn-filtros"
             title="Filtrar por Chamados Em Andamento">
-            Em Andamento
+            Andamento
         </a>
         <a href="{% url 'Chamados:filtrar_chamados' user.id 2 %}" class="btn ml-2 mb-4" id="btn-filtros"
             title="Filtrar por Chamados Concluídos">
@@ -63,8 +63,8 @@
         </a>
     </div>
     <div class="section-2" style="overflow-x: auto;">
-        <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
-            <table>
+        <div  class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
+            <table id="tabela">
                 <tr>
                     <th>NÚMERO DO PROTOCOLO</th>
                     <th>DATA DE ABERTURA</th>
@@ -73,7 +73,7 @@
                     <th>STATUS</th>
                     <th>AÇÃO</th>
                 </tr>
-                {% for chamado in chamados_list %}
+                {% for chamado in lista_chamados %}
                 <tr>
                     <td>{{chamado.numeroProtocolo}}</td>
                     <td>{{chamado.dataAbertura}}</td>
@@ -108,7 +108,7 @@
 </form>
 <nav aria-label="text-left pagination  ">
     <ul class="pagination ">
-        {% if page_obj.has_previous %}
+        {% if lista_chamados.has_previous %}
         <li class="page-item">
             <a class="page-link" style=" color: #4613ac;" href="?page=1" title="Primeira Página">&laquo;
                 Primeira
@@ -116,37 +116,34 @@
         </li>
         <li class="page-item">
             <a class="page-link" style=" color: #4613ac;" title="Página Anterior"
-                href="?page={{ page_obj.previous_page_number }}">
+                href="?page={{ lista_chamados.previous_page_number }}">
                 Anterior
             </a>
         </li>
         {% endif %}
         <li class="page-item disabled">
             <a class="page-link" href="#">
-                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                Página {{ lista_chamados.number }} de {{ lista_chamados.paginator.num_pages }}
             </a>
         </li>
-        {% if page_obj.has_next %}
+        {% if lista_chamados.has_next %}
         <li class="page-item">
             <a class="page-link" style=" color: #4613ac;" title="Próxima Página"
-                href="?page={{ page_obj.next_page_number }}">
+                href="?page={{ lista_chamados.next_page_number }}">
                 Próxima
             </a>
         </li>
         <li class="page-item">
             <a class="page-link" title="Ultima Página" style=" color: #4613ac;"
-                href="?page={{page_obj.paginator.num_pages }}">
+                href="?page={{lista_chamados.paginator.num_pages }}">
                 Última &raquo;
             </a>
         </li>
         {% endif %}
     </ul>
 </nav>
-<a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
-    href="{% url 'Chamados:cadastro_chamado' %}" title="Cadastrar Chamados">Cadastrar
-    Novo Chamado
-</a>
-<a class="btn" href="{% url 'Chamados:lista_chamado' user.id %}" style="background: #4613ac; color: white;"
+
+<a class="btn" href="{% url 'Orgao:lista_chamados_orgao'%}" style="background: #4613ac; color: white;"
     title="Lista de Chamados"><i class="material-icons">list</i></a>
 {% else %}
 <div class="text-center">
@@ -159,12 +156,8 @@
         <div class="alert alert-danger mt-5">
             {{ user.first_name }}, Você não possui nenhum chamado com esse filtro!
         </div>
-        <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
-            href="{% url 'Chamados:cadastro_chamado' %}" title="Cadastrar Chamado">Cadastrar
-            Novo Chamado
-        </a>
         <a class="btn mb-3 mt-3" style="background-color: #4613ac; color: white;"
-            href="{% url 'Chamados:lista_chamado' user.id %}" title="Voltar a Lista de Chamados">
+            href="{% url 'Orgao:lista_chamados_orgao' %}" title="Voltar a Lista de Chamados">
             <i class="material-icons">undo</i>
         </a>
 
