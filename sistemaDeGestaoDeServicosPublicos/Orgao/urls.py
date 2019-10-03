@@ -33,6 +33,8 @@ urlpatterns = [
     
     ###
     path('listarChamadosOrgao/', views.ListaOrgaoChamado, name='lista_chamados_orgao'),
+    ##path('atualizarChamadosOrgao/<int:pk>', views.atualizarChamadoOrgao, name='atualizar_chamados_orgao'),
+    path('gerenciar/chamado/<int:pk>/', views.atualizarChamadoOrgao, name='atualizar_chamados_orgao'),
 
 
     

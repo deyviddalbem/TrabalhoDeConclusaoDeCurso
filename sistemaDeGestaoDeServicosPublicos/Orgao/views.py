@@ -5,12 +5,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from .models import Lotacao, Orgao, TipoLotacao
-from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm, CadastroLotacaoForm, AtualizarLotacaoForm
+from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm, CadastroLotacaoForm, AtualizarLotacaoForm,atualizarChamadosOrgaoForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import PermissionDenied
-from Chamados.models import Chamado
-
+from Chamados.models import Chamado, Status, TipoChamado
+from Usuario.models import Endereco
+from Chamados.forms import AtualizarChamadoForm
 
 # Create your views here.
 
@@ -230,3 +231,32 @@ def ListaOrgaoChamado(request):
             return render(request, 'Usuario/acessoNegado.html')
         else:
             return render(request, 'ChamadosOrgao/listarChamadosOrgao.html', context)
+
+def atualizarChamadoOrgao(request, pk=None):
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
+        if pk:
+            chamado = get_object_or_404(Chamado, id=pk)
+        else:
+            chamado = None
+
+        if request.method == 'POST':
+            formEdit = atualizarChamadosOrgaoForm(request.POST, instance=chamado)
+            if formEdit.is_valid():
+                formEdit.save()
+                return redirect('Orgao:lista_chamados_orgao')
+                
+            else: 
+                return HttpResponse("deu pau")
+        else:
+            idStatus = Status.objects.all()
+            idOrgao = Orgao.objects.all()
+            idTipoChamado = TipoChamado.objects.all()
+            idUsuario = User.objects.filter(id=request.user.id)
+            idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
+            nProtocolo = chamado.numeroProtocolo
+            formEdit = atualizarChamadosOrgaoForm(instance=chamado)
+            context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
+                       'idUsuario': idUsuario, 'idEndereco': idEndereco, 'nProtocolo' : nProtocolo }
+            return render(request, 'ChamadosOrgao/atualizarChamadosOrgao.html', context)

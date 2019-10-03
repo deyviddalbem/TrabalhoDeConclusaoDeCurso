@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Orgao, TipoLotacao, Lotacao
+from Chamados.models import Chamado
 
 
 class CadastroOrgaoForm(forms.ModelForm):
@@ -25,12 +26,12 @@ class CadastroOrgaoForm(forms.ModelForm):
         fields = '__all__'
 
 class CadastroTipoLotacaoForm(forms.ModelForm):
-     class Meta:
+    class Meta:
         model = TipoLotacao
         fields = '__all__'
 
 class CadastroLotacaoForm(forms.ModelForm):
-     class Meta:
+    class Meta:
         model = Lotacao
         fields = '__all__'
 
@@ -38,3 +39,10 @@ class AtualizarLotacaoForm(forms.ModelForm):
     class Meta:
         model = Lotacao
         fields = '__all__'
+
+class atualizarChamadosOrgaoForm(forms.ModelForm):
+    class Meta:
+        model = Chamado
+        fields = '__all__'
+     
+        

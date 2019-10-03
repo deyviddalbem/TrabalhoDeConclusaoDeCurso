@@ -87,9 +87,9 @@
                     <td style="color: red">{{chamado.idStatus.descricao}}</td>
                     {% endif %}
                     <td>
-                        {% if chamado.idStatus.pk == 1 %}
+                        {% if chamado.idStatus.pk != 2 %}
                         <a class="btn mb-3" style="background: #4613ac; color: white;"
-                            href="{% url 'Chamados:atualiza_chamado' chamado.id %}" title="Editar Chamado">
+                            href="{% url 'Orgao:atualizar_chamados_orgao' chamado.id %}" title="Editar Chamado">
                             <i class="material-icons">edit</i></a>
                         {% else %}
 

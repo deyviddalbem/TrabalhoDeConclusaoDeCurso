@@ -1,0 +1,99 @@
+<title>SoliServ-Orgao Atualizar Chamado</title>
+{% extends 'Orgao/index.html' %}
+{% block centroOrgao %}
+<form method="POST" class="container">
+    {% csrf_token %}
+    <h3 class="text-center mt-5" style="color: #4613ac;">Alterar Chamado - {{ nProtocolo }}</h3>
+    <div class="form-row mt-5">
+            <div class="form-group col-md-3">
+                    <label for="numeroProtocolo">Protocolo:</label>
+                    <input type="text" style="color: white;" class="form-control bg-danger" id="numeroProtocolo" name="numeroProtocolo" 
+                        value="{{ nProtocolo }}" />
+                 
+                </div>
+        <div class="form-group col-md-3 ">
+            <label for="idOrgao">ÓRGÃO:</label>
+            <select class="form-control" id="idOrgao" name="idOrgao" >
+                {% for Orgao in idOrgao %}
+                <option value="{{Orgao.pk}}" {% if Orgao.pk == formEdit.idOrgao.id %} selected="selected" {% endif %}>
+                    {{ Orgao.nomeOrgao }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="idTipoChamado">SERVIÇO:</label>
+            <select class="form-control" id="idTipoChamado" style="width: 100%;" name="idTipoChamado" >
+                {% for tipoChamado in idTipoChamado %}
+                <option value="{{tipoChamado.pk}}" {% if tipoChamado.pk == formEdit.idTipoChamado.id %}
+                    selected="selected" {% endif %}>{{ tipoChamado.descricaoTipoChamado }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-8 ">
+            <label for="idEndereco">ENDEREÇO:</label>
+            <select class="form-control" id="idEndereco" style="width: 100%;" name="idEndereco" >
+                {% for endereco in idEndereco %}
+                <option value="{{endereco.pk}}" {% if endereco.pk == formEdit.idEndereco.id %} selected="selected"
+                    {% endif %}>
+                    0{{ endereco.id}} - {{ endereco.cep }}, {{ endereco.logradouro }}, {{ endereco.enderecoNumero}},
+                    {{ endereco.bairro }}, {{ endereco.municipio }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group col-md-3 ">
+            <label for="idStatus">STATUS:</label>
+            <select class="form-control" id="idStatus" style="color: red;" name="idStatus" autofocus>
+                {% for status in idStatus %}
+                <option value="{{status.pk}}" {% if status.pk == formEdit.idStatus.id %} selected="selected"
+                    {% endif %}>
+                    0{{status.id}} - {{status.descricao}}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="observacao">Observação</label>
+            <input type="text" class="form-control" id="observacao" name="observacao" required maxlength="100"
+               {{formEdit.observacao}} />
+        </div>
+        <div class="form-group col-md-5">
+            <label for="idUsuario">SOLICITANTE:</label>
+            <select class="form-control" id="idUsuario" name="idUsuario" >
+                {% for usuario in idUsuario %}
+                <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario.id %} selected="selected" {% endif %}>
+                    0{{user.id}} - {{user.first_name}} {{user.last_name}}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Atualizar Chamado"
+        value="Atualizar Chamado">
+    <a class="btn  mb-3" href="{% url 'Chamados:lista_chamado' user.id %}" style="background: #4613ac; color: white;"
+        title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
+
+
+</form>
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#idTipoChamado').select2();
+        $('#idEndereco').select2();
+        $('#idOrgao').select2();
+        $('#idStatus').select2();
+        $('#idUsuario').select2();
+    });
+
+</script>
+{% endblock %}
