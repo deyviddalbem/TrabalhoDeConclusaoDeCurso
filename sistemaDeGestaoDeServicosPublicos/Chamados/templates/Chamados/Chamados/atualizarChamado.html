@@ -1,10 +1,16 @@
 <title>SoliServ- Atualizar Chamado</title>
 {% extends 'Orgao/index.html' %}
 {% block centroOrgao %}
-<form method="POST">
+<form method="POST" class="container">
     {% csrf_token %}
     <h3 class="text-center mt-5" style="color: #4613ac;">Alterar Chamado</h3>
     <div class="form-row mt-5">
+            <div class="form-group col-md-3">
+                    <label for="numeroProtocolo">Protocolo:</label>
+                    <input type="text" class="form-control" id="numeroProtocolo" name="numeroProtocolo" disabled
+                        value="{{ nProtocolo }}" />
+                 
+                </div>
         <div class="form-group col-md-3 ">
             <label for="idOrgao">ÓRGÃO:</label>
             <select class="form-control" id="idOrgao" name="idOrgao" disabled>
@@ -24,12 +30,6 @@
                 </option>
                 {% endfor %}
             </select>
-        </div>
-        <div class="form-group col-md-3">
-            <label for="numeroProtocolo">Protocolo:</label>
-            <input type="text" class="form-control" id="numeroProtocolo" name="numeroProtocolo" disabled
-                value="{{ nProtocolo }}" />
-         
         </div>
     </div>
     <div class="form-row">

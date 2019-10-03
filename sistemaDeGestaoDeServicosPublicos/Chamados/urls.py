@@ -22,5 +22,6 @@ urlpatterns = [
     path('atualizarChamado/<int:pk>', views.atualizarChamado, name='atualiza_chamado'),
     path('<int:pk>/<int:statusChamado>', views.FiltrarChamados.as_view(), name='filtrar_chamados'),
     path('ajax-search/<str:search_string>', views.home_ajax_search, name='pesquisa'),
+    path('Chamadodetalhado/<int:pk>', views.detalheChamado, name='chamado_detalhado'),
 
 ]

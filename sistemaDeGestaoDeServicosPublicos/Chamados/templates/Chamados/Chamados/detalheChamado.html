@@ -1,9 +1,15 @@
-<title>SoliServ- Atualizar Chamado</title>
+<title>SoliServ- Chamado detalhado</title>
 {% extends 'Orgao/index.html' %}
 {% block centroOrgao %}
-<form method="POST">
-    <h3 class="text-center mt-5" style="color: #4613ac;">Chamado {{ nProtocolo }} </h3>
+<form method="POST" class="container">
+    <h3 class="text-center mt-5" style="color: #4613ac;">Detalhes do Chamado</h3>
     <div class="form-row mt-5">
+        <div class="form-group col-md-3">
+            <label for="numeroProtocolo">Protocolo:</label>
+            <input type="text" class="form-control" id="numeroProtocolo" name="numeroProtocolo" disabled
+                value="{{ nProtocolo }}" />
+
+        </div>
         <div class="form-group col-md-3 ">
             <label for="idOrgao">ÓRGÃO:</label>
             <select class="form-control" id="idOrgao" name="idOrgao" disabled>
@@ -24,14 +30,32 @@
                 {% endfor %}
             </select>
         </div>
-        <div class="form-group col-md-3">
-            <label for="numeroProtocolo">Protocolo:</label>
-            <input type="text" class="form-control" id="numeroProtocolo" name="numeroProtocolo" disabled
-                value="{{ nProtocolo }}" />
-
-        </div>
     </div>
-    <div class="form-row">
+    <div class="form-row mt-2">
+        <div class="form-group col-md-3">
+            <label for="observacao">Data de Abertura: </label>
+            <input type="text" class="form-control" id="observacao" name="observacao" required maxlength="100"
+                value="{{ dataAbertura }}" disabled />
+        </div>
+        <div class="form-group col-md-3">
+            <label for="observacao">Data de Conclusão: </label>
+            <input type="text" class="form-control" id="observacao" name="observacao" required maxlength="100"
+                value="{{ dataConclusao }}" disabled />
+        </div>
+        <div class="form-group col-md-5">
+            <label for="idEndereco">SOLICITANTE:</label>
+            <select class="form-control" id="idUsuario" name="idUsuario" disabled>
+                {% for usuario in idUsuario %}
+                <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario.id %} selected="selected" {% endif %}>
+                    0{{user.id}} - {{user.first_name}} {{user.last_name}}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-row mt-2">
         <div class="form-group col-md-8 ">
             <label for="idEndereco">ENDEREÇO:</label>
             <select class="form-control" id="idEndereco" style="width: 100%;" name="idEndereco" disabled>
@@ -55,24 +79,32 @@
                 {% endfor %}
             </select>
         </div>
+        <div class="form-group col-md-11 mt-2">
+            <label for="observacao">Observação:</label>
+            <input type="text" class="form-control" id="observacao" name="observacao" required maxlength="100" disabled
+                {{formEdit.observacao}}>
+        </div>
+    </div>
+    <div class="form-row border">
+        <table class="border w-100">
+            
+            <thead>
+                <tr>
+                    <th>Ocorrências do Chamado</th>
+                  
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <td>--</td>
+                
+                </tr>
+            </tbody>
+            
+        </table>
+   
     </div>
 
-    <div class="form-row">
-        <div class="form-group col-md-8">
-            <label for="observacao">Observação</label>
-            <input type="text" class="form-control" id="observacao" name="observacao" required maxlength="100"
-                {{formEdit.observacao}} />
-        </div>
-        <div class="form-group col-md-3">
-            <label for="idEndereco">SOLICITANTE:</label>
-            <select class="form-control" id="idUsuario" name="idUsuario" disabled>
-                {% for usuario in idUsuario %}
-                <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario.id %} selected="selected" {% endif %}>
-                    0{{user.id}} - {{user.first_name}} {{user.last_name}}
-                </option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
 </form>
 {% endblock %}

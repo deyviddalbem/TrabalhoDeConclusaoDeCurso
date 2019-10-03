@@ -94,7 +94,7 @@
                         {% else %}
 
                         {% endif %}
-                        <a class="btn" style="background: #4613ac; color: white;" href="#" title="Detalhes do Chamado">
+                        <a class="btn" style="background: #4613ac; color: white;" href="{% url 'Chamados:chamado_detalhado' chamado.id %}" title="Detalhes do Chamado">
                             <i class="material-icons">search</i></a>
                     </td>
                 </tr>

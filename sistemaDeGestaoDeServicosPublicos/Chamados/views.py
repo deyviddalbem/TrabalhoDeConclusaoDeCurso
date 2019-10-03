@@ -201,6 +201,29 @@ class ListChamados(ListView):
         context['id'] = self.id
         return context
 
+def detalheChamado(request, pk=None):
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
+        if pk:
+            chamado = get_object_or_404(Chamado, id=pk)
+            idStatus = Status.objects.filter(id=1)
+            idOrgao = Orgao.objects.all()
+            idTipoChamado = TipoChamado.objects.all()
+            idUsuario = User.objects.filter(id=request.user.id)
+            idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
+            nProtocolo = chamado.numeroProtocolo
+            dataAbertura = chamado.dataAbertura
+            dataConclusao = chamado.dataConclusao
+            formEdit = AtualizarChamadoForm(instance=chamado)
+            correnciasChamado = OcorrenciasChamado.objects.filter(idChamado=pk)
+            context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
+                       'idUsuario': idUsuario, 'idEndereco': idEndereco, 'nProtocolo' : nProtocolo, 'dataAbertura':dataAbertura, 'dataConclusao': dataConclusao, 'ocorrenciasChamado': OcorrenciasChamado }
+            return render(request, 'Chamados/Chamados/detalheChamado.html', context)
+        else:
+            chamado = None
+        
+
 def atualizarChamado(request, pk=None):
     if not request.user.is_authenticated:
         return render(request, 'Usuario/acessoNegado.html')
