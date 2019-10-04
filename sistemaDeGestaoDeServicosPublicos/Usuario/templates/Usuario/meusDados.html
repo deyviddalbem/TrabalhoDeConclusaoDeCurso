@@ -1,18 +1,16 @@
 <title>Meus Dados</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %} Meus Dados{% endblock titulo %}
 {% block centro %}
 {% if user.is_authenticated %}
 {% if dadosUserList %}
-<div class="mt-3 container text-center ">
-    <p style="color: #4613ac; font-size: 30px;">Meus Dados</p>
-</div>
 {% for user in dadosUserList %}
 <form>
     <div class="border container"
         style="color: #4613ac; display: flex; flex-direction: column; justify-content: space-around; ">
         <div class="container text-center">
-            <img class="mt-1 text-center" src="{{ request.session.profile_picture }}" alt=""
-                width="120" height="120">
+            <img class="mt-1 text-center rounded-circle" src="{{ request.session.profile_picture }}" alt=""
+                style="width: 150px;">
         </div>
         <div class="mt-3 ">
             <label style="text-transform: uppercase;" for="Nome">Nome: </label>

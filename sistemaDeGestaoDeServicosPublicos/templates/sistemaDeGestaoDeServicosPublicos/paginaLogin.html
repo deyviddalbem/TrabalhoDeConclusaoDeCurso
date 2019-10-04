@@ -6,10 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/select2.css' %}">
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/select2.css' %}">
     <link rel="stylesheet" href="{% static 'css/dashboard-itens.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/zocial.css' %}">
+    -->
+    <link rel="stylesheet" href="{% static 'tema/css/sb-admin-2.css' %}">
+    <link rel="stylesheet" href="{% static 'tema/vendor/fontawesome-free/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'tema/vendor/fontawesome-free/css/all.css' %}">
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,9 +24,14 @@
     <title>Pagina Inicial-SoliServ</title>
 </head>
 
-<body class="acessibilidade" onresize="verificaSide()">
+<body class="acessibilidade bg-gradient-primary" onresize="verificaSide()">
   {% block centro %}
   {% endblock %}
 </body>
+<script src="{% static 'jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'tema/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<script src="{% static 'tema/js/sb-admin-2.js' %}"></script>
+<script src="{% static 'tema/js/sb-admin-2.js' %}"></script>
 
 </html>
