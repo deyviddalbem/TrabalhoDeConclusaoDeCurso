@@ -2,7 +2,7 @@
 {% extends 'Orgao/index.html' %}
 {% block centroOrgao %}
 <form method="POST" class="container">
-    <h3 class="text-center mt-5" style="color: #4613ac;">Detalhes do Chamado</h3>
+    <h3 class="text-center mt-5" style="color: #4613ac;">Detalhes do Chamado - {{ nProtocolo }}</h3>
     <div class="form-row mt-5">
         <div class="form-group col-md-3">
             <label for="numeroProtocolo">Protocolo:</label>
@@ -72,7 +72,7 @@
             <label for="idStatus">STATUS:</label>
             <select class="form-control" id="idStatus" name="idStatus" disabled>
                 {% for status in idStatus %}
-                <option value="{{status.pk}}" {% if status.pk == formEdit.idStatus.id %} selected="selected"
+                <option value="{{status.pk}}" {% if status.pk == formEdit.idStatus.id %} 
                     {% endif %}>
                     0{{status.id}} - {{status.descricao}}
                 </option>

@@ -66,6 +66,7 @@
         <div  class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
             <table id="tabela">
                 <tr>
+                        <th>ID</th>
                     <th>NÚMERO DO PROTOCOLO</th>
                     <th>DATA DE ABERTURA</th>
                     <th>TIPO DO CHAMADO</th>
@@ -75,6 +76,7 @@
                 </tr>
                 {% for chamado in lista_chamados %}
                 <tr>
+                        <td>{{chamado.id}}</td>
                     <td>{{chamado.numeroProtocolo}}</td>
                     <td>{{chamado.dataAbertura}}</td>
                     <td>{{chamado.idTipoChamado.descricaoTipoChamado}}</td>
@@ -86,7 +88,7 @@
                     {% elif chamado.idStatus.pk == 2 %}
                     <td style="color: red">{{chamado.idStatus.descricao}}</td>
                     {% endif %}
-                    <td>
+                    <td class="border">
                         {% if chamado.idStatus.pk != 2 %}
                         <a class="btn mb-3" style="background: #4613ac; color: white;"
                             href="{% url 'Orgao:atualizar_chamados_orgao' chamado.id %}" title="Editar Chamado">
@@ -94,8 +96,14 @@
                         {% else %}
 
                         {% endif %}
-                        <a class="btn" style="background: #4613ac; color: white;" href="#" title="Detalhes do Chamado">
-                            <i class="material-icons">search</i></a>
+                        <a class="btn mb-3" style="background: #4613ac; color: white;" href="{% url 'Chamados:chamado_detalhado' chamado.id %}" title="Detalhes do Chamado">
+                            <i class="material-icons">search</i>
+                        </a>
+                        <a class="btn" style="background: #4613ac; color: white;" href="{% url 'Orgao:cadastrar_ocorrencias_chamados' chamado.id%}" title="Adicionar ocorrências do Chamado">
+                                <i class="material-icons">add_alert</i>
+                            </a>
+                            
+                           
                     </td>
                 </tr>
                 {% endfor %}

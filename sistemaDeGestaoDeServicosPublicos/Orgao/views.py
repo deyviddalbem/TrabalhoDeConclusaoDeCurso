@@ -5,11 +5,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from .models import Lotacao, Orgao, TipoLotacao
-from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm, CadastroLotacaoForm, AtualizarLotacaoForm,atualizarChamadosOrgaoForm
+from Orgao.forms import CadastroOrgaoForm, CadastroTipoLotacaoForm, CadastroLotacaoForm, AtualizarLotacaoForm,atualizarChamadosOrgaoForm, CadastrarOcorrenciasChamadoForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import PermissionDenied
-from Chamados.models import Chamado, Status, TipoChamado
+from Chamados.models import Chamado, Status, TipoChamado, OcorrenciasChamado
 from Usuario.models import Endereco
 from Chamados.forms import AtualizarChamadoForm
 
@@ -250,13 +250,37 @@ def atualizarChamadoOrgao(request, pk=None):
             else: 
                 return HttpResponse("deu pau")
         else:
-            idStatus = Status.objects.all()
+            idStatus = Status.objects.filter(id=chamado.idStatus.id)
             idOrgao = Orgao.objects.all()
-            idTipoChamado = TipoChamado.objects.all()
-            idUsuario = User.objects.filter(id=request.user.id)
-            idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
+            idTipoChamado = TipoChamado.objects.filter(id=chamado.idTipoChamado.id)
+            idUsuario = User.objects.filter()
+            idEndereco = Endereco.objects.all()
             nProtocolo = chamado.numeroProtocolo
             formEdit = atualizarChamadosOrgaoForm(instance=chamado)
             context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
                        'idUsuario': idUsuario, 'idEndereco': idEndereco, 'nProtocolo' : nProtocolo }
             return render(request, 'ChamadosOrgao/atualizarChamadosOrgao.html', context)
+
+
+def CadastroOcorrenciasChamado(request, pk=None):
+    if not request.user.has_perm('OcorrenciasChamado.add_OcorrenciasChamado'):
+        return render(request, 'Orgao/bloqueioDeAcesso.html')
+    else:
+        if not request.user.is_authenticated:
+            return render(request, 'Usuario/acessoNegado.html')
+        else:
+            if pk:
+                idOcorrencia = get_object_or_404(OcorrenciasChamado, id=pk)
+            else:
+                idOcorrencia = None
+
+            formEdit = CadastrarOcorrenciasChamadoForm(request.POST, instance=idOcorrencia)
+            if request.method == 'POST':
+                if formEdit.is_valid():
+                    formEdit.save()
+                    return redirect('Orgao:lista_chamados_orgao')
+            else:
+                formEdit = CadastrarOcorrenciasChamadoForm(instance=idOcorrencia)
+                
+                context = {'formEdit': formEdit}
+            return render(request, 'ChamadosOrgao/adcionarOcorrencias.html', context)

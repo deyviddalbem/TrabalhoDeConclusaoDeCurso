@@ -207,18 +207,18 @@ def detalheChamado(request, pk=None):
     else:
         if pk:
             chamado = get_object_or_404(Chamado, id=pk)
-            idStatus = Status.objects.filter(id=1)
+            idStatus = Status.objects.filter(id=chamado.idStatus.id)
             idOrgao = Orgao.objects.all()
-            idTipoChamado = TipoChamado.objects.all()
+            idTipoChamado = TipoChamado.objects.filter(id=chamado.idTipoChamado.id)
             idUsuario = User.objects.filter(id=request.user.id)
             idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
             nProtocolo = chamado.numeroProtocolo
             dataAbertura = chamado.dataAbertura
             dataConclusao = chamado.dataConclusao
             formEdit = AtualizarChamadoForm(instance=chamado)
-            correnciasChamado = OcorrenciasChamado.objects.filter(idChamado=pk)
+            ocorrenciasChamado = OcorrenciasChamado.objects.filter(idChamado=pk)
             context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
-                       'idUsuario': idUsuario, 'idEndereco': idEndereco, 'nProtocolo' : nProtocolo, 'dataAbertura':dataAbertura, 'dataConclusao': dataConclusao, 'ocorrenciasChamado': OcorrenciasChamado }
+                       'idUsuario': idUsuario, 'idEndereco': idEndereco, 'nProtocolo' : nProtocolo, 'dataAbertura':dataAbertura, 'dataConclusao': dataConclusao, 'ocorrenciasChamado': ocorrenciasChamado }
             return render(request, 'Chamados/Chamados/detalheChamado.html', context)
         else:
             chamado = None
@@ -242,9 +242,9 @@ def atualizarChamado(request, pk=None):
             else: 
                 return HttpResponse("deu pau")
         else:
-            idStatus = Status.objects.filter(id=1)
+            idStatus = Status.objects.all()
             idOrgao = Orgao.objects.all()
-            idTipoChamado = TipoChamado.objects.all()
+            idTipoChamado = TipoChamado.objects.filter(id=chamado.idTipoChamado.id)
             idUsuario = User.objects.filter(id=request.user.id)
             idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
             nProtocolo = chamado.numeroProtocolo

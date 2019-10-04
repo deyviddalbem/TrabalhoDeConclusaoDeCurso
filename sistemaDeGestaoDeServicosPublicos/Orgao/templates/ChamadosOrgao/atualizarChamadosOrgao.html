@@ -8,12 +8,12 @@
             <div class="form-group col-md-3">
                     <label for="numeroProtocolo">Protocolo:</label>
                     <input type="text" style="color: white;" class="form-control bg-danger" id="numeroProtocolo" name="numeroProtocolo" 
-                        value="{{ nProtocolo }}" />
+                      disabled  value="{{ nProtocolo }}" />
                  
                 </div>
         <div class="form-group col-md-3 ">
             <label for="idOrgao">ÓRGÃO:</label>
-            <select class="form-control" id="idOrgao" name="idOrgao" >
+            <select class="form-control" id="idOrgao" name="idOrgao" disabled >
                 {% for Orgao in idOrgao %}
                 <option value="{{Orgao.pk}}" {% if Orgao.pk == formEdit.idOrgao.id %} selected="selected" {% endif %}>
                     {{ Orgao.nomeOrgao }}
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group col-md-5">
             <label for="idTipoChamado">SERVIÇO:</label>
-            <select class="form-control" id="idTipoChamado" style="width: 100%;" name="idTipoChamado" >
+            <select class="form-control" id="idTipoChamado" style="width: 100%;" name="idTipoChamado" disabled >
                 {% for tipoChamado in idTipoChamado %}
                 <option value="{{tipoChamado.pk}}" {% if tipoChamado.pk == formEdit.idTipoChamado.id %}
                     selected="selected" {% endif %}>{{ tipoChamado.descricaoTipoChamado }}
@@ -35,7 +35,7 @@
     <div class="form-row">
         <div class="form-group col-md-8 ">
             <label for="idEndereco">ENDEREÇO:</label>
-            <select class="form-control" id="idEndereco" style="width: 100%;" name="idEndereco" >
+            <select class="form-control" id="idEndereco" style="width: 100%;" name="idEndereco" disabled >
                 {% for endereco in idEndereco %}
                 <option value="{{endereco.pk}}" {% if endereco.pk == formEdit.idEndereco.id %} selected="selected"
                     {% endif %}>
@@ -47,26 +47,26 @@
         </div>
         <div class="form-group col-md-3 ">
             <label for="idStatus">STATUS:</label>
-            <select class="form-control" id="idStatus" style="color: red;" name="idStatus" autofocus>
+            <select class="form-control" id="idStatus" style="color: red;" name="idStatus" autofocus >
                 {% for status in idStatus %}
                 <option value="{{status.pk}}" {% if status.pk == formEdit.idStatus.id %} selected="selected"
                     {% endif %}>
-                    0{{status.id}} - {{status.descricao}}
+                    0{{ status.id }} - {{status.descricao}}
                 </option>
                 {% endfor %}
             </select>
         </div>
     </div>
-
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="observacao">Observação</label>
             <input type="text" class="form-control" id="observacao" name="observacao" required maxlength="100"
-               {{formEdit.observacao}} />
+            {{formEdit.observacao}}/>
         </div>
+        
         <div class="form-group col-md-5">
             <label for="idUsuario">SOLICITANTE:</label>
-            <select class="form-control" id="idUsuario" name="idUsuario" >
+            <select class="form-control" id="idUsuario" name="idUsuario" disabled >
                 {% for usuario in idUsuario %}
                 <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario.id %} selected="selected" {% endif %}>
                     0{{user.id}} - {{user.first_name}} {{user.last_name}}
