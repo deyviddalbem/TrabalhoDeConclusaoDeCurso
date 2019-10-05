@@ -33,7 +33,7 @@ def index(request):
 class CriarCadastro(CreateView):
     model = User
     form_class = PessoaUserForm
-    template_name = "Usuario/cadastroUsuario.html"
+    template_name = "Usuario/cadastroUsuarioOriginal.html"
     success_url = reverse_lazy('login')
 
 class AtualizarCadastro(UpdateView):
