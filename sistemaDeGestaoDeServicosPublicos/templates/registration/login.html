@@ -19,32 +19,29 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Bem Vindo!</h1>
                                 </div>
                                 <form class="user " method="POST">{% csrf_token %}
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user"
-                                            id="username" name="username" aria-describedby="emailHelp"
+                                        <input type="text" class="form-control form-control-user" id="username"
+                                            name="username" aria-describedby="emailHelp"
                                             placeholder="Enter Email Address...">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="password" name="password" placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" id="password"
+                                            name="password" placeholder="Password">
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Remember Me</label>
+                                            <label class="custom-control-label" for="customCheck">Visualizar Senha</label>
                                         </div>
                                     </div>
-                                  
-                                    <input type="submit"  class="btn btn-primary btn-user btn-block" value="Login">
+
+                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
                                     <hr>
-                                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <a href="{% url 'social:begin' 'google-oauth2' %}" title="Efetuar o Login com o Google" class="btn btn-google btn-user btn-block">
                                         <i class="fab fa-google fa-fw"></i> Login with Google
-                                    </a>
-                                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                     </a>
                                 </form>
                                 <hr>
@@ -52,7 +49,7 @@
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="register.html">Create an Account!</a>
+                                    <a class="small" title="Efetuar Cadastro" href="{% url 'cadastrar' %}">Create an Account!</a>
                                 </div>
                             </div>
                         </div>
@@ -65,5 +62,14 @@
     </div>
 
 </div>
-
+<script>
+    //função para visualizar a senha quando clicar no texto
+    var senha = $('#password');
+    if (document.getElementById("#customCheck").selected = True){
+        senha.attr("type", "text"); 
+    }
+    else{
+        senha.attr("type", "password"); 
+    }
+</script>
 {% endblock %}
