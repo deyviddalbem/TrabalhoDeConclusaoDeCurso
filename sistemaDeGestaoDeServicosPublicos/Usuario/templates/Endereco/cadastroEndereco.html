@@ -65,10 +65,11 @@
         {% if form.errors %}
         <p class="container text-center alert alert-danger mt-3">Usuário ou senha incorretos!</p>
         {% endif %}
-        <input type="submit" title="Cadastrar Endereço" class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;"
+        <input type="submit" title="Cadastrar Endereço" class="btn  ml-2 mb-3 mt-3 btn bg-gradient-primary" style=" color: white;"
             value="Salvar Endereço">
-            <a class="btn" style=" background-color: #4613ac; color: white;"
-            href="{% url 'listaEnderecos' %}" title="Lista de Endereços"><i class="material-icons">list</i></a>
+            <a class="btn bg-gradient-primary" style="color: white;"
+            href="{% url 'listaEnderecos' %}" title="Lista de Endereços"><i class="fas fa-list-ul"></i>
+        </a>
     </form>
     {% else %}
     <div class="container text-center alert alert-danger mt-3">

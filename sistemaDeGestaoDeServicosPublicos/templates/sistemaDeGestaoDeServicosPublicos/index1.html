@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{% static 'tema/vendor/fontawesome-free/css/all.css' %}">
   <link rel="stylesheet" href="{% static 'tema/vendor/fontawesome-free/css/all.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'img/avatar_2x.png' %}">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,7 +21,7 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-  
+
   <title>SoliServ - Página Inicial</title>
 
   <!-- Custom fonts for this template-->
@@ -38,9 +39,9 @@
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
+      <div class="vw-plugin-top-wrapper"></div>
     </div>
-</div>
+  </div>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -57,9 +58,6 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -81,7 +79,7 @@
       <hr class="sidebar-divider d-none d-md-block">
 
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'listaEnderecos' %}" title="Listar Meus Chamados">
+        <a class="nav-link" href="{% url 'Chamados:lista_chamado' user.id %}" title="Listar Meus Chamados">
           <i class="fas fa-list"></i>
           <span>Meus Chamados</span></a>
       </li>
@@ -157,49 +155,7 @@
                 </form>
               </div>
             </li>
-            <!-- Dropdown - Alerts -->
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-              aria-labelledby="alertsDropdown">
-              <h6 class="dropdown-header">
-                Alerts Center
-              </h6>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="mr-3">
-                  <div class="icon-circle bg-primary">
-                    <i class="fas fa-file-alt text-white"></i>
-                  </div>
-                </div>
-                <div>
-                  <div class="small text-gray-500">December 12, 2019</div>
-                  <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                </div>
-              </a>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="mr-3">
-                  <div class="icon-circle bg-success">
-                    <i class="fas fa-donate text-white"></i>
-                  </div>
-                </div>
-                <div>
-                  <div class="small text-gray-500">December 7, 2019</div>
-                  $290.29 has been deposited into your account!
-                </div>
-              </a>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="mr-3">
-                  <div class="icon-circle bg-warning">
-                    <i class="fas fa-exclamation-triangle text-white"></i>
-                  </div>
-                </div>
-                <div>
-                  <div class="small text-gray-500">December 2, 2019</div>
-                  Spending Alert: We've noticed unusually high spending for your account.
-                </div>
-              </a>
-              <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-            </div>
-            </li>
-
+            <!-- Acessiblidade -->
             <li class="nav-item active">
               <a class="nav-link acessibilidade" onClick="fonte('a');" href="#" title="Aumentar Tamanho da Fonte">
                 <i class="far fa-arrow-alt-circle-up"></i>
@@ -218,7 +174,7 @@
             </li>
             <div class="topbar-divider d-none d-sm-block"></div>
 
-            <!-- Nav Item - User Information -->
+            <!-- Nav Item - informacoes do Usuario -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -231,7 +187,7 @@
                 {% if user.is_authenticated %}
                 <img class="img-profile rounded-circle" src="{{ request.session.profile_picture }}">
                 {% else %}
-                <img class="img-profile rounded-circle" src="{% static url 'img/avatar_2x.png' %}">
+                <img class="img-profile rounded-circle" src="{% static 'img/avatar_2x.png' %}">
                 {% endif %}
               </a>
               <!-- Dropdown - User Information -->
@@ -321,9 +277,13 @@
       <script src="{% static 'tema/js/sb-admin-2.js' %}"></script>
       <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
       <script src="{% static 'js/sidebar.js'%}"></script>
+      <script src="{% static 'tema/js/demo/datatables-demo.js' %}"></script>
+      <script src="{% static 'tema/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+      <script src="{% static 'tema/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
       <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+     
       <script>
-          new window.VLibras.Widget('https://vlibras.gov.br/app');
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
       </script>
 
 </body>

@@ -37,7 +37,9 @@
                                             <label class="custom-control-label" for="customCheck">Visualizar Senha</label>
                                         </div>
                                     </div>
-
+                                    {% if form.errors %}
+                                    <p class=" alert alert-danger text-black text-center">Usuário ou Senha incorretos!</p>
+                                    {% endif %}
                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
                                     <hr>
                                     <a href="{% url 'social:begin' 'google-oauth2' %}" title="Efetuar o Login com o Google" class="btn btn-google btn-user btn-block">

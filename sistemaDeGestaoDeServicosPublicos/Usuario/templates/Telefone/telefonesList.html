@@ -1,40 +1,47 @@
 <title>Meus Telefones</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %}
+Meus Telefones
+{% endblock titulo %}
 {% block centro %}
 {% if user.is_authenticated %}
 {% if telefones_list %}
-<div class="mt-3 container text-center ">
-    <p style="color: #4613ac; font-size: 30px;">Meus Telefones</p>
-</div>
+
 <div>
-    <div class="section-2" style="overflow-x: auto;">
-        <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
-            <table id="tabela">
-                <tr>
-                    <th>ID</th>
-                    <th>Numero do Telefone</th>
-                    <th>Tipo Telefone</th>
-                    <th>Ação</th>
-                </tr>
-                {% for telefone in telefones_list %}
-                <tr>
-                    <td>{{telefone.id}}</td>
-                    <td>{{telefone.numero}}</td>
-                    <td>{{telefone.idTipoTelefone.descricao}}</td>
-                    <td>
-                            <a class="btn" style="background: #4613ac; color: white;" href="{% url 'telefone_atualizar' telefone.id %}"
-                           title="Editar Telefone">
-                            <i class="material-icons">edit</i></a>
-                        <a class="btn btn-danger" style="color: white;" href="{% url 'telefone_deletar' telefone.id %}"
-                            title="Excluir Telefone">
-                            <i class="material-icons">delete</i></a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
+    <div>
+        <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th  title="Clique para Ordenar ">TELEFONE</th>
+                    <th  title="Clique para Ordenar ">TIPO DE TELEFONE</th>
+                    <th  title="Clique para Ordenar ">AÇÃO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for telefone in telefones_list %}
+                    <tr>
+                        <td>{{telefone.numero}}</td>
+                        <td>{{telefone.idTipoTelefone.descricao}}</td>
+                        <td>
+                            <a class="bg-gradient-primary btn-circle mt-2" style="color: white;" href="{% url 'telefone_atualizar' telefone.id %}"
+                               title="Editar Telefone">
+                               <i class="fas fa-edit"></i>
+                            </a>
+                            <a  class="btn-danger btn-circle" style="color: white;" href="{% url 'telefone_deletar' telefone.id %}"
+                                title="Excluir Telefone">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
     </div>
-    <a class="btn  ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'cadastroTelefone' %}"
+    <a class=" btn bg-gradient-primary  ml-2 mb-3 mt-3" style="color: white;" href="{% url 'cadastroTelefone' %}"
         title="Cadastrar Telefone">Cadastrar
         Novo Telefone
     </a>

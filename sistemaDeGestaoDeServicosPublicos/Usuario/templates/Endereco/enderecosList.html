@@ -1,47 +1,61 @@
 <title>SoliServ-Meus Endereços</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %}
+Meus Endereços
+{% endblock titulo%}
 {% block centro %}
 {% if user.is_authenticated %}
-<div class="mt-3 container text-center ">
-    <p style="color: #4613ac; font-size: 30px;">Meus Endereços</p>
-</div>
-<div class="section-2">
-    <div class="w-100 mt-3 mb-3 table-holder rounded shadow-sm" style="overflow-x: auto; ">
-        {% if enderecos_list %}
-        <table class="text-center">
-            <tr>
-                <th>CEP</th>
-                <th>LOGRADOURO</th>
-                <th>NÚMERO</th>
-                <th>COMPLEMENTO</th>
-                <th>BAIRRO</th>
-                <th>OBSERVAÇÃO</th>
-                <th>AÇÃO</th>
-            </tr>
-            {% for enderecos in enderecos_list %}
-            <tr>
-                <td>{{enderecos.cep}}</td>
-                <td>{{enderecos.logradouro}}</td>
-                <td>{{enderecos.enderecoNumero}}</td>
-                <td>{{enderecos.complemento}} </td>
-                <td>{{enderecos.bairro}}</td>
-                <td>{{enderecos.observacao}}</td>
-                <td>
-                        <a class="btn mb-1" style=" background-color: #4613ac; color: white;"
-                        href="{% url 'endereco_atualizar' enderecos.id %}" title="Atualizar Endereco"> <i class="material-icons">edit</i></a></a>
-                    <a class="btn btn-danger mb-2" style="color: white;"
-                        href="{% url 'endereco_deletar' enderecos.id  %}" title="Excluir Endereco">
-                        <i class="material-icons">delete</i></a>
-                   
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-        <p class=" mt-1" style="color: #4613ac;"> Obs: Algumas informações cadastradas, são ocultadas para facilitar a
-            compreensão.</p>
+<div>
+    <div>
+        <div class="card-body">
+            {% if enderecos_list %}
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>CEP</th>
+                            <th>LOGRADOURO</th>
+                            <th>NÚMERO</th>
+                            <th>COMPLEMENTO</th>
+                            <th>BAIRRO</th>
+                            <th>OBSERVAÇÃO</th>
+                            <th>AÇÃO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for enderecos in enderecos_list %}
+                        <tr>
+                            <td>{{enderecos.cep}}</td>
+                            <td>{{enderecos.logradouro}}</td>
+                            <td>{{enderecos.enderecoNumero}}</td>
+                            <td>{{enderecos.complemento}} </td>
+                            <td>{{enderecos.bairro}}</td>
+                            <td>{{enderecos.observacao}}</td>
+                            <td>
+                                <a class="bg-gradient-primary btn-circle" style="color: white;"
+                                    href="{% url 'endereco_atualizar' enderecos.id %}" title="Atualizar Endereco">   
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a class="bg-gradient-danger btn-circle" style="color: white;"
+                                    href="{% url 'endereco_deletar' enderecos.id  %}" title="Excluir Endereco">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p class=" mt-1" style="color: #4613ac;"> Obs: Algumas informações cadastradas, são ocultadas para
+                    facilitar a
+                    compreensão.</p>
+            </div>
+        </div>
     </div>
-    <a class="btn ml-2 mb-3 mt-3" style="background-color: #4613ac; color: white;" href="{% url 'cadastroEndereco' %}"
-        title="Cadastrar Endereço">Cadastrar Novo Endereço</a>
+</div>
+</div>
+<a class="btn ml-2 mb-3 mt-3 bg-gradient-primary" style="color: white;" href="{% url 'cadastroEndereco' %}"
+    title="Cadastrar Endereço">Cadastrar Novo Endereço</a>
 </div>
 {% else %}
 <div class="text-center">
