@@ -1,12 +1,16 @@
 <title>SoliServ- Escolhe Vinculo</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+
+{% block titulo %}
+Escolher Lotação
+{% endblock titulo %}
+
 {% block centro %}
 <div class="container">
     <div id="menuOrgao">
         <form action="" method="POST">
                 {% csrf_token %}
             <div class="form-group text-center">
-                <label  class="mt-3 text-center" for="idOrgao">Escolher Vínculo</label>
                 <select class="form-control" id="idOrgao" name="idOrgao">
                     {% for v in userServidor %}
                     <option value="{{v.idOrgao.id}}">{{ v.idOrgao.nomeOrgao }}</option>

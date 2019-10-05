@@ -1,10 +1,11 @@
 <title>SoliServ- Semosp</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %} 
+{{orgaoSelecionado.nomeOrgao}}
+{% endblock titulo %}
 {% block centro %}
 <main id="Orgao" class="container">
-    <div id="tituloOrgao" class="container pb-2 pt-2">
-        <h3>{{orgaoSelecionado.nomeOrgao}}</h3>
-    </div>
+ 
     <div class="border">
         {% block centroOrgao %}
         <div class="container border text-center">
