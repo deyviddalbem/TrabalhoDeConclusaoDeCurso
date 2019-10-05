@@ -1,11 +1,16 @@
 <title>SoliServ-Excluir Meu Telefone</title>
 {% extends 'sistemaDeGestaoDeServicosPublicos/index1.html' %}
+{% block titulo %}
+Remover endereço
+{% endblock titulo %}
 {% block centro %}
 <div class="container text-center mt-5">
     <form method="post">{% csrf_token %}
-        <h3 class="text-center">Remover endereço</h3>
         <h6 class="alert alert-danger">Tem certeza que deseja remover "{{ object }}"?</h6>
-        <input type="submit" class="btn btn-primary mt-3" value="Confirmar">
+        <input type="submit" class="btn bg-gradient-danger text-white" value="Confirmar">
+       <a class="btn bg-gradient-primary text-white" href="{% url 'listaEnderecos' %}" title="Lista de Endereços">
+           <i class="fas fa-list-ul"> Cancelar</i>
+    </a>
     </form>
 </div>
 {% endblock%}

@@ -124,9 +124,12 @@ def cadastroEndereco(request):
 
 ##### Função que lista os enderecos #####
 def enderecosList(request):
-    enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
-    context = {'enderecos_list': enderecos_list}
-    return render(request, 'Endereco/enderecosList.html', context)
+    if not request.user.is_authenticated:
+        return render(request, 'Usuario/acessoNegado.html')
+    else:
+        enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
+        context = {'enderecos_list': enderecos_list}
+        return render(request, 'Endereco/enderecosList.html', context)
 
 class ListarEnderecos(ListView):
     template_name = "Endereco/enderecosList.html"

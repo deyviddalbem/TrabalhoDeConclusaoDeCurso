@@ -1,11 +1,12 @@
 <title>Cadastrar Telefone</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
 
+{% block titulo %}
+Cadastrar Telefone
+{% endblock titulo %}
+
 {% block centro %}
 {% if user.is_authenticated %}
-<div class="mt-3 container text-center">
-    <p style="color: #2369b3; font-size: 30px;">Cadastrar Telefone</p>
-</div>
 <form method="POST">
     {% csrf_token %}
     <div class="form-group">
@@ -29,9 +30,10 @@
             <option value="{{user.pk}}">{{ user }}</option>
         </select>
     </div>
-    <input type="submit" class="btn " style="background-color: #4613ac; color: white;" value="Salvar">
-    <a class="btn " style=" background-color: #4613ac; color: white;"
-    href="{% url 'listaTelefones' %}" title="Lista de Telefones"><i class="material-icons">list</i></a>
+    <input type="submit" class="btn bg-gradient-primary " style="color: white;" value="Salvar">
+    <a class="btn  bg-gradient-primary" style="color: white;" href="{% url 'listaTelefones' %}"
+        title="Lista de Telefones"><i class="fas fa-list-ul"></i>
+    </a>
 </form>
 {% else %}
 {% endif %}
