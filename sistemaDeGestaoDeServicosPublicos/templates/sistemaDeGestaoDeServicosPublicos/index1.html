@@ -35,7 +35,8 @@
 
 </head>
 
-<body id="page-top" class="acessibilidade">
+
+<body id="page-top" class="acessibilidade teste">
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
@@ -77,21 +78,28 @@
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
-
+      {% if user.is_authenticated %}
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'Chamados:lista_chamado' user.id %}" title="Listar Meus Chamados">
           <i class="fas fa-list"></i>
           <span>Meus Chamados</span></a>
       </li>
+      {% else %}
+      <li class="nav-item active">
+        <a class="nav-link" href="#" title="Listar Meus Chamados">
+          <i class="fas fa-list"></i>
+          <span>Meus Chamados</span></a>
+      </li>
+      {% endif %}
       <!-- Sidebar Toggler (Sidebar) -->
       <hr class="sidebar-divider d-none d-md-block">
       {% if request.session.temVinculo %}
-      <a class="mt-3 text-center w-60 " title="Clique para Escolher o Vínculo"
-        style="border-radius: 5px; background-color: white; color: black; " href="{% url 'Orgao:retorna_Lotacao' %}">
+      <a class="mt-3 text-center w-60 escolheVinculo" title="Clique para Escolher o Vínculo"
+        href="{% url 'Orgao:retorna_Lotacao' %}">
         {% if request.session.nomeVinculo %}
-        Vínculo: {{ request.session.nomeVinculo }}
+        <span> Vínculo: {{ request.session.nomeVinculo }}</span>
         {% else %}
-        Vínculo: Não selecionado
+        <span> Vínculo:Não selecionado</span>
         {% endif %}
       </a>
       {% else %}
@@ -257,12 +265,12 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Deseja Sair?</h5>
               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Selecione "Logout" para encerrar a Sessão.</div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
               <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>

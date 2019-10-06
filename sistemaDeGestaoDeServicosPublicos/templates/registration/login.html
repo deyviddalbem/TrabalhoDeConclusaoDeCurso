@@ -32,26 +32,30 @@
                                             name="password" placeholder="Password">
                                     </div>
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Visualizar Senha</label>
+                                        <div class=" container">
+                                            <img id="olho"
+                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" />
+                                            <label class="" for="olho">Visualizar Senha</label>
                                         </div>
                                     </div>
                                     {% if form.errors %}
-                                    <p class=" alert alert-danger text-black text-center">Usuário ou Senha incorretos!</p>
+                                    <p class=" alert alert-danger text-black text-center">Usuário ou Senha incorretos!
+                                    </p>
                                     {% endif %}
                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
                                     <hr>
-                                    <a href="{% url 'social:begin' 'google-oauth2' %}" title="Efetuar o Login com o Google" class="btn btn-google btn-user btn-block">
+                                    <a href="{% url 'social:begin' 'google-oauth2' %}"
+                                        title="Efetuar o Login com o Google" class="btn btn-google btn-user btn-block">
                                         <i class="fab fa-google fa-fw"></i> Login with Google
                                     </a>
                                 </form>
                                 <hr>
-                                <div class="text-center">
+                                <!-- <div class="text-center">
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
+                                </div> -->
                                 <div class="text-center">
-                                    <a class="small" title="Efetuar Cadastro" href="{% url 'cadastrar' %}">Create an Account!</a>
+                                    <a class="small" title="Efetuar Cadastro" href="{% url 'cadastrar' %}">Create an
+                                        Account!</a>
                                 </div>
                             </div>
                         </div>
@@ -64,14 +68,23 @@
     </div>
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <script>
     //função para visualizar a senha quando clicar no texto
     var senha = $('#password');
-    if (document.getElementById("#customCheck").selected = True){
-        senha.attr("type", "text"); 
-    }
-    else{
-        senha.attr("type", "password"); 
-    }
+    var olho = $("#olho");
+
+    olho.mousedown(function () {
+        senha.attr("type", "text");
+    });
+
+    olho.mouseup(function () {
+        senha.attr("type", "password");
+    });
+    // para evitar o problema de arrastar a imagem e a senha continuar exposta, 
+    //citada pelo nosso amigo nos comentários
+    $("#olho").mouseout(function () {
+        $("#senha").attr("type", "password");
+    });
 </script>
 {% endblock %}

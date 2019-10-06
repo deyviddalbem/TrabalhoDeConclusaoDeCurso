@@ -12,9 +12,6 @@ function fonte(e) {
     } else if (e == 'd') {
         elemento.css("fontSize", parseInt(fonte) - 1);
         console.log('diminuiu');
-    } else if (e == 'r') {
-        elemento.css("fontSize", parseInt(fonte) == 1 + 'em');
-        console.log('restaurou');
     }
 }
 

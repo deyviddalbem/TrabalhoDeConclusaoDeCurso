@@ -1,7 +1,17 @@
+.escolheVinculo{
+    border-radius: 5px;
+     background-color: white; 
+     color: black; 
+    }
+   .escolheVinculo:hover{
+      text-decoration: none;
+    }
+
 .AcessibilidadeFontes {
     display: flex;
     flex-direction: row;
 }
+
 
 .contrast,
 .contrast nav,
