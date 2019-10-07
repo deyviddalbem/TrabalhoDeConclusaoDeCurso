@@ -1,24 +1,21 @@
 <title>SoliServ-Atualizar Cadastro</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
 
-{% block title %}
-<title>Atualizar Cadastro</title>
+{% block titulo %}
+Atualizar Meus Dados
 {% endblock%}
 {% block centro %}
 <div class="container">
-    <div class="text-center">
-        <p style="color: #4613ac; font-size: 30px;">Atualizar Meus Dados</p>
-    </div>
     <form method="POST">
         <div class="col">
-            <div class="form-group align-right" style="color: #4613ac">
+            <div class="form-group align-right">
                 {% csrf_token %}
                 {{ form.as_p }}
             </div>
             {% if form.errors %}
             teste
             {% endif%}
-            <input class="btn" style="background-color: #4613ac; color: white;" type="submit" value="Atualizar">
+            <input class="btn bg-gradient-primary text-white"type="submit" title="atualizar Dados" value="Atualizar">
         </div>
     </form>
 </div>

@@ -1,4 +1,4 @@
-<title>Meus Dados</title>
+<title>SolsiServ-Meus Dados</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
 {% block titulo %} Meus Dados{% endblock titulo %}
 {% block centro %}
@@ -6,8 +6,7 @@
 {% if dadosUserList %}
 {% for user in dadosUserList %}
 <form>
-    <div class="border container"
-        style="color: #4613ac; display: flex; flex-direction: column; justify-content: space-around; ">
+    <div class=" container border">
         <div class="container text-center">
             <img class="mt-1 text-center rounded-circle" src="{{ request.session.profile_picture }}" alt=""
                 style="width: 150px;">
@@ -35,13 +34,17 @@
                 value="{{user.username}}">
         </div>
         <div class="container w-30">
-            <a class="btn   mb-3 w-30" style="background-color: #4613ac; color: white;"
-                href="{% url 'atualizarCadastro' user.id %}" title="Atualizar meus dados"><i
-                    class="material-icons">refresh</i>Atualizar Dados</a>
+            <a class="btn mb-3 w-30 bg-gradient-primary text-white" 
+                href="{% url 'atualizarCadastro' user.id %}" title="Atualizar meus dados">
+                <i class="fas fa-user-edit"></i>    
+                Atualizar Dados
+                </a>
 
-            <a class="btn   mb-3 w-30" style="background-color: #4613ac; color: white;"
-                href="{% url 'password_change' %}" title="Alterar Senha"><i class="material-icons">edit</i>Alterar
-                Senha</a>
+            <a class="btn mb-3 w-30 bg-gradient-primary text-white"
+                href="{% url 'password_change' %}" title="Alterar Senha">
+                <i class="far fa-sync-alt"></i>
+                Alterar Senha
+            </a>
         </div>
     </div>
 </form>

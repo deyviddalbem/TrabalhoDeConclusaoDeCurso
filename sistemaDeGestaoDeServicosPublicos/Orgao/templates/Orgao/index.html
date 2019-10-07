@@ -1,27 +1,164 @@
 <title>SoliServ- Semosp</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
-{% block titulo %} 
+{% block titulo %}
 {{orgaoSelecionado.nomeOrgao}}
 {% endblock titulo %}
 {% block centro %}
+<style>
+    #cartoes-orgao:hover {
+        border-style: solid;
+        border-color: blue;
+        border-width: 4px;
+    }
+
+    #titulo-cartoes:hover {
+        text-decoration: none;
+        color: red;
+    }
+
+    #cartoes-chamado:hover {
+        border-style: solid;
+        border-color: yellow;
+        border-width: 3px;
+    }
+
+    #titulo-chamado:hover {
+        text-decoration: none;
+        color: red;
+    }
+</style>
 <main id="Orgao" class="container">
- 
+
     <div class="border">
         {% block centroOrgao %}
         <div class="container border text-center">
-            <h4 class="text-center m-3">Referentes ao Orgão</h4>             
-                <a class="btn  mb-3" href="{% url 'Orgao:dados_orgao'%}" title="Visualizar os dados" style="background: #4613ac; color: white;">Órgão</a>
-                <a class="btn  mb-3" href="{% url 'Orgao:tipos_lotacao'%}"title="Visualizar os Tipos de lotação do órgão" style="background: #4613ac; color: white;">tipos de Lotação</a>
-                <a class="btn  mb-3" href="{% url 'Orgao:lista_lotacao'%}"title="Visualizar as Lotações do órgão" style="background: #4613ac; color: white;">Lotações</a>
-        </div>
-        <div class="container border text-center">
-            <h4 class="text-center m-3">Referentes ao Chamado</h4>
-                <a class="btn  mb-3" href="{% url 'Chamados:lista_tipo_chamado' %}"title="visualizar Tipo de Chamado" style="background: #4613ac; color: white;">Tipo de Chamado</a>
-                <a class="btn  mb-3" href="{% url 'Chamados:lista_status_chamado' %}"title="visualizar os Tipos de Status" style="background: #4613ac; color: white;">Status do Chamado</a>
-                <a class="btn  mb-3" href="{% url 'Chamados:lista_status_chamado' %}"title="visualizar os Tipos de Status" style="background: #4613ac; color: white;">Status do Chamado</a>
-                <a class="btn  mb-3" href="{% url 'Orgao:lista_chamados_orgao' %}"title="visualizar os Chamados" style="background: #4613ac; color: white;">Lista de Chamado</a>
-                
+            <!-- <h4 class="text-center m-3">Referentes ao Orgão</h4> -->
+            <div class="row text-center mt-3">
+                <div class="col-xl-3 col-md-6 mb-4 mt-2">
+                    <div class="card border-left-primary shadow h-100 py-2" id="cartoes-orgao">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Orgão</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <a id="titulo-cartoes" href="{% url 'Orgao:dados_orgao'%}">
+                                            Dados do Orgao
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4 mt-2">
+                    <div class="card border-left-primary shadow h-100 py-2" id="cartoes-orgao">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Orgão</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <a id="titulo-cartoes" href="{% url 'Orgao:tipos_lotacao'%}">
+                                            Tipos de Lotacao
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4 mt-2">
+                    <div class="card border-left-primary shadow h-100 py-2" id="cartoes-orgao">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Orgão</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <a id="titulo-cartoes" href="{% url 'Orgao:lista_lotacao'%}">
+                                            Lotações
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
+            <div class="form-row text-center">
+                <div class="col-xl-3 col-md-6 mb-4 mt-2">
+                    <div class="card border-left-warning shadow h-100 py-2" id="cartoes-chamado">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Chamado</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <a id="titulo-chamado" href="{% url 'Chamados:lista_tipo_chamado' %}">
+                                            Tipo de Chamado
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4 mt-2">
+                    <div class="card border-left-warning shadow h-100 py-2" id="cartoes-chamado">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Chamado</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <a id="titulo-chamado" href="{% url 'Chamados:lista_status_chamado' %}">
+                                            Status do Chamado
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4 mt-2">
+                    <div class="card border-left-warning shadow h-100 py-2" id="cartoes-chamado">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Chamado</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <a id="titulo-chamado" href="{% url 'Orgao:lista_chamados_orgao' %}">
+                                            Lista de Chamados
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-table fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {% endblock %}
     </div>
 </main>
