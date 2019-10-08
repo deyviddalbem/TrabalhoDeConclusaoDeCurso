@@ -188,7 +188,7 @@ def ListaChamados(request):
 class ListChamados(ListView):
     template_name = "Chamados/Chamados/listarChamado.html"
     context_object_name = 'chamados_list'
-    paginate_by = 5 
+    paginate_by = 10000
 
     def get_queryset(self):
         self.id = get_object_or_404(Chamado, id=self.kwargs['pk'])
