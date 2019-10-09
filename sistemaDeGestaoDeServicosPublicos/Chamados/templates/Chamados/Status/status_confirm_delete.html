@@ -1,12 +1,16 @@
 <title>SoliServ-Excluir Status</title>
+
 {% extends 'sistemaDeGestaoDeServicosPublicos/index1.html' %}
+{% block titulo %}
+Remover Status
+{% endblock titulo %}
 {% block centro %}
 {% block centroOrgao %}
 <div class="container text-center mt-5">
     <form method="post">{% csrf_token %}
-        <h3 class="text-center">Remover Status</h3>
+       
         <h6 class="alert alert-danger">Tem certeza que deseja remover o Status  "{{ object }}"?</h6>
-        <input type="submit" class="btn mt-3"style="background: #4613ac; color: white;" value="Confirmar">
+        <input type="submit" class="btn bg-gradient-danger text-white mt-3" value="Confirmar">
     </form>
 </div>
 {% endblock %}

@@ -1,9 +1,11 @@
 <title>SoliServ- Atualizar Status de Chamado</title>
 {% extends 'Orgao/index.html' %}
+{% block titulo %}
+Atualizar Status de Chamado
+{% endblock titulo %}
 {% block centroOrgao %}
 <form method="POST" class="container">
     {% csrf_token %}
-    <h4 class="text-center mt-3" style="color: #4613ac">Atualizar Status de Chamado</h4>
     <div class="form-row ">
         <div class="form-group w-100 ">
             <label for="descricao">Descrição do Status:</label>
@@ -12,9 +14,9 @@
         </div>
     </div>
 
-    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Cadastrar Status"
+    <input type="submit" class="btn bg-gradient-primary text-white  mb-3" title="Cadastrar Status"
         value="Atualizar">
-    <a class="btn  mb-3" href="{% url 'Chamados:lista_status_chamado'%}" style="background: #4613ac; color: white;"
+    <a class="btn bg-gradient-primary text-white  mb-3" href="{% url 'Chamados:lista_status_chamado'%}"
         title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
 </form>
 {% endblock %}

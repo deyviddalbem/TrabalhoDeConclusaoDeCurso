@@ -1,15 +1,16 @@
 <title>SoliServ- Cadastrar Lotação</title>
 
 {% extends 'Orgao/index.html' %}
-
+{% block titulo %}
+Cadastro de Lotação
+{% endblock titulo %}
 {% load staticfiles %}
 {% block centroOrgao %}
 
 
 <form method="POST" class="container">
     {% csrf_token %}
-    <h3 class="text-center mt-3" style="color: #4613ac;">Cadastro de Lotação</h3>
-   <div class="">
+   <div class=" mt-1">
         <div class="form-row">
                 <div class="form-group col-md-10">
                     <label for="idTipoLotacao">Tipo Lotação:</label>
@@ -57,9 +58,9 @@
     <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos e
         tente novamente!</p>
     {% endif %}
-    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Cadastrar Lotação"
+    <input type="submit"  class="btn bg-gradient-primary text-white  mb-3" title="Cadastrar Lotação"
         value="Cadastrar Lotação">
-    <a class="btn  mb-3" href="{% url 'Orgao:lista_lotacao'%}" style="background: #4613ac; color: white;"
+    <a class="btn bg-gradient-primary text-white mb-3" href="{% url 'Orgao:lista_lotacao'%}" 
         title="Voltar a Lista de Lotações"><i class="material-icons">undo</i></a>
 
 </form>

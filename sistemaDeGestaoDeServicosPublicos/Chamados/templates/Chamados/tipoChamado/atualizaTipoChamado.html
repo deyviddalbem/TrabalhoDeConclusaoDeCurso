@@ -1,9 +1,11 @@
 <title>SoliServ- Atualizar Tipo de Chamado</title>
 {% extends 'Orgao/index.html' %}
+{% block titulo %}
+Atualizar Tipo de Chamado
+{% endblock titulo %}
 {% block centroOrgao %}
 <form  method="POST" class="container">
     {% csrf_token %}
-    <h4 class="text-center mt-3" style="color: #4613ac">Atualizar Tipo de Chamado</h4>
     <div class="form-row">
         <label for="idOrgao">Orgão:</label>
         <select class="form-control" id="idOrgao" name="idOrgao">
@@ -19,9 +21,9 @@
             required {{formEdit.descricaoTipoChamado}} >
     </div>
 
-    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Atualizar Tipo de Chamado"
+    <input type="submit" class="btn bg-gradient-primary text-white  mb-3" title="Atualizar Tipo de Chamado"
         value="Atualizar Tipo de Chamado">
-    <a class="btn  mb-3" href="{% url 'Chamados:lista_tipo_chamado'%}" style="background: #4613ac; color: white;"
+    <a class="btn bg-gradient-primary text-white  mb-3" href="{% url 'Chamados:lista_tipo_chamado'%}"
         title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
 </form>
 {% endblock %}

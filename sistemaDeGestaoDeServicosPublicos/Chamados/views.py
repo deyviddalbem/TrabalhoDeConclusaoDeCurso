@@ -76,7 +76,7 @@ def atualizarTipoChamado(request, pk=None):
 
 class DeletarTipoChamado(DeleteView):
     model = TipoChamado
-    template_name = "Chamados/tipo_Chamado_confirm_delete.html"
+    template_name = "Chamados/tipoChamado/tipo_Chamado_confirm_delete.html"
     success_url = reverse_lazy('Chamados:lista_tipo_chamado')
 
 

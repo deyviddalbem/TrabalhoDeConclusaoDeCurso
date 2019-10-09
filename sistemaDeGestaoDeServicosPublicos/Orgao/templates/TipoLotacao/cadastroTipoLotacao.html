@@ -1,5 +1,8 @@
 <title>SoliServ- Cadastrar Tipo de Lotação</title>
 {% extends 'Orgao/index.html' %}
+{% block titulo %}
+Cadastrar tipo de lotação
+{% endblock titulo %}
 {% block centroOrgao %}
 <form action="." method="POST" class="container">
     {% csrf_token %}
@@ -7,9 +10,9 @@
         <label for="descricao">Descrição do Tipo de Lotação:</label>
         <input type="text" class="form-control" id="descricao" name="descricao" placeholder="descrição" maxlength="45" required autofocus>
     </div>
-    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Cadastrar Tipo Lotação"
+    <input type="submit" class="btn btn bg-gradient-primary text-white mb-3" title="Cadastrar Tipo Lotação"
         value="Cadastrar Tipo de Lotação">
-        <a class="btn  mb-3" href="{% url 'Orgao:tipos_lotacao'%}"style="background: #4613ac; color: white;" title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
+        <a class="btn bg-gradient-primary text-white mb-3" href="{% url 'Orgao:tipos_lotacao'%}" title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
 </form>
 {% endblock %}
 <!--testando222-->

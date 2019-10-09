@@ -1,5 +1,8 @@
 <title>SoliServ- Tipos de Lotacao</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %}
+Lista de Lotações
+{% endblock titulo %}
 {% block centro %}
 <main id="Orgao" class="container border">
     <div class="container">
@@ -7,11 +10,6 @@
         <form style="overflow-x: auto;">
             {% if lotacao_list %}
             <table class="table border mt-3">
-                <tr>
-                    <th colspan="6" class="text-center" style="color: #4613ac; text-transform: uppercase">Lista de
-                        Lotações
-                    </th>
-                </tr>
                 <tr> 
                     <th>DESCRIÇÃO DA LOTAÇÃO</th>
                     <th>USUÁRIO</th>
@@ -30,11 +28,11 @@
                     <td>{{lotacao.idOrgao.nomeOrgao}}</td>
                     <td>{{lotacao.observacao}}</td>
                     <td>
-                            <a  href="{% url 'Orgao:lotacao_atualizar' lotacao.id %}" class="btn" style="background: #4613ac; color: white;" title="Editar Lotação">
-                                    <i class="material-icons">edit</i>
+                            <a  href="{% url 'Orgao:lotacao_atualizar' lotacao.id %}" class="bg-gradient-primary text-white btn-circle"title="Editar Lotação">
+                                <i class="fas fa-edit"></i>
                             </a>
-                        <a  href="{% url 'Orgao:lotacao_deletar' lotacao.id %}" class="btn btn-danger" style="color: white;"title="Excluir Lotação">
-                                <i class="material-icons">delete</i>
+                        <a  href="{% url 'Orgao:lotacao_deletar' lotacao.id %}" class="bg-gradient-danger text-white btn-circle"title="Excluir Lotação">
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
@@ -83,11 +81,11 @@
                 {% endif %}
             </ul>
         </nav>
-        <a class="btn  mb-3" href="{% url 'Orgao:cadastro_Lotacao'%}" style="background: #4613ac; color: white;"
+        <a class="btn  mb-3  bg-gradient-primary text-white"  href="{% url 'Orgao:cadastro_Lotacao'%}"
             title="cadastrar nova Lotação">
             Cadastrar nova Lotação
         </a>
-        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}" style="background: #4613ac; color: white;"
+        <a class="btn  mb-3  bg-gradient-primary text-white"  href="{% url 'Orgao:orgao_index'%}"
             title="Voltar a HomePage">
             <i class="material-icons">home</i>
         </a>

@@ -1,16 +1,15 @@
 <title>SoliServ- Tipos de Lotacao</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %}
+Tipos de Lotação
+{% endblock titulo %}
 {% block centro %}
-<main id="Orgao" class="container border">
+<main id="Orgao" class="">
     <div class="container">
         {% block centroOrgao %}
         <form>
             {% if tipo_lotacao_list %}
             <table class="table border mt-3" style="text-transform: uppercase; overflow-x: auto">
-                <tr>
-                    <th colspan="1" class="text-center" style="color: #4613ac;">Tipos de Lotação</th>
-                    <th></th>
-                </tr>
                 <tr>
                     <th>Descrição</th>
                     <th>AÇÃO</th>
@@ -21,13 +20,13 @@
                         {{tipos.descricao}}
                     </td>
                     <td>
-                            <a class="btn" style="background: #4613ac; color: white;"
+                            <a class="bg-gradient-primary text-white btn-circle"
                             href="{% url 'Orgao:Tipo_lotacao_atualizar' tipos.id %}" title="Editar Tipo de Lotacao">
-                            <i class="material-icons">edit</i>
+                            <i class="fas fa-edit"></i>
                         </a>
-                        <a class="btn btn-danger" style="color: white;"
+                        <a class="bg-gradient-danger text-white btn-circle btn-circle"
                             href="{% url 'Orgao:tipo_lotacao_deletar' tipos.id %}" title="Excluir Tipo de Lotacao">
-                            <i class="material-icons">delete</i>
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
@@ -75,11 +74,11 @@
                 {% endif %}
             </ul>
         </nav>
-        <a class="btn  mb-3" href="{% url 'Orgao:cadastro_Tipo_Lotacao'%}" style="background: #4613ac; color: white;"
+        <a class="btn bg-gradient-primary text-white mb-3" href="{% url 'Orgao:cadastro_Tipo_Lotacao'%}" 
             title="cadastrar novo Tipo de Lotação">
             Cadastro Tipo Lotação
         </a>
-        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}" style="background: #4613ac; color: white;"
+        <a class="btn  bg-gradient-primary text-white mb-3" href="{% url 'Orgao:orgao_index'%}" 
             title="Voltar a HomePage">
             <i class="material-icons">home</i>
         </a>

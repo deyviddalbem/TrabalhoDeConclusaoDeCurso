@@ -28,11 +28,11 @@
                                 <td>{{chamado.idTipoChamado.descricaoTipoChamado}}</td>
                                 <td>{{chamado.idEndereco}}</td>
                                 {% if chamado.idStatus.pk == 1  %}
-                                <td style="color: green">{{chamado.idStatus.descricao}}</td>
+                                <td class="alert alert-success">{{chamado.idStatus.descricao}}</td>
                                 {% elif chamado.idStatus.pk == 3  %}
-                                <td style="color: yellow">{{chamado.idStatus.descricao}}</td>
+                                <td class="alert alert-warning">{{chamado.idStatus.descricao}}</td>
                                 {% elif chamado.idStatus.pk == 2 %}
-                                <td style="color: red">{{chamado.idStatus.descricao}}</td>
+                                <td class="alert alert-danger">{{chamado.idStatus.descricao}}</td>
                                 {% endif %}
                                 <td>
                                     {% if chamado.idStatus.pk == 1 %}

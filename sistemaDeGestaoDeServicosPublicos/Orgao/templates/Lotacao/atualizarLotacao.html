@@ -1,11 +1,13 @@
 <title>SoliServ- Tipos de Lotacao</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %}
+Atualizar Lotação
+{% endblock titulo %}
 {% block centro %}
 {% block centroOrgao %}
 <main id="Orgao" class="container border">
     <form method="POST" class="mt-3">
         {% csrf_token %}
-        <h3 class="text-center" style="color: #4613ac;">Atualizar Lotação</h3>
         <div class="form-row">
             <div class="form-group col-md-1">
                 <label for="">ID:</label>
@@ -54,10 +56,10 @@
             e
             tente novamente!</p>
         {% endif %}
-        <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Atualizar Lotação"
+        <input type="submit"  class="btn bg-gradient-primary text-white  mb-3" title="Atualizar Lotação"
             value="Atualizar Lotação">
-        <a class="btn  mb-3" href="{% url 'Orgao:lista_lotacao'%}" style="background: #4613ac; color: white;"
-            title="Voltar a Lista de Lotações">Lista de Lotações</a>
+        <a class="btn bg-gradient-primary text-white mb-3" href="{% url 'Orgao:lista_lotacao'%}"
+            title="Voltar a Lista de Lotações"><i class="material-icons">undo</i></a>
     </form>
 </main>
 {% endblock %}

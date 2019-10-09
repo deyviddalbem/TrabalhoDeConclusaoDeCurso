@@ -1,5 +1,8 @@
 <title>SoliServ- Tipos de Status</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %}
+Tipos de Status
+{% endblock titulo %}
 {% block centro %}
 <main id="Orgao" class="container border">
     <div class="container">
@@ -7,11 +10,6 @@
         <form>
             {% if status_list %}
             <table class="table border mt-3" style="text-transform: uppercase; overflow-x: auto">
-                <tr>
-                    <th colspan="2" class=" border text-center" style="color: #4613ac;">Tipos de Status</th>
-                    
-
-                </tr>
                 <tr>
                     <th>Descrição</th>
                     <th class="text-center">AÇÃO</th>
@@ -22,12 +20,12 @@
                         {{status.descricao}}
                     </td>
                     <td class="text-center">
-                        <a class="btn" style="background: #4613ac; color: white;" href="{% url 'Chamados:status_atualizar' status.id %}"
+                        <a class="bg-gradient-primary text-white btn-circle"  href="{% url 'Chamados:status_atualizar' status.id %}"
                             title="AtualizarStatus de Chamado">
-                            <i class="material-icons">edit</i>
+                            <i class="fas fa-edit"></i>
                         </a>
-                        <a class="btn btn-danger" style="color: white;" href="{% url 'Chamados:status_deletar' status.id %}" title="Excluir Status do Chamado">
-                            <i class="material-icons">delete</i>
+                        <a class="bg-gradient-danger text-white btn-circle" href="{% url 'Chamados:status_deletar' status.id %}" title="Excluir Status do Chamado">
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
@@ -75,11 +73,11 @@
                 {% endif %}
             </ul>
         </nav>
-        <a class="btn  mb-3" href="{% url 'Chamados:cadastro_status_chamado'%}" style="background: #4613ac; color: white;"
+        <a class="btn bg-gradient-primary text-white mb-3" href="{% url 'Chamados:cadastro_status_chamado'%}"
             title="cadastrar Status de Chamado">
             Cadastro Novo Status
         </a>
-        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index' %}" style="background: #4613ac; color: white;"
+        <a class="btn bg-gradient-primary text-white mb-3" href="{% url 'Orgao:orgao_index' %}" 
             title="Voltar a HomePage">
             <i class="material-icons">home</i>
         </a>

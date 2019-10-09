@@ -1,5 +1,8 @@
 <title>SoliServ- Tipos de Chamados</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %}
+Tipos de Chamados
+{% endblock titulo %}
 {% block centro %}
 <main id="Orgao" class="container border">
     <div class="container">
@@ -7,11 +10,6 @@
         <form>
             {% if tipo_chamado_list %}
             <table class="table border mt-3" style="text-transform: uppercase; overflow-x: auto">
-                <tr>
-                    <th colspan="2"   class=" border text-center" style="color: #4613ac;">Tipos de Chamados</th>
-                    <th class="border-left"></th>
-                   
-                </tr>
                 <tr>
                     <th>Descrição</th>
                     <th class="text-center">ORGÂO</th>
@@ -26,13 +24,13 @@
                         {{tipos.idOrgao.nomeOrgao}}
                     </td>
                     <td class="text-center">
-                            <a class="btn" style="background: #4613ac; color: white;"
+                            <a class="bg-gradient-primary text-white btn-circle"
                             href="{% url 'Chamados:tipo_chamado_atualizar' tipos.id %}" title="Editar Tipo de Chamado">
-                            <i class="material-icons">edit</i>
+                            <i class="fas fa-edit"></i>
                         </a>
-                        <a class="btn btn-danger" style="color: white;"
+                        <a class="bg-gradient-danger text-white btn-circle " 
                             href="{% url 'Chamados:tipo_chamado_deletar' tipos.id %}" title="Excluir Tipo de Chamado">
-                            <i class="material-icons">delete</i>
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
@@ -80,11 +78,11 @@
                 {% endif %}
             </ul>
         </nav>
-        <a class="btn  mb-3" href="{% url 'Chamados:cadastro_tipo_chamado'%}" style="background: #4613ac; color: white;"
+        <a class="btn bg-gradient-primary text-white  mb-3" href="{% url 'Chamados:cadastro_tipo_chamado'%}" 
             title="cadastrar novo Tipo de Chamado">
             Cadastro Tipo de Chamado
         </a>
-        <a class="btn  mb-3" href="{% url 'Orgao:orgao_index'%}" style="background: #4613ac; color: white;"
+        <a class="btn bg-gradient-primary text-white  mb-3" href="{% url 'Orgao:orgao_index'%}"
             title="Voltar a HomePage">
             <i class="material-icons">home</i>
         </a>
