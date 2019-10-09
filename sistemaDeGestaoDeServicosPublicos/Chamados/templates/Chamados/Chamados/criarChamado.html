@@ -1,5 +1,6 @@
 <title>SoliServ- Cadastrar Chamado</title>
 {% extends 'Orgao/index.html' %}
+{% load static %}
 {% block titulo %}
 Cadastrar Chamado
 {% endblock titulo %}
@@ -82,10 +83,9 @@ Cadastrar Chamado
         title="CadastrarChamado" value="Cadastrar Chamado">
     <a class="btn  mb-3 bg-gradient-primary text-white" href="{% url 'Chamados:lista_chamado' user.id %}" 
         title="Voltar a Página Anterior"><i class="material-icons">undo</i>
-    </a>
-
-
+    </a>    
 </form>
+<script src="{% static 'js/select2.js' %}"></script>
 {% endblock %}
 {% block scripts %}
 {{ block.super }}
@@ -93,7 +93,7 @@ Cadastrar Chamado
     $(document).ready(function () {
         $('#idTipoChamado').select2();
         $('#idEndereco').select2();
-        $('#idOrgao').select2();
+        
     });
 </script>
 {% endblock %}
