@@ -167,7 +167,7 @@ def CadastroChamado(request, pk=None):
             idUsuario = User.objects.filter(id=request.user.id)
             idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
             formEdit = CriarChamadoForm(instance=pk)
-            
+
             context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
                        'idUsuario': idUsuario, 'idEndereco': idEndereco}
             return render(request, 'Chamados/Chamados/criarChamado.html', context)
@@ -192,7 +192,7 @@ class ListChamados(ListView):
 
     def get_queryset(self):
         self.id = get_object_or_404(Chamado, id=self.kwargs['pk'])
-        return Chamado.objects.all()
+        return Chamado.objects.filter(idUsuario=self.request.user.id)
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -222,7 +222,7 @@ def detalheChamado(request, pk=None):
             return render(request, 'Chamados/Chamados/detalheChamado.html', context)
         else:
             chamado = None
-        
+
 
 def atualizarChamado(request, pk=None):
     if not request.user.is_authenticated:
@@ -238,8 +238,8 @@ def atualizarChamado(request, pk=None):
             if formEdit.is_valid():
                 formEdit.save()
                 return redirect(reverse_lazy('Chamados:lista_chamado', kwargs={'pk':request.user.id}))
-                
-            else: 
+
+            else:
                 return HttpResponse("deu pau")
         else:
             idStatus = Status.objects.all()
@@ -261,13 +261,15 @@ class FiltrarChamados(ListView):
     paginate_by= 5
 
     def get_queryset(self):
-        self.idPessoa = get_object_or_404(User, id=self.kwargs['pk'])
+        self.idPessoa = get_object_or_404(User, id=self.request.user.id)
         self.idStatus = get_object_or_404(
             Status, id=self.kwargs['statusChamado'])
         return Chamado.objects.filter(idUsuario_id=self.idPessoa, idStatus_id=self.idStatus)
 
+
+
 def home_ajax_search(request, search_string=None):
-    
+
     if search_string is None:
         chamados_list = Chamado.objects.filter(idUsuario = request.user.id)
     else:
