@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <a class="btn  ml-2 mb-3 mt-3 bg-gradient-primary text-white" 
+    <a class="btn  ml-2 mb-3 mt-3 bg-gradient-primary text-white"
         href="{% url 'Chamados:cadastro_chamado' %}" title="Cadastrar Chamado">Cadastrar
         Novo Chamado
     </a>
@@ -67,8 +67,16 @@
         href="{% url 'Chamados:lista_chamado' user.id %}" title="Voltar a Lista de Chamados">
         <i class="material-icons">undo</i>
     </a>
-
-
+    {% else %}
+    <p class="alert alert-danger  text-center">{{user.first_name }}, você não possui chamados cadastrados!</p>
+    <a class="btn  ml-2 mb-3 mt-3 bg-gradient-primary text-white"
+        href="{% url 'Chamados:cadastro_chamado' %}" title="Cadastrar Chamado">Cadastrar
+        Novo Chamado
+    </a>
+    <a class="btn mb-3 mt-3 bg-gradient-primary text-white"
+        href="{% url 'Chamados:lista_chamado' user.id %}" title="Voltar a Lista de Chamados">
+        <i class="material-icons">undo</i>
+    </a>
 </form>
 {% endif %}
 {% endif %}
