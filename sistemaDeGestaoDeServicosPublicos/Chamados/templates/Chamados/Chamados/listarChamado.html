@@ -2,7 +2,6 @@
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
 {% block centro %}
 {% if user.is_authenticated %}
-
 <form>
     <div>
         <div>
@@ -16,7 +15,7 @@
                                 <th>DATA DE ABERTURA</th>
                                 <th>TIPO DO CHAMADO</th>
                                 <th>ENDEREÇO</th>
-                                <th>STATUS</th>
+                                <th>SITUAÇÃO</th>
                                 <th>AÇÃO</th>
                             </tr>
                         </thead>
@@ -28,11 +27,11 @@
                                 <td>{{chamado.idTipoChamado.descricaoTipoChamado}}</td>
                                 <td>{{chamado.idEndereco}}</td>
                                 {% if chamado.idStatus.pk == 1  %}
-                                <td class="alert alert-success">{{chamado.idStatus.descricao}}</td>
+                                <td class="text-center align-middle"><small class="badge badge-info">{{chamado.idStatus.descricao}}</small></td>
                                 {% elif chamado.idStatus.pk == 3  %}
-                                <td class="alert alert-warning">{{chamado.idStatus.descricao}}</td>
+                                <td class="text-center align-middle"> <small class="badge badge-warning">{{chamado.idStatus.descricao}}</small></td>
                                 {% elif chamado.idStatus.pk == 2 %}
-                                <td class="alert alert-danger">{{chamado.idStatus.descricao}}</td>
+                                <td class="text-center align-middle"> <small class="badge badge-success">{{chamado.idStatus.descricao}} </small></td>
                                 {% endif %}
                                 <td>
                                     {% if chamado.idStatus.pk == 1 %}

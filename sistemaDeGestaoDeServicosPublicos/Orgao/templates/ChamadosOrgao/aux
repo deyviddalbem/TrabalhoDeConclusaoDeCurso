@@ -1,0 +1,137 @@
+{% if lista_chamados %}
+
+<form>
+    <div class="form-row">
+        <div class="form-group w-50">
+            <input id="texttarget" class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar Item"
+                aria-label="Pesquisar">
+        </div>
+        <a class="btn ml-2 mb-4" title="Pesquisar Intem" onclick="termoPesquisado()" id="btn-filtros">Pesquisar</a>
+
+    </div>
+    <div class="form-row">
+        <a href="{% url 'Orgao:lista_chamados_orgao' %}" class=" btn ml-2 mb-4" id="btn-filtros"
+            title="Todos os Chamados">
+            Todos Os Chamados
+        </a>
+        <a href="#" class=" btn ml-2 mb-4" id="btn-filtros"
+            title="Filtrar por Chamados Em aberto">
+            Abertos
+        </a>
+        <a href="#" class="btn ml-2 mb-4" id="btn-filtros"
+            title="Filtrar por Chamados Em Andamento">
+            Andamento
+        </a>
+        <a href="{% url 'Chamados:filtrar_chamados' user.id 2 %}" class="btn ml-2 mb-4" id="btn-filtros"
+            title="Filtrar por Chamados Concluídos">
+            Concluídos
+        </a>
+    </div>
+    <div class="section-2" style="overflow-x: auto;">
+        <div  class="w-100 mt-3 mb-3 table-holder rounded shadow-sm">
+            <table id="tabela">
+                <tr>
+                        <th>ID</th>
+                    <th>NÚMERO DO PROTOCOLO</th>
+                    <th>DATA DE ABERTURA</th>
+                    <th>TIPO DO CHAMADO</th>
+                    <th>ENDEREÇO</th>
+                    <th>STATUS</th>
+                    <th>AÇÃO</th>
+                </tr>
+                {% for chamado in lista_chamados %}
+                <tr>
+                        <td>{{chamado.id}}</td>
+                    <td>{{chamado.numeroProtocolo}}</td>
+                    <td>{{chamado.dataAbertura}}</td>
+                    <td>{{chamado.idTipoChamado.descricaoTipoChamado}}</td>
+                    <td>{{chamado.idEndereco}}</td>
+                    {% if chamado.idStatus.pk == 1  %}
+                    <td style="color: green">{{chamado.idStatus.descricao}}</td>
+                    {% elif chamado.idStatus.pk == 3  %}
+                    <td style="color: yellow">{{chamado.idStatus.descricao}}</td>
+                    {% elif chamado.idStatus.pk == 2 %}
+                    <td style="color: red">{{chamado.idStatus.descricao}}</td>
+                    {% endif %}
+                    <td class="border">
+                        {% if chamado.idStatus.pk != 2 %}
+                        <a class="btn mb-3" style="background: #4613ac; color: white;"
+                            href="{% url 'Orgao:atualizar_chamados_orgao' chamado.id %}" title="Editar Chamado">
+                            <i class="material-icons">edit</i></a>
+                        {% else %}
+
+                        {% endif %}
+                        <a class="btn mb-3" style="background: #4613ac; color: white;" href="{% url 'Chamados:chamado_detalhado' chamado.id %}" title="Detalhes do Chamado">
+                            <i class="material-icons">search</i>
+                        </a>
+                        <a class="btn" style="background: #4613ac; color: white;" href="{% url 'Orgao:cadastrar_ocorrencias_chamados' chamado.id%}" title="Adicionar ocorrências do Chamado">
+                                <i class="material-icons">add_alert</i>
+                            </a>
+                            
+                           
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <p class=" mt-1" style="color: #4613ac;"> Obs: Algumas informações cadastradas, são ocultadas para facilitar
+                a
+                compreensão.</p>
+        </div>
+    </div>
+</form>
+<nav aria-label="text-left pagination  ">
+    <ul class="pagination ">
+        {% if lista_chamados.has_previous %}
+        <li class="page-item">
+            <a class="page-link" style=" color: #4613ac;" href="?page=1" title="Primeira Página">&laquo;
+                Primeira
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" style=" color: #4613ac;" title="Página Anterior"
+                href="?page={{ lista_chamados.previous_page_number }}">
+                Anterior
+            </a>
+        </li>
+        {% endif %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">
+                Página {{ lista_chamados.number }} de {{ lista_chamados.paginator.num_pages }}
+            </a>
+        </li>
+        {% if lista_chamados.has_next %}
+        <li class="page-item">
+            <a class="page-link" style=" color: #4613ac;" title="Próxima Página"
+                href="?page={{ lista_chamados.next_page_number }}">
+                Próxima
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" title="Ultima Página" style=" color: #4613ac;"
+                href="?page={{lista_chamados.paginator.num_pages }}">
+                Última &raquo;
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<a class="btn" href="{% url 'Orgao:lista_chamados_orgao'%}" style="background: #4613ac; color: white;"
+    title="Lista de Chamados"><i class="material-icons">list</i></a>
+{% else %}
+<div class="text-center">
+    <div class="mt-3 container text-center ">
+        <p style="color: #4613ac; font-size: 30px;">Meus Chamados</p>
+    </div>
+
+
+    <div class="container text-center mt-5">
+        <div class="alert alert-danger mt-5">
+            {{ user.first_name }}, Você não possui nenhum chamado com esse filtro!
+        </div>
+        <a class="btn mb-3 mt-3" style="background-color: #4613ac; color: white;"
+            href="{% url 'Orgao:lista_chamados_orgao' %}" title="Voltar a Lista de Chamados">
+            <i class="material-icons">undo</i>
+        </a>
+
+    </div>

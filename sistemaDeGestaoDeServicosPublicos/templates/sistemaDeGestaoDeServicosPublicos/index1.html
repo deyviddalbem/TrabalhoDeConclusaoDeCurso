@@ -148,8 +148,8 @@
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
-      
-            <!-- Acessiblidade -->
+
+              <!-- Acessiblidade -->
             <li class="nav-item active">
               <a class="nav-link acessibilidade" onClick="fonte('a');" href="#" title="Aumentar Tamanho da Fonte">
                 <i class="far fa-arrow-alt-circle-up"></i>
@@ -228,7 +228,7 @@
           <footer class="sticky-footer bg-white">
             <div class="container my-auto">
               <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2019</span>
+                <span>Copyright &copy; SoliServ 2019</span>
               </div>
             </div>
           </footer>
@@ -266,7 +266,8 @@
       </div>
 
       {% block scripts %}
-      <script src="{% static 'js/select2.js' %}"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.11/css/select2.min.css" rel="stylesheet" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.11/js/select2.min.js"></script>
       {% endblock %}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">

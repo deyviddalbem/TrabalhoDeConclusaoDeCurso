@@ -46,6 +46,10 @@
                   <label class="" for="olho">Visualizar Senha</label>
                 </div>
               </div>
+              {% if form.errors %}
+              <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos
+                  e tente novamente!</p>
+              {% endif %}
               <input type="submit" class="btn btn-primary btn-user btn-block" value="Cadastrar">
               <hr>
               <a href="{% url 'social:begin' 'google-oauth2' %}" title="Efetuar o cadastro usando o Google" class="btn btn-google btn-user btn-block">

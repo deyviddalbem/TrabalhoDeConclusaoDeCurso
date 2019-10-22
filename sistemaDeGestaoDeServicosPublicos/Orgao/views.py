@@ -223,7 +223,7 @@ def ListaOrgaoChamado(request):
         return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
         lista_chamados = Chamado.objects.all()
-        paginator = Paginator(lista_chamados, 5)
+        paginator = Paginator(lista_chamados, 10000)
         page = request.GET.get('page')
         lista_chamados = paginator.get_page(page)
         context = {'lista_chamados': lista_chamados}
