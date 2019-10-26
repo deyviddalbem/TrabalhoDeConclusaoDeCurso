@@ -104,6 +104,12 @@
       </a>
       {% else %}
       {% endif %}
+      <li class="nav-item">
+          <a class="nav-link text-white" href="#"  data-toggle="modal" data-target="#ModalAjuda" title="Obter informações">
+            <i class="far fa-question-circle"></i>
+            Ajuda
+          </a>
+        </li>
       <div class=" mt-3 text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
@@ -127,21 +133,7 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-
-              <!-- Acessiblidade -->
-            <li class="nav-item">
-              <a class="nav-link acessibilidade text-info" href="#"  data-toggle="modal" data-target="#ModalAjuda" title="Obter informações">
-                <i class="far fa-question-circle"></i>
-                Ajuda
-              </a>
-            </li>
+            <!-- Acessiblidade -->
             <li class="nav-item active">
               <a class="nav-link acessibilidade" onClick="fonte('a');" href="#" title="Aumentar Tamanho da Fonte">
                 <i class="far fa-arrow-alt-circle-up"></i>
@@ -259,30 +251,38 @@
       </div>
 
       <!-- modal de ajuda -->
-      <div class="modal fade bd-example-modal-lg" id="ModalAjuda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-info" id="exampleModalLabel">Dúvidas frequentes</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p class="text-info"> Como cadastro o meu endereço? </p><p>Resposta: Para efetuar o cadastro de endereço, acesse: Meus Endereços > Cadastrar novo endereço, e informe os dados solicitados.</p>
-            <p class="text-info">Como faço para solicitar um serviço? </p><p> Resposta: Para solicitar um serviço no endereço escolhido, efetue seu cadastro ou efetue o login e acesse: Meus Chamados > Cadastrar novo chamado, e preencha o formulário.</p>
-            <p class="text-info">Como cadastro o meu Telefone? </p><p>Resposta: Acesse Meus Telefones > Cadastrar novo telefone, para inserir seus dados de contato.</p>
-            <p class="text-info">Porque não consigo atualizar o chamado que solicitei?</p><p> Resposta: verifique a situação do seu serviço, só há possiblidade de alteração se a situação do mesmo for "solicitado". </p>
-            <p class="text-info">Não encontro o serviço que eu preciso, o que faço?</p><p> Resposta: Verifique o serviço que chegue o mais próximo do seu.</p>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Sair</button>
-            <!-- <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a> -->
+      <div class="modal fade bd-example-modal-lg" id="ModalAjuda" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-info" id="exampleModalLabel">Dúvidas frequentes</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="text-info"> Como cadastro o meu endereço? </p>
+              <p>Resposta: Para efetuar o cadastro de endereço, acesse: Meus Endereços > Cadastrar novo endereço, e
+                informe os dados solicitados.</p>
+              <p class="text-info">Como faço para solicitar um serviço? </p>
+              <p> Resposta: Para solicitar um serviço no endereço escolhido, efetue seu cadastro ou efetue o login e
+                acesse: Meus Chamados > Cadastrar novo chamado, e preencha o formulário.</p>
+              <p class="text-info">Como cadastro o meu Telefone? </p>
+              <p>Resposta: Acesse Meus Telefones > Cadastrar novo telefone, para inserir seus dados de contato.</p>
+              <p class="text-info">Porque não consigo atualizar o chamado que solicitei?</p>
+              <p> Resposta: verifique a situação do seu serviço, só há possiblidade de alteração se a situação do mesmo
+                for "solicitado". </p>
+              <p class="text-info">Não encontro o serviço que eu preciso, o que faço?</p>
+              <p> Resposta: Verifique o serviço que chegue o mais próximo do seu.</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Sair</button>
+              <!-- <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a> -->
+            </div>
           </div>
         </div>
       </div>
-    </div>
       {% block scripts %}
       <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.11/css/select2.min.css" rel="stylesheet" /> -->
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.11/js/select2.min.js"></script> -->
