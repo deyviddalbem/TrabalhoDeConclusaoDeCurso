@@ -24,7 +24,6 @@
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
   <title>SoliServ - Página Inicial</title>
-
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -126,19 +125,6 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form> -->
-
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -150,6 +136,12 @@
               </a>
 
               <!-- Acessiblidade -->
+            <li class="nav-item">
+              <a class="nav-link acessibilidade text-info" href="#"  data-toggle="modal" data-target="#ModalAjuda" title="Obter informações">
+                <i class="far fa-question-circle"></i>
+                Ajuda
+              </a>
+            </li>
             <li class="nav-item active">
               <a class="nav-link acessibilidade" onClick="fonte('a');" href="#" title="Aumentar Tamanho da Fonte">
                 <i class="far fa-arrow-alt-circle-up"></i>
@@ -221,6 +213,7 @@
           <!-- Content Row -->
           <div class="">
             {% block centro %}
+
             {% endblock %}
           </div>
 
@@ -265,9 +258,34 @@
         </div>
       </div>
 
+      <!-- modal de ajuda -->
+      <div class="modal fade bd-example-modal-lg" id="ModalAjuda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-info" id="exampleModalLabel">Dúvidas frequentes</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="text-info"> Como cadastro o meu endereço? </p><p>Resposta: Para efetuar o cadastro de endereço, acesse: Meus Endereços > Cadastrar novo endereço, e informe os dados solicitados.</p>
+            <p class="text-info">Como faço para solicitar um serviço? </p><p> Resposta: Para solicitar um serviço no endereço escolhido, efetue seu cadastro ou efetue o login e acesse: Meus Chamados > Cadastrar novo chamado, e preencha o formulário.</p>
+            <p class="text-info">Como cadastro o meu Telefone? </p><p>Resposta: Acesse Meus Telefones > Cadastrar novo telefone, para inserir seus dados de contato.</p>
+            <p class="text-info">Porque não consigo atualizar o chamado que solicitei?</p><p> Resposta: verifique a situação do seu serviço, só há possiblidade de alteração se a situação do mesmo for "solicitado". </p>
+            <p class="text-info">Não encontro o serviço que eu preciso, o que faço?</p><p> Resposta: Verifique o serviço que chegue o mais próximo do seu.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Sair</button>
+            <!-- <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
       {% block scripts %}
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.11/css/select2.min.css" rel="stylesheet" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.11/js/select2.min.js"></script>
+      <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.11/css/select2.min.css" rel="stylesheet" /> -->
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.11/js/select2.min.js"></script> -->
       {% endblock %}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
