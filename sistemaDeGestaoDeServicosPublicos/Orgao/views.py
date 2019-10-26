@@ -68,7 +68,7 @@ class CriarOrgao(CreateView):
 def orgaoList(request):
     if not request.user.has_perm('Orgao.view_Orgao'):
         return render(request, 'Orgao/bloqueioDeAcesso.html')
-    else: 
+    else:
         orgao_list = Orgao.objects.all()
         context = {'orgao_list': orgao_list}
         if not request.user.is_authenticated:
@@ -246,11 +246,11 @@ def atualizarChamadoOrgao(request, pk=None):
             if formEdit.is_valid():
                 formEdit.save()
                 return redirect('Orgao:lista_chamados_orgao')
-                
-            else: 
+
+            else:
                 return HttpResponse("deu pau")
         else:
-            idStatus = Status.objects.filter(id=chamado.idStatus.id)
+            idStatus = Status.objects.all()
             idOrgao = Orgao.objects.all()
             idTipoChamado = TipoChamado.objects.filter(id=chamado.idTipoChamado.id)
             idUsuario = User.objects.filter()
@@ -281,6 +281,6 @@ def CadastroOcorrenciasChamado(request, pk=None):
                     return redirect('Orgao:lista_chamados_orgao')
             else:
                 formEdit = CadastrarOcorrenciasChamadoForm(instance=idOcorrencia)
-                
+
                 context = {'formEdit': formEdit}
             return render(request, 'ChamadosOrgao/adcionarOcorrencias.html', context)
