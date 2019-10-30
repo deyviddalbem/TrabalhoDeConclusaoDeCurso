@@ -263,24 +263,30 @@ def atualizarChamadoOrgao(request, pk=None):
 
 
 def CadastroOcorrenciasChamado(request, pk=None):
-    if not request.user.has_perm('OcorrenciasChamado.add_OcorrenciasChamado'):
+    return render(request, 'Orgao/funcaoIndisponivel.html')
+
+
+def detalheChamadoOrgao(request, pk=None):
+    if not request.user.has_perm('Chamado.view_Chamado'):
         return render(request, 'Orgao/bloqueioDeAcesso.html')
     else:
         if not request.user.is_authenticated:
             return render(request, 'Usuario/acessoNegado.html')
         else:
             if pk:
-                idOcorrencia = get_object_or_404(OcorrenciasChamado, id=pk)
+                chamado = get_object_or_404(Chamado, id=pk)
+                idStatus = Status.objects.filter(id=chamado.idStatus.id)
+                idOrgao = Orgao.objects.all()
+                idTipoChamado = TipoChamado.objects.filter(id=chamado.idTipoChamado.id)
+                idUsuario = User.objects.filter(id=request.user.id)
+                idEndereco = Endereco.objects.filter(idPessoa=request.user.id)
+                nProtocolo = chamado.numeroProtocolo
+                dataAbertura = chamado.dataAbertura
+                dataConclusao = chamado.dataConclusao
+                formEdit = AtualizarChamadoForm(instance=chamado)
+                ocorrenciasChamado = OcorrenciasChamado.objects.filter(idChamado=pk)
+                context = {'formEdit': formEdit, 'idOrgao': idOrgao, 'idTipoChamado': idTipoChamado, 'idStatus': idStatus,
+                        'idUsuario': idUsuario, 'idEndereco': idEndereco, 'nProtocolo' : nProtocolo, 'dataAbertura':dataAbertura, 'dataConclusao': dataConclusao, 'ocorrenciasChamado': ocorrenciasChamado }
+                return render(request, 'ChamadosOrgao/detalheChamadosOrgao.html', context)
             else:
-                idOcorrencia = None
-
-            formEdit = CadastrarOcorrenciasChamadoForm(request.POST, instance=idOcorrencia)
-            if request.method == 'POST':
-                if formEdit.is_valid():
-                    formEdit.save()
-                    return redirect('Orgao:lista_chamados_orgao')
-            else:
-                formEdit = CadastrarOcorrenciasChamadoForm(instance=idOcorrencia)
-
-                context = {'formEdit': formEdit}
-            return render(request, 'ChamadosOrgao/adcionarOcorrencias.html', context)
+                chamado = None

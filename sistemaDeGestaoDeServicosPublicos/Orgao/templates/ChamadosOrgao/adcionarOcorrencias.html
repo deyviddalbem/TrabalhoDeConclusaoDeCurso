@@ -1,10 +1,10 @@
 <title>SoliServ-Cadastrar Ocorrencias</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %}
+Cadastro de Ocorrências {{ idChamado.id }}
+{% endblock titulo %}
 {% block centro %}
 {% if user.is_authenticated %}
-<div class="mt-3 container text-center ">
-    <p style="color: #4613ac; font-size: 30px;">Cadastro de Ocorrências {{ idChamado.id }}</p>
-</div>
 
 {% endif %}
 {% endblock %}

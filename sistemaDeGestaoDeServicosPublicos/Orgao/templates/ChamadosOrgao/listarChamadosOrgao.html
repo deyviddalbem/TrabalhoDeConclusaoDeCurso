@@ -32,33 +32,35 @@ Chamados Semosp
                                 <td>{{chamado.idTipoChamado.descricaoTipoChamado}}</td>
                                 <td>{{chamado.idEndereco}}</td>
                                 {% if chamado.idStatus.pk == 1  %}
-                                <td class="text-center align-middle"> <small class="badge badge-info">{{chamado.idStatus.descricao}}</small></td>
+                                <td class="text-center align-middle"> <small
+                                        class="badge badge-info">{{chamado.idStatus.descricao}}</small></td>
                                 {% elif chamado.idStatus.pk == 3  %}
-                                <td class="text-center align-middle"> <small class="badge badge-warning">{{chamado.idStatus.descricao}}</small></td>
+                                <td class="text-center align-middle"> <small
+                                        class="badge badge-warning">{{chamado.idStatus.descricao}}</small></td>
                                 {% elif chamado.idStatus.pk == 2 %}
-                                <td class="text-center align-middle"> <small class="badge badge-success">{{chamado.idStatus.descricao}}</small></td>
+                                <td class="text-center align-middle"> <small
+                                        class="badge badge-success">{{chamado.idStatus.descricao}}</small></td>
                                 {% endif %}
-                                <td class="border">
+                                <td class="border align-middle">
                                     {% if chamado.idStatus.pk != 2 %}
-                                    <a class=" mb-3 bg-gradient-primary btn-circle text-white"
+                                    <a class="bg-gradient-primary btn-circle text-white"
                                         href="{% url 'Orgao:atualizar_chamados_orgao' chamado.id %}"
                                         title="Editar Chamado">
-                                        <i class="fas fa-edit"></i></a>
-                                    {% else %}
-
-                                    {% endif %}
-                                    <a class="mb-3 bg-gradient-primary btn-circle text-white"
-                                        href="{% url 'Chamados:chamado_detalhado' chamado.id %}"
-                                        title="Detalhes do Chamado">
-                                        <i class="material-icons">search</i>
+                                        <i class="fas fa-edit"></i>
                                     </a>
-                                    <a class="bg-gradient-primary btn-circle text-white"
+                                    <a class="mt-1 bg-gradient-primary btn-circle text-white"
                                         href="{% url 'Orgao:cadastrar_ocorrencias_chamados' chamado.id%}"
                                         title="Adicionar ocorrências do Chamado">
                                         <i class="material-icons">add_alert</i>
                                     </a>
+                                    {% else %}
 
-
+                                    {% endif %}
+                                    <a class="mt-1 bg-gradient-primary btn-circle text-white"
+                                        href="{% url 'Orgao:chamado_detalhado' chamado.id %}"
+                                        title="Detalhes do Chamado">
+                                        <i class="material-icons">search</i>
+                                    </a>
                                 </td>
                             </tr>
                             {% endfor %}

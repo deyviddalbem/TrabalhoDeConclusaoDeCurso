@@ -1,9 +1,11 @@
 <title>SoliServ-Orgao Atualizar Chamado</title>
 {% extends 'Orgao/index.html' %}
+{% block titulo %}
+Alterar Chamado - {{ nProtocolo }}
+{% endblock titulo %}
 {% block centroOrgao %}
 <form method="POST" class="container">
     {% csrf_token %}
-    <h3 class="text-center mt-5" style="color: #4613ac;">Alterar Chamado - {{ nProtocolo }}</h3>
     <div class="form-row mt-5">
             <div class="form-group col-md-3">
                     <label for="numeroProtocolo">Protocolo:</label>
@@ -12,7 +14,7 @@
                  
                 </div>
         <div class="form-group col-md-3 ">
-            <label for="idOrgao">ÓRGÃO:</label>
+            <label for="idOrgao">Órgão:</label>
             <select class="form-control" id="idOrgao" name="idOrgao" disabled >
                 {% for Orgao in idOrgao %}
                 <option value="{{Orgao.pk}}" {% if Orgao.pk == formEdit.idOrgao.id %} selected="selected" {% endif %}>
@@ -22,7 +24,7 @@
             </select>
         </div>
         <div class="form-group col-md-5">
-            <label for="idTipoChamado">SERVIÇO:</label>
+            <label for="idTipoChamado">Serviço:</label>
             <select class="form-control" id="idTipoChamado" style="width: 100%;" name="idTipoChamado" disabled >
                 {% for tipoChamado in idTipoChamado %}
                 <option value="{{tipoChamado.pk}}" {% if tipoChamado.pk == formEdit.idTipoChamado.id %}
@@ -34,7 +36,7 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-8 ">
-            <label for="idEndereco">ENDEREÇO:</label>
+            <label for="idEndereco">Endereço:</label>
             <select class="form-control" id="idEndereco" style="width: 100%;" name="idEndereco" disabled >
                 {% for endereco in idEndereco %}
                 <option value="{{endereco.pk}}" {% if endereco.pk == formEdit.idEndereco.id %} selected="selected"
@@ -46,7 +48,7 @@
             </select>
         </div>
         <div class="form-group col-md-3 ">
-            <label for="idStatus">STATUS:</label>
+            <label for="idStatus">Situação:</label>
             <select class="form-control" id="idStatus" style="color: red;" name="idStatus" autofocus >
                 {% for status in idStatus %}
                 <option value="{{status.pk}}" {% if status.pk == formEdit.idStatus.id %} selected="selected"
@@ -65,7 +67,7 @@
         </div>
         
         <div class="form-group col-md-5">
-            <label for="idUsuario">SOLICITANTE:</label>
+            <label for="idUsuario">Solicitante:</label>
             <select class="form-control" id="idUsuario" name="idUsuario" disabled >
                 {% for usuario in idUsuario %}
                 <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario.id %} selected="selected" {% endif %}>
@@ -76,9 +78,9 @@
         </div>
     </div>
 
-    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Atualizar Chamado"
+    <input type="submit" class="btn  mb-3 bg-gradient-primary text-white" title="Atualizar Chamado"
         value="Atualizar Chamado">
-    <a class="btn  mb-3" href="{% url 'Chamados:lista_chamado' user.id %}" style="background: #4613ac; color: white;"
+    <a class="btn  mb-3 bg-gradient-primary text-white" href="{% url 'Orgao:lista_chamados_orgao' %}"
         title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
 
 

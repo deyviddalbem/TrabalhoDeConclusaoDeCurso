@@ -1,0 +1,12 @@
+<title>
+    SoliServ-Funcao Indisponível
+</title>
+{% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block centro %}
+{% block centroOrgao %}
+<div class="container text-center alert alert-danger mt-3">
+    <p class="">Função em construção!</p>
+</div>
+<a class="btn  mb-3 text-center bg-gradient-primary text-white" href="{% url 'Orgao:lista_chamados_orgao'%}" title="Lista de Chamados"><i class="material-icons">undo</i></a>
+{% endblock %}
+{% endblock %}

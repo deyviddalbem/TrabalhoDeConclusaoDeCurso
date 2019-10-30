@@ -35,6 +35,7 @@ urlpatterns = [
     path('listarChamadosOrgao/', views.ListaOrgaoChamado, name='lista_chamados_orgao'),
     ##path('atualizarChamadosOrgao/<int:pk>', views.atualizarChamadoOrgao, name='atualizar_chamados_orgao'),
     path('gerenciar/chamado/<int:pk>/', views.atualizarChamadoOrgao, name='atualizar_chamados_orgao'),
+    path('detalhes/chamado/<int:pk>/', views.detalheChamadoOrgao, name="chamado_detalhado"),
     path('Cadastrar/ocorrencias/chamado/<int:pk>/', views.CadastroOcorrenciasChamado, name='cadastrar_ocorrencias_chamados'),
 
 
