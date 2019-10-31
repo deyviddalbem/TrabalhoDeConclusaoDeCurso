@@ -14,7 +14,7 @@ Detalhes do Chamado n° {{ nProtocolo }}
 
         </div>
         <div class="form-group col-md-3 ">
-            <label for="idOrgao">ÓRGÃO:</label>
+            <label for="idOrgao">Órgão:</label>
             <select class="form-control" id="idOrgao" name="idOrgao" disabled>
                 {% for Orgao in idOrgao %}
                 <option value="{{Orgao.pk}}" {% if Orgao.pk == formEdit.idOrgao.id %} selected="selected" {% endif %}>
@@ -24,7 +24,7 @@ Detalhes do Chamado n° {{ nProtocolo }}
             </select>
         </div>
         <div class="form-group col-md-5">
-            <label for="idTipoChamado">SERVIÇO:</label>
+            <label for="idTipoChamado">Serviço:</label>
             <select class="form-control" id="idTipoChamado" style="width: 100%;" name="idTipoChamado" disabled>
                 {% for tipoChamado in idTipoChamado %}
                 <option value="{{tipoChamado.pk}}" {% if tipoChamado.pk == formEdit.idTipoChamado.id %}
@@ -41,12 +41,12 @@ Detalhes do Chamado n° {{ nProtocolo }}
                 value="{{ dataAbertura }}" disabled />
         </div>
         <div class="form-group col-md-3">
-            <label for="observacao">Data de Conclusão: </label>
+            <label for="observacao">Ultima modificação: </label>
             <input type="text" class="form-control" id="observacao" name="observacao" required maxlength="100"
                 value="{{ dataConclusao }}" disabled />
         </div>
         <div class="form-group col-md-5">
-            <label for="idEndereco">SOLICITANTE:</label>
+            <label for="idEndereco">Solicitante:</label>
             <select class="form-control" id="idUsuario" name="idUsuario" disabled>
                 {% for usuario in idUsuario %}
                 <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario.id %} selected="selected" {% endif %}>
@@ -60,7 +60,7 @@ Detalhes do Chamado n° {{ nProtocolo }}
 
     <div class="form-row mt-2">
         <div class="form-group col-md-8 ">
-            <label for="idEndereco">ENDEREÇO:</label>
+            <label for="idEndereco">Endereço:</label>
             <select class="form-control" id="idEndereco" style="width: 100%;" name="idEndereco" disabled>
                 {% for endereco in idEndereco %}
                 <option value="{{endereco.pk}}" {% if endereco.pk == formEdit.idEndereco.id %} selected="selected"
@@ -72,7 +72,7 @@ Detalhes do Chamado n° {{ nProtocolo }}
             </select>
         </div>
         <div class="form-group col-md-3">
-            <label for="idStatus">STATUS:</label>
+            <label for="idStatus">Situação:</label>
             <select class="form-control" id="idStatus" name="idStatus" disabled>
                 {% for status in idStatus %}
                 <option value="{{status.pk}}" {% if status.pk == formEdit.idStatus.id %} 

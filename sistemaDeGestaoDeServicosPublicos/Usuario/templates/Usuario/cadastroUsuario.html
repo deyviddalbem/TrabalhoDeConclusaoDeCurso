@@ -33,26 +33,29 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="password" class="form-control form-control-user" id="password1" name="password1"
                     placeholder="Senha">
+                  <div class=" mt-1 container">
+                    <i id="olho" title="mostrar Senha" class="fas fa-eye-slash text-primary"></i>
+
+                  </div>
                 </div>
                 <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user" id="password2" name="password2"
+                  <input type="password" class="form-control form-control-user mb-1" id="password2" name="password2"
                     placeholder="Repita a Senha">
+                  <a class="ml-3" id="info">
+                    <i title="Informações" class="far fa-question-circle text-primary"></i>
+                  </a>
                 </div>
               </div>
-              <div class="form-group">
-                <div class=" container">
-                  <img id="olho"
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" />
-                  <label class="" for="olho">Visualizar Senha</label>
-                </div>
-              </div>
+
               {% if form.errors %}
-              <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos
-                  e tente novamente!</p>
+              <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os
+                campos e tente novamente!
+              </p>
               {% endif %}
               <input type="submit" class="btn btn-primary btn-user btn-block" value="Cadastrar">
               <hr>
-              <a href="{% url 'social:begin' 'google-oauth2' %}" title="Efetuar o cadastro usando o Google" class="btn btn-google btn-user btn-block">
+              <a href="{% url 'social:begin' 'google-oauth2' %}" title="Efetuar o cadastro usando o Google"
+                class="btn btn-google btn-user btn-block">
                 <i class="fab fa-google fa-fw"></i> Registre-se com o Google
               </a>
             </form>
@@ -65,24 +68,25 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <script>
-    //função para visualizar a senha quando clicar no texto
-    var senha1 = $('#password1');
-    var senha2 = $('#password2');
-    var olho = $("#olho");
+  //função para visualizar a senha quando clicar no texto
+  var senha1 = $('#password1');
+  var senha2 = $('#password2');
+  var olho = $("#olho");
 
-    olho.mousedown(function () {
-        senha1.attr("type", "text");
-        senha2.attr("type", "text");
-    });
+  olho.mousedown(function () {
+    senha1.attr("type", "text");
+    senha2.attr("type", "text");
+  });
 
-    olho.mouseup(function () {
-        senha1.attr("type", "password");
-        senha2.attr("type", "password");
-    });
-    // para evitar o problema de arrastar a imagem e a senha continuar exposta, 
-    //citada pelo nosso amigo nos comentários
-    $("#olho").mouseout(function () {
-        $("#senha").attr("type", "password");
-    });
+  olho.mouseup(function () {
+    senha1.attr("type", "password");
+    senha2.attr("type", "password");
+  });
+  $("#olho").mouseout(function () {
+    $("#senha").attr("type", "password");
+  });
+</script>
+<script>
+
 </script>
 {% endblock %}

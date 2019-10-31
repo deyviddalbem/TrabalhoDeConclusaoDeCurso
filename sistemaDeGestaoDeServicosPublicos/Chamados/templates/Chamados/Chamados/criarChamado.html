@@ -9,7 +9,7 @@ Cadastrar Chamado
     {% csrf_token %}
     <div class="form-row mt-5">
         <div class="form-group col-md-3 ">
-            <label for="idOrgao">ÓRGÃO:</label>
+            <label for="idOrgao">Órgão:</label>
             <select class="form-control" id="idOrgao" name="idOrgao">
                 {% for Orgao in idOrgao %}
                 <option value="{{Orgao.pk}}" {% if Orgao.pk == formEdit.idOrgao.id %} selected="selected" {% endif %}>
@@ -19,8 +19,8 @@ Cadastrar Chamado
             </select>
         </div>
         <div class="form-group col-md-5">
-            <label for="idTipoChamado ">SERVIÇO:</label>
-            <select class="form-control" id="idTipoChamado" style="width: 100%;" name="idTipoChamado">
+            <label for="idTipoChamado ">Serviço:</label>
+            <select class="form-control idTipoChamado" id="idTipoChamado" style="width: 100%;" name="idTipoChamado">
                 <option>----</option>
                 {% for tipoChamado in idTipoChamado %}
                 <option value="{{tipoChamado.pk}}" {% if tipoChamado.pk == formEdit.idTipoChamado.id %}
@@ -36,20 +36,23 @@ Cadastrar Chamado
     </div>
     <div class="form-row">
         <div class="form-group col-md-8 ">
-            <label for="idEndereco">ENDEREÇO:</label>
+            <label for="idEndereco">Endereço:</label>
             <select class="form-control" id="idEndereco" style="width: 100%;" name="idEndereco">
                 <option>----</option>
                 {% for endereco in idEndereco %}
                 <option value="{{endereco.pk}}" {% if endereco.pk == formEdit.idEndereco.id %} selected="selected"
                     {% endif %}>
                     0{{ endereco.id}} - {{ endereco.cep }}, {{ endereco.logradouro }}, {{ endereco.enderecoNumero}},
-                    {{ endereco.bairro }}, {{ endereco.municipio }}
+                    {{ endereco.bairro }}
                 </option>
                 {% endfor %}
             </select>
+            <a class="mt-5" href="{% url 'cadastroEndereco' %}">
+                Cadastrar Endereço
+            </a>
         </div>
         <div class="form-group col-md-3">
-            <label for="idStatus">STATUS:</label>
+            <label for="idStatus">Situação:</label>
             <select class="form-control" id="idStatus" name="idStatus">
                 {% for status in idStatus %}
                 <option value="{{status.pk}}" {% if status.pk == formEdit.idStatus.id %} selected="selected"
@@ -68,7 +71,7 @@ Cadastrar Chamado
                 maxlength="100" />
         </div>
         <div class="form-group col-md-3">
-            <label for="idEndereco">SOLICITANTE:</label>
+            <label for="idEndereco">Solicitante:</label>
             <select class="form-control" id="idUsuario" name="idUsuario">
                 {% for usuario in idUsuario %}
                 <option value="{{user.pk}}" {% if user.pk == formEdit.idUsuario.id %} selected="selected" {% endif %}>
@@ -79,21 +82,19 @@ Cadastrar Chamado
         </div>
     </div>
 
-    <input type="submit" class="btn  mb-3 bg-gradient-primary text-white"
-        title="CadastrarChamado" value="Cadastrar Chamado">
-    <a class="btn  mb-3 bg-gradient-primary text-white" href="{% url 'Chamados:lista_chamado' user.id %}" 
+    <input type="submit" class="btn  mb-3 bg-gradient-primary text-white" title="CadastrarChamado"
+        value="Cadastrar Chamado">
+    <a class="btn  mb-3 bg-gradient-primary text-white" href="{% url 'Chamados:lista_chamado' user.id %}"
         title="Voltar a Página Anterior"><i class="material-icons">undo</i>
-    </a>    
+    </a>
 </form>
-<script src="{% static 'js/select2.js' %}"></script>
 {% endblock %}
+
 {% block scripts %}
 {{ block.super }}
-<script type="text/javascript">
+<script>
     $(document).ready(function () {
-        $('#idTipoChamado').select2();
-        $('#idEndereco').select2();
-        
+        $('.idTipoChamado').select2();
     });
 </script>
 {% endblock %}

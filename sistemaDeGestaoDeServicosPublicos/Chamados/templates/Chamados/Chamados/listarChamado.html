@@ -1,5 +1,8 @@
 <title>SoliServ-Meus Chamados</title>
 {% extends "sistemaDeGestaoDeServicosPublicos/index1.html" %}
+{% block titulo %}
+Meus Chamados
+{% endblock titulo %}
 {% block centro %}
 {% if user.is_authenticated %}
 <form>
