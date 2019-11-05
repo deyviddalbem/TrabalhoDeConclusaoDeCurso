@@ -9,7 +9,7 @@ Lista de Lotações
         {% block centroOrgao %}
         <form style="overflow-x: auto;">
             {% if lotacao_list %}
-            <table class="table border mt-3">
+            <table class="table table-striped border mt-3">
                 <tr> 
                     <th>DESCRIÇÃO DA LOTAÇÃO</th>
                     <th>USUÁRIO</th>
@@ -18,7 +18,7 @@ Lista de Lotações
                     <th>AÇÃO</th>
                 </tr>
                 {% for lotacao in lotacao_list %}
-                <tr style="text-transform: uppercase">
+                <tr>
                     <td>
                         <a>
                             {{lotacao.idTipoLotacao.descricao}}

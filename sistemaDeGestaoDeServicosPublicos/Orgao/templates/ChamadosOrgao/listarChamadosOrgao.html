@@ -11,10 +11,10 @@ Chamados Semosp
             <div class="card-body">
                 {% if lista_chamados %}
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-striped" id="dataTable" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <!-- <th>ID</th> -->
                                 <th>NÚMERO DO PROTOCOLO</th>
                                 <th>DATA DE ABERTURA</th>
                                 <th>TIPO DO CHAMADO</th>
@@ -26,7 +26,7 @@ Chamados Semosp
                         <tbody>
                             {% for chamado in lista_chamados %}
                             <tr>
-                                <td>{{chamado.id}}</td>
+                                <!-- <td>{{chamado.id}}</td> -->
                                 <td>{{chamado.numeroProtocolo}}</td>
                                 <td>{{chamado.dataAbertura}}</td>
                                 <td>{{chamado.idTipoChamado.descricaoTipoChamado}}</td>
@@ -41,14 +41,15 @@ Chamados Semosp
                                 <td class="text-center align-middle"> <small
                                         class="badge badge-success">{{chamado.idStatus.descricao}}</small></td>
                                 {% endif %}
-                                <td class="border align-middle">
+                                <td class="border ">
+                                 <div class="text-center align-middle">
                                     {% if chamado.idStatus.pk != 2 %}
                                     <a class="bg-gradient-primary btn-circle text-white"
                                         href="{% url 'Orgao:atualizar_chamados_orgao' chamado.id %}"
                                         title="Editar Chamado">
-                                        <i class="fas fa-edit"></i>
+                                        <i class="material-icons">edit</i>
                                     </a>
-                                    <a class="mt-1 bg-gradient-primary btn-circle text-white"
+                                    <a class=" bg-gradient-primary btn-circle text-white"
                                         href="{% url 'Orgao:cadastrar_ocorrencias_chamados' chamado.id%}"
                                         title="Adicionar ocorrências do Chamado">
                                         <i class="material-icons">add_alert</i>
@@ -56,11 +57,12 @@ Chamados Semosp
                                     {% else %}
 
                                     {% endif %}
-                                    <a class="mt-1 bg-gradient-primary btn-circle text-white"
+                                    <a class=" bg-gradient-primary btn-circle text-white"
                                         href="{% url 'Orgao:chamado_detalhado' chamado.id %}"
                                         title="Detalhes do Chamado">
                                         <i class="material-icons">search</i>
                                     </a>
+                                 </div>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -73,12 +75,9 @@ Chamados Semosp
             </div>
         </div>
     </div>
-    <a class="btn  ml-2 mb-3 mt-3 bg-gradient-primary text-white" href="{% url 'Chamados:cadastro_chamado' %}"
-        title="Cadastrar Chamado">Cadastrar
-        Novo Chamado
-    </a>
-    <a class="btn mb-3 mt-3 bg-gradient-primary text-white" href="{% url 'Chamados:lista_chamado' user.id %}"
-        title="Voltar a Lista de Chamados">
+  
+    <a class="btn mb-3 mt-3 bg-gradient-primary text-white" href="{% url 'Orgao:orgao_index' %}"
+        title="Voltar a pagina inicial">
         <i class="material-icons">undo</i>
     </a>
     {% else %}
@@ -87,7 +86,7 @@ Chamados Semosp
         title="Cadastrar Chamado">Cadastrar
         Novo Chamado
     </a>
-    <a class="btn mb-3 mt-3 bg-gradient-primary text-white" href="{% url 'Chamados:lista_chamado' user.id %}"
+    <a class="btn mb-3 mt-3 bg-gradient-primary text-white" href="{% url 'Orgao:lista_chamados_orgao' %}"
         title="Voltar a Lista de Chamados">
         <i class="material-icons">undo</i>
     </a>

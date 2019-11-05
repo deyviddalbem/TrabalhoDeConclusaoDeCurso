@@ -2,13 +2,13 @@
 {% extends 'Orgao/index.html' %}
 {% block centroOrgao %}
 <form method="POST" class="mt-3 container" >
-    <div class="col">
         {% csrf_token %}
+    <div class="form-group">
         {{ form.as_p }}
     </div>
-    <input type="submit" class="btn mb-2" style="background-color: #4613ac; color: white;" title="Atualizar Dados"
+    <input type="submit" class="btn mb-2 bg-gradient-primary text-white "  title="Atualizar Dados"
         value="Atualizar Tipo Lotação">
-    <a class="btn  mb-2" href="{% url 'Orgao:tipos_lotacao'%}" style="background: #4613ac; color: white;"
+    <a class="btn  mb-2 bg-gradient-primary text-white " href="{% url 'Orgao:tipos_lotacao'%}"
         title="Voltar a HomePage">Página Inicial</a>
 </form>
 {% endblock %}

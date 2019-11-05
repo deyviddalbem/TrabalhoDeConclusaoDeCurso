@@ -9,7 +9,11 @@ Remover Tipo de Chamado
     <form method="post">{% csrf_token %}
         <h3 class="text-center"></h3>
         <h6 class="alert alert-danger">Tem certeza que deseja remover "{{ object }}"?</h6>
-        <input type="submit" class="btn bg-gradient-danger text-white mt-3" value="Confirmar">
+        <input type="submit" class="btn bg-gradient-danger text-white " value="Confirmar">
+        <a class="btn bg-gradient-primary text-white " href="{% url 'Chamados:lista_tipo_chamado'%}"
+            title="Voltar a página anterior">
+            <i class="material-icons">undo</i>
+        </a>
     </form>
 </div>
 {% endblock %}

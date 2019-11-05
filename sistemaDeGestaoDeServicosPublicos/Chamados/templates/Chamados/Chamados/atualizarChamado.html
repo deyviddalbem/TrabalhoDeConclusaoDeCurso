@@ -1,9 +1,12 @@
 <title>SoliServ- Atualizar Chamado</title>
 {% extends 'Orgao/index.html' %}
+{% block titulo %}
+Alterar Chamado
+{% endblock titulo %}
 {% block centroOrgao %}
 <form method="POST" class="container">
     {% csrf_token %}
-    <h3 class="text-center mt-5" style="color: #4613ac;">Alterar Chamado</h3>
+
     <div class="form-row mt-5">
             <div class="form-group col-md-3">
                     <label for="numeroProtocolo">Protocolo:</label>
@@ -76,9 +79,9 @@
         </div>
     </div>
 
-    <input type="submit" style="background: #4613ac; color: white;" class="btn  mb-3" title="Atualizar Chamado"
+    <input type="submit" class="btn  mb-3 bg-gradient-primary text-white" title="Atualizar Chamado"
         value="Atualizar Chamado">
-    <a class="btn  mb-3" href="{% url 'Chamados:lista_chamado' user.id %}" style="background: #4613ac; color: white;"
+    <a class="btn  mb-3 bg-gradient-primary text-white" href="{% url 'Chamados:lista_chamado' user.id %}" 
         title="Voltar a Página Anterior"><i class="material-icons">undo</i></a>
 
 
