@@ -3,7 +3,7 @@ $(document).ready(function () {
   $('table').DataTable({
     "order": [],
     "lengthChange": true,
-    "lengthMenu": [[10, 20, 30, 40, 50, 100, -1], [10, 20, 30, 40, 50, 100, "Todos"]],
+    "lengthMenu": [[5, 10, 20, 30, 40, 50, 100, -1], [5, 10, 20, 30, 40, 50, 100, "Todos"]],
     colReorder: true,
     responsive: true,
     dom: 'lBfrtip',

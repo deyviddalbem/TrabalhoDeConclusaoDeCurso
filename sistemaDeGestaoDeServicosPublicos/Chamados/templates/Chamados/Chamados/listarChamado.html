@@ -16,6 +16,7 @@ Meus Chamados
                             <tr>
                                 <th>NÚMERO DO PROTOCOLO</th>
                                 <th>DATA DE ABERTURA</th>
+                                <th>ÚLTIMA MODIFICAÇÃO</th>
                                 <th>TIPO DO CHAMADO</th>
                                 <th>ENDEREÇO</th>
                                 <th>SITUAÇÃO</th>
@@ -27,6 +28,11 @@ Meus Chamados
                             <tr>
                                 <td>{{chamado.numeroProtocolo}}</td>
                                 <td>{{chamado.dataAbertura}}</td>
+                                {% if chamado.dataConclusao != chamado.dataAbertura %}
+                                <td>{{chamado.dataConclusao}}</td>
+                                {% else %}
+                                <td>{{chamado.dataAbertura}}</td>
+                                {% endif %}
                                 <td>{{chamado.idTipoChamado.descricaoTipoChamado}}</td>
                                 <td>{{chamado.idEndereco}}</td>
                                 {% if chamado.idStatus.pk == 1  %}
