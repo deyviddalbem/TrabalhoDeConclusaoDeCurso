@@ -157,7 +157,7 @@ def CadastroChamado(request, pk=None):
                     b.numeroProtocolo = Chamado.gerarProtocolo()
                     print(Chamado.gerarProtocolo()+" aqui1122")
                     b.save()
-                return redirect('Chamados:lista_chamado')
+                return redirect(reverse_lazy('Chamados:lista_chamado', kwargs={'pk':request.user.id}))
             else:
                 return HttpResponse("aqui")
         else:
@@ -191,14 +191,12 @@ class ListChamados(ListView):
     paginate_by = 10000
 
     def get_queryset(self):
-        self.id = get_object_or_404(Chamado, id=self.kwargs['pk'])
+        self.idPessoa =  get_object_or_404(User, id=self.kwargs['pk'])
         return Chamado.objects.filter(idUsuario=self.request.user.id)
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in the publisher
-        context['id'] = self.id
+        context['idPessoa'] = self.idPessoa
         return context
 
 def detalheChamado(request, pk=None):
@@ -258,7 +256,6 @@ def atualizarChamado(request, pk=None):
 class FiltrarChamados(ListView):
     template_name = "Chamados/Chamados/listarChamado.html"
     context_object_name = 'chamados_list'
-    paginate_by= 5
 
     def get_queryset(self):
         self.idPessoa = get_object_or_404(User, id=self.request.user.id)
