@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'Chamados.apps.ChamadosConfig',
     'Orgao.apps.OrgaoConfig',
     'social_django',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -116,12 +116,12 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'Soliserv',
-        'USER':'root',
-        'PASSWORD':'dalbem88',
-        'HOST':'localhost',
-        'PORT':'3306',
-          
+        'NAME':'deyvid$SoliServ', #'NAME':'Soliserv'
+        'USER':'deyvid', #root
+        'PASSWORD':'senhabraba123@', #dalbem88
+        'HOST':'deyvid.mysql.pythonanywhere-services.com', #localhost
+        #'PORT':'3306',
+
     }
 }
 
