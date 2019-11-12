@@ -35,7 +35,7 @@ Atualizar Lotação
 
             </div>
         </div>
-        <div class="form-row">
+        <div class="form-row form-group">
             <div class="form-group col-md-4">
                 <label for="idOrgao">Nome do órgão:</label>
                 <select class="form-control" id="idOrgao" name="idOrgao">
@@ -47,16 +47,16 @@ Atualizar Lotação
             </div>
             <div class="form-group col-md-8">
                 <label for="observacao">Observação:</label>
-                <input type="text" class="form-control" id="observacao" name="observacao" required {{formEdit.observacao}}>
+                <input class="form-control" id="observacao" name="observacao" required {{formEdit.observacao}}>
+                
             </div>
-
         </div>
         {% if form.errors %}
         <p class="container text-center alert alert-danger mt-3">Dados inseridos de forma incorreta, verifique os campos
             e
             tente novamente!</p>
         {% endif %}
-        <input type="submit"  class="btn bg-gradient-primary text-white  mb-3" title="Atualizar Lotação"
+        <input type="submit" class="btn bg-gradient-primary text-white  mb-3" title="Atualizar Lotação"
             value="Atualizar Lotação">
         <a class="btn bg-gradient-primary text-white mb-3" href="{% url 'Orgao:lista_lotacao'%}"
             title="Voltar a Lista de Lotações"><i class="material-icons">undo</i>

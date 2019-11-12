@@ -50,3 +50,8 @@ class Endereco(models.Model):
     class Meta:
         verbose_name = "Endereco"
         verbose_name_plural = "Endereco"
+
+# class fotoUsuario(models.Model):
+#     foto = models.ImageField(default='default.png',upload_to='fotosUsuario/')
+#     idPessoa = models.ForeignKey(
+#         User, on_delete=models.CASCADE, verbose_name="PESSOA")
