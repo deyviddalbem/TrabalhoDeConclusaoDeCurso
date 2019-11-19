@@ -6,11 +6,18 @@
 {% if dadosUserList %}
 {% for user in dadosUserList %}
 <form>
-    <div class=" container border">
-        <div class="container text-center">
-            <img class="mt-1 text-center rounded-circle" src="{{ request.session.profile_picture }}" alt=""
+    <div class="container border">
+        <div class="text-center d-block">
+            <img class="mt-1 text-center rounded-circle" src="{{ request.session.profile_picture }}" alt="foto de perfil do usuário logado."
                 style="width: 150px;">
+            <!-- <div class="mt-3 w-70">
+                <input type="file" name="arquivos" class="btn bg-gradient-primary text-white w-50" accept="image/png, image/jpeg"
+                multiple />
+            </div> -->
         </div>
+
+
+
         <div class="mt-3 ">
             <label for="Nome">Nome: </label>
             <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="nome"
@@ -18,13 +25,13 @@
         </div>
 
 
-        <div class="mt-3" >
+        <div class="mt-3">
             <label for="SobreNome">SobreNome:</label>
             <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="SobreNome"
                 value="{{user.last_name}}">
         </div>
         <div class="mt-3">
-            <label  for="email">Endereço de e-mail: </label>
+            <label for="email">Endereço de e-mail: </label>
             <input style="text-transform: uppercase;" type="text" class="form-control" disabled id="email"
                 value="{{user.email}}">
         </div>
@@ -34,14 +41,14 @@
                 value="{{user.username}}">
         </div>
         <div class="container w-30">
-            <a class="btn mb-3 w-30 bg-gradient-primary text-white" 
-                href="{% url 'atualizarCadastro' user.id %}" title="Atualizar meus dados">
-                <i class="fas fa-user-edit"></i>    
+            <a class="btn mb-3 w-30 bg-gradient-primary text-white" href="{% url 'atualizarCadastro' user.id %}"
+                title="Atualizar meus dados">
+                <i class="fas fa-user-edit"></i>
                 Atualizar Dados
-                </a>
+            </a>
 
-            <a class="btn mb-3 w-30 bg-gradient-primary text-white"
-                href="{% url 'password_change' %}" title="Alterar Senha">
+            <a class="btn mb-3 w-30 bg-gradient-primary text-white" href="{% url 'password_change' %}"
+                title="Alterar Senha">
                 <i class="far fa-sync-alt"></i>
                 Alterar Senha
             </a>
