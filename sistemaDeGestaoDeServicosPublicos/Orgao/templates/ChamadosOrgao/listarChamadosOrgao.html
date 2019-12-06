@@ -49,7 +49,7 @@ Chamados Semosp
                                 {% endif %}
                                 <td class="border ">
                                  <div class="text-center align-middle">
-                                    {% if chamado.idStatus.pk != 2 %}
+                                    {% if chamado.idStatus.pk != 3 %}
                                     <a class="bg-gradient-primary btn-circle text-white"
                                         href="{% url 'Orgao:atualizar_chamados_orgao' chamado.id %}"
                                         title="Editar Chamado">
@@ -81,16 +81,14 @@ Chamados Semosp
             </div>
         </div>
     </div>
-  
+
     <a class="btn mb-3 mt-3 bg-gradient-primary text-white" href="{% url 'Orgao:orgao_index' %}"
         title="Voltar a pagina inicial">
         <i class="material-icons">undo</i>
     </a>
     {% else %}
-    <p class="alert alert-danger  text-center">{{user.first_name }}, você não possui chamados cadastrados!</p>
-    <a class="btn  ml-2 mb-3 mt-3 bg-gradient-primary text-white" href="{% url 'Chamados:cadastro_chamado' %}"
-        title="Cadastrar Chamado">Cadastrar
-        Novo Chamado
+    <p class="alert alert-danger  text-center">Não há chamados cadastrados!</p>
+
     </a>
     <a class="btn mb-3 mt-3 bg-gradient-primary text-white" href="{% url 'Orgao:lista_chamados_orgao' %}"
         title="Voltar a Lista de Chamados">

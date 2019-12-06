@@ -52,7 +52,7 @@ def mostrarMeusDados(request):
 
 
 
-##### Função para efetuar o cadastro do telefone ##### 
+##### Função para efetuar o cadastro do telefone #####
 def CadastroTelefone(request, idTelefone=None):
     tipos = TipoTelefone.objects.all()
     if idTelefone:
@@ -115,7 +115,7 @@ def cadastroEndereco(request):
         else:
             context = {'address_form': address_form}
             return render(request, 'Endereco/cadastroEndereco.html', context)
-            
+
     else:
         address_form = CadastroEnderecoForm()
         context = {'address_form': address_form}
