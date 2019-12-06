@@ -109,20 +109,20 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['picture']
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-
     # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME':'deyvid$SoliServ', #'NAME':'Soliserv'
-    #     'USER':'deyvid', #root
-    #     'PASSWORD':'senhabraba123@', #dalbem88
-    #     'HOST':'deyvid.mysql.pythonanywhere-services.com', #localhost
-    #     #'PORT':'3306',
-
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
+
+     'default': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME':'deyvid$SoliServ', #'NAME':'Soliserv'
+         'USER':'deyvid', #root
+         'PASSWORD':'senhabraba123@', #dalbem88
+         'HOST':'deyvid.mysql.pythonanywhere-services.com', #localhost
+         #'PORT':'3306',
+
+     }
 }
 
 

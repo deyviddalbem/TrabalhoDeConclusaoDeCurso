@@ -7,29 +7,33 @@ Cadastrar Telefone
 
 {% block centro %}
 {% if user.is_authenticated %}
-<form method="POST">
+<form method="POST" class="container">
     {% csrf_token %}
-    <div class="form-group">
-        <label for="idTipoTelefone">Tipo de Telefone</label>
-        <select class="form-control" id="idTipoTelefone" name="idTipoTelefone">
-            {% for tipo in tipos %}
-            <option value="{{tipo.pk}}" {% if tipo.pk == formEdit.idTipoTelefone.id %} selected="selected" {% endif %}>
-                {{ tipo }}</option>
-            {% endfor %}
-        </select>
+    <div class="form-row">
+        <div class="form-group w-30 mr-3">
+            <label for="idTipoTelefone">Tipo de Telefone</label>
+            <select class="form-control" id="idTipoTelefone" name="idTipoTelefone">
+                {% for tipo in tipos %}
+                <option value="{{tipo.pk}}" {% if tipo.pk == formEdit.idTipoTelefone.id %} selected="selected"
+                    {% endif %}>
+                    {{ tipo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group w-30">
+            <label for="numero">Número de Telefone</label>
+            <input type="tel" pattern="^\d{2}\d{4}\d{4}$" class="form-control" id="numero" name="numero"
+                placeholder="Digite o número do telefone no formato (DD + numero)" value="{{formEdit.numero}}"
+                maxlength="11" required>
+        </div>
+        <div class="d-none">
+            <label for="idPessoa">Usuário</label>
+            <select class="form-control" id="idPessoa" name="idPessoa">
+                <option value="{{user.pk}}">{{ user }}</option>
+            </select>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="numero">Número de Telefone</label>
-        <input type="tel" pattern="^\d{2}\d{4}\d{4}$" class="form-control" id="numero" name="numero"
-            placeholder="Digite o número do telefone no formato (DD + numero)" value="{{formEdit.numero}}"
-            maxlength="11" required>
-    </div>
-    <div class="d-none">
-        <label for="idPessoa">Usuário</label>
-        <select class="form-control" id="idPessoa" name="idPessoa">
-            <option value="{{user.pk}}">{{ user }}</option>
-        </select>
-    </div>
+
     <input type="submit" class="btn bg-gradient-primary " style="color: white;" value="Salvar">
     <a class="btn  bg-gradient-primary" style="color: white;" href="{% url 'listaTelefones' %}"
         title="Lista de Telefones"><i class="fas fa-list-ul"></i>
